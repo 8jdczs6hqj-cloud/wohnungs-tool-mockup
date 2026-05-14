@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Wohnung V4.4 · Share-Ready · Inbox-in-Today · Score · Eskalation · Premium</title>
+<title>Wohnung V4.5 · 33 Bugs gefixt · Share-Ready · Score · Eskalation · Premium</title>
+<!-- TODO V5: local Tailwind statt CDN (Visual-18) -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1096,6 +1097,316 @@
   body.share-mode #escalationSection,
   body.share-mode #inbox-section-today,
   body.share-mode #replyNeuSection { display: none !important; }
+
+  /* ===== V4.5 ADDITIONS ===== */
+
+  /* Schwaeche-6: View-Today Overflow-Fix */
+  #view-today { overflow-x: hidden; }
+  #view-today > * { min-width: 0; }
+
+  /* Visual-19: Score-Mini Touch-Target Minimum */
+  .score-mini {
+    min-width: 44px; min-height: 44px;
+    padding: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+
+  /* Visual-22: Pin Active-State */
+  .pin:active { transform: translate(-50%, -50%) scale(0.92); transition: transform 120ms; }
+
+  /* Visual-23: Antwort-Badge Pulse */
+  @keyframes antwort-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+  }
+  .antwort-badge.pulse-once {
+    animation: antwort-pulse 1.6s ease-in-out 2;
+  }
+
+  /* Visual-21: Theme Manual Toggle (Auto/Light/Dark) */
+  [data-theme="light"] html,
+  [data-theme="light"] body { background: #EFEDE6; }
+  [data-theme="light"] .frame { background: #FAFAF8; }
+  [data-theme="dark"] html,
+  [data-theme="dark"] body { background: #0B0B0C; }
+  [data-theme="dark"] .frame {
+    background: #141416;
+    box-shadow:
+      0 30px 80px -30px rgba(0,0,0,0.70),
+      0 0 0 1px rgba(255,255,255,0.04);
+  }
+  [data-theme="dark"] .home-indicator { background: rgba(255,255,255,0.30); }
+  [data-theme="dark"] .capture-wrap { background: linear-gradient(to bottom, rgba(20,20,22,0.98) 70%, rgba(20,20,22,0)); }
+  [data-theme="dark"] .capture {
+    background: #1D1D20;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02), 0 8px 22px -14px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  [data-theme="dark"] .capture input::placeholder { color: rgba(154,154,158,0.85); }
+  [data-theme="dark"] .pill { color: #D6D6D8; background: #1D1D20; border-color: rgba(255,255,255,0.08); }
+  [data-theme="dark"] .pill.active { background: #FAFAF8; color: #18181B; border-color: #FAFAF8; }
+  [data-theme="dark"] .card { background: #1D1D20; border-color: rgba(255,255,255,0.04); box-shadow: 0 1px 0 rgba(255,255,255,0.02), 0 6px 22px -14px rgba(0,0,0,0.7); }
+  [data-theme="dark"] .tabbar { background: #141416; box-shadow: 0 1px 0 rgba(255,255,255,0.02), 0 10px 28px -18px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05); }
+  [data-theme="dark"] .tab { color: #9A9A9E; }
+  [data-theme="dark"] .tab.active { color: #FAFAF8; background: rgba(255,255,255,0.06); }
+  [data-theme="dark"] .filter-bar { background: linear-gradient(to bottom, rgba(20,20,22,0.96) 60%, rgba(20,20,22,0)); }
+  [data-theme="dark"] body, [data-theme="dark"] .text-ink { color: #FAFAF8; }
+  [data-theme="dark"] .dim { color: #9A9A9E; }
+  [data-theme="dark"] .toast { background: #FAFAF8; color: #18181B; }
+  [data-theme="dark"] .hot-lead { background: #1F1A18; border-color: rgba(255,138,101,0.55); }
+  [data-theme="dark"] .reply-card { background: #1F1A18; border-color: rgba(255,138,101,0.45); }
+  [data-theme="dark"] .sheet { background: #1A1A1C; box-shadow: 0 -20px 50px -20px rgba(0,0,0,0.7); }
+  [data-theme="light"] .frame {
+    background: #FAFAF8;
+    box-shadow:
+      0 30px 80px -30px rgba(20,18,12,0.40),
+      0 0 0 1px rgba(20,18,12,0.06);
+  }
+
+  /* Schwaeche-10: Tag-Pill als Erfasse-CTA mit Plus-Icon */
+  #tagRow .pill .pill-plus {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 14px; height: 14px; border-radius: 999px;
+    background: rgba(255,138,101,0.18); color: #FF8A65;
+    font-size: 11px; font-weight: 700; line-height: 1;
+    margin-right: 2px;
+  }
+  #tagRow .pill .pill-label-prefix {
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(122,122,126,0.85);
+    margin-right: 3px;
+  }
+  [data-theme="dark"] #tagRow .pill .pill-label-prefix { color: rgba(154,154,158,0.85); }
+
+  /* Bug-2: Vitamin-B Profil-Sheet anonymisierte Variante */
+  body.share-mode .vit-real-profile { display: none !important; }
+  body.share-mode .vit-share-profile { display: block !important; }
+  .vit-share-profile { display: none; }
+
+  /* Empf-27: NEU-Section Empty-State */
+  .reply-empty {
+    display: none;
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(122,122,126,0.06);
+    border: 1px dashed rgba(122,122,126,0.30);
+    text-align: center;
+    font-size: 12.5px;
+  }
+  [data-theme="dark"] .reply-empty { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.14); }
+  .reply-empty.show { display: block; }
+
+  /* Empf-25: Card focus state für Keyboard-Navigation */
+  .tcard.kbd-focus {
+    outline: 2px solid #FF8A65;
+    outline-offset: 2px;
+  }
+
+  /* Empf-29: Karte Onboarding-Tooltip */
+  .karte-tooltip {
+    position: absolute; top: 56px; left: 50%; transform: translateX(-50%);
+    background: rgba(20,18,12,0.92); color: #FAFAF8;
+    padding: 8px 12px; border-radius: 10px;
+    font-size: 11.5px; font-weight: 500;
+    box-shadow: 0 6px 18px -8px rgba(20,18,12,0.40);
+    z-index: 35;
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .karte-tooltip.show { opacity: 1; }
+  .karte-tooltip::after {
+    content: '';
+    position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 10px; background: inherit;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  /* Empf-31: Pack-Matrix */
+  .pack-matrix {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .pack-matrix-cell {
+    background: rgba(16,185,129,0.10);
+    border: 1px solid rgba(16,185,129,0.30);
+    border-radius: 10px;
+    padding: 8px 4px;
+    text-align: center;
+  }
+  .pack-matrix-cell.warn {
+    background: rgba(245,158,11,0.10);
+    border-color: rgba(245,158,11,0.30);
+  }
+  .pack-matrix-cell.crit {
+    background: rgba(251,146,60,0.10);
+    border-color: rgba(251,146,60,0.35);
+  }
+  .pack-matrix-label {
+    font-size: 9.5px; font-family: "JetBrains Mono"; font-weight: 600;
+    color: #7A7A7E;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .pack-matrix-value {
+    font-family: "JetBrains Mono"; font-size: 13px; font-weight: 700;
+    margin-top: 2px;
+  }
+  .pack-matrix-cell.ok .pack-matrix-value { color: #10B981; }
+  .pack-matrix-cell.warn .pack-matrix-value { color: #F59E0B; }
+  .pack-matrix-cell.crit .pack-matrix-value { color: #FB923C; }
+
+  /* Toast Undo-Style mit Tap-Affordance */
+  .toast.undo {
+    background: #18181B; color: #FAFAF8;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 10px;
+  }
+  [data-theme="dark"] .toast.undo { background: #FAFAF8; color: #18181B; }
+  .toast.undo .undo-label { font-weight: 600; }
+  .toast.undo .undo-cta {
+    font-family: "JetBrains Mono"; font-size: 11px;
+    color: #FF8A65; font-weight: 700;
+    margin-left: auto;
+    border-left: 1px solid rgba(255,255,255,0.20);
+    padding-left: 10px;
+  }
+  [data-theme="dark"] .toast.undo .undo-cta {
+    border-left-color: rgba(20,18,12,0.20);
+  }
+
+  /* Empf-32: Onboarding Skip + Reminder Banner */
+  .ob-skip {
+    background: transparent;
+    color: #7A7A7E;
+    border: 0;
+    font-size: 11px; font-family: "JetBrains Mono";
+    margin-top: 8px;
+    cursor: pointer;
+    padding: 6px 0;
+  }
+  .ob-reminder-banner {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(245,158,11,0.10);
+    border: 1px solid rgba(245,158,11,0.30);
+    font-size: 11.5px;
+    align-items: center;
+    gap: 8px;
+  }
+  .ob-reminder-banner.show { display: flex; }
+
+  /* Schwaeche-15: Hot-Lead-XL Dual-CTA Row */
+  .hot-lead-cta-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .hot-lead-cta-row .hot-lead-cta { margin-top: 0; }
+  .hot-lead-cta-row .cta-ghost.snooze {
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 14px;
+    background: transparent;
+    color: #18181B;
+    border: 1px solid rgba(20,18,12,0.10);
+    font-size: 13px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer;
+  }
+  [data-theme="dark"] .hot-lead-cta-row .cta-ghost.snooze {
+    color: #FAFAF8; border-color: rgba(255,255,255,0.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    .hot-lead-cta-row .cta-ghost.snooze {
+      color: #FAFAF8; border-color: rgba(255,255,255,0.10);
+    }
+  }
+
+  /* Inbox-Mini: Fade-Out for triage */
+  .inbox-mini {
+    transition: opacity 220ms ease, max-height 260ms ease, padding 260ms ease, margin 260ms ease, border-color 260ms ease;
+    overflow: hidden;
+  }
+  .inbox-mini.fade-out {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0; padding-bottom: 0;
+    margin: 0;
+    border-color: transparent;
+  }
+  .inbox-card {
+    transition: opacity 220ms ease, max-height 260ms ease, padding 260ms ease, border-color 260ms ease;
+    overflow: hidden;
+  }
+  .inbox-card.fade-out {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0; padding-bottom: 0;
+    border-color: transparent;
+  }
+
+  /* Empf-28: Quick-Filter Sheet (Cmd+K) */
+  .qf-input {
+    width: 100%;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 4px;
+    border-bottom: 1px solid rgba(20,18,12,0.10);
+    color: inherit;
+  }
+  [data-theme="dark"] .qf-input { border-bottom-color: rgba(255,255,255,0.10); }
+  .qf-result {
+    padding: 10px 4px;
+    border-bottom: 1px solid rgba(20,18,12,0.05);
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  [data-theme="dark"] .qf-result { border-bottom-color: rgba(255,255,255,0.06); }
+  .qf-result:hover { background: rgba(20,18,12,0.03); }
+  .qf-result-mute { font-size: 11px; color: #7A7A7E; }
+  .qf-hint {
+    font-family: "JetBrains Mono"; font-size: 10px;
+    color: #7A7A7E;
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Theme-radio buttons */
+  .theme-radio-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .theme-radio {
+    padding: 10px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(20,18,12,0.10);
+    background: transparent;
+    color: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    min-height: 56px;
+  }
+  [data-theme="dark"] .theme-radio { border-color: rgba(255,255,255,0.10); }
+  .theme-radio.active {
+    background: #18181B; color: #FAFAF8; border-color: #18181B;
+  }
+  [data-theme="dark"] .theme-radio.active {
+    background: #FAFAF8; color: #18181B; border-color: #FAFAF8;
+  }
+  .theme-radio svg { opacity: 0.8; }
 </style>
 </head>
 <body class="font-sans text-ink dark:text-inkD antialiased">
@@ -1160,11 +1471,11 @@
         </div>
 
         <div class="tag-row" id="tagRow">
-          <button class="pill tap" data-tag="Mail"><span class="swatch" style="background:#5E6AD2"></span>Mail</button>
-          <button class="pill tap" data-tag="Brief"><span class="swatch" style="background:#FB923C"></span>Brief</button>
-          <button class="pill tap" data-tag="Aushang"><span class="swatch" style="background:#10B981"></span>Aushang</button>
-          <button class="pill tap" data-tag="Anruf"><span class="swatch" style="background:#A06AE6"></span>Anruf</button>
-          <button class="pill tap" data-tag="Vitamin"><span class="swatch" style="background:#F59E0B"></span>Vitamin&nbsp;B</button>
+          <button class="pill tap" data-tag="Mail"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#5E6AD2"></span>Mail</button>
+          <button class="pill tap" data-tag="Brief"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#FB923C"></span>Brief</button>
+          <button class="pill tap" data-tag="Aushang"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#10B981"></span>Aushang</button>
+          <button class="pill tap" data-tag="Anruf"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#A06AE6"></span>Anruf</button>
+          <button class="pill tap" data-tag="Vitamin"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#F59E0B"></span>Vitamin&nbsp;B</button>
         </div>
       </div>
 
@@ -1200,13 +1511,17 @@
           <div class="reply-card tcard" data-id="reply1" data-ch="mail" data-st="antwort" data-cfg-list="Solo,2er-WG">
             <div class="plate-reply">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l5-5v3h10a2 2 0 012 2v2"/><path d="M21 12l-5 5v-3H6a2 2 0 01-2-2v-2"/></svg>
-              <span class="antwort-badge">Antwort</span>
+              <span class="antwort-badge pulse-once">Antwort</span>
             </div>
             <div class="min-w-0">
               <div class="text-[14px] font-semibold tracking-tight truncate">Frau Hartmann antwortet</div>
               <div class="text-[11.5px] dim truncate">Bethmannpark · "Donnerstag 17h passt..."</div>
             </div>
             <span class="score-mini" data-score-id="reply1">★ 0.92</span>
+          </div>
+          <div class="reply-empty" id="replyEmpty">
+            <div class="text-[12.5px]" style="color:#7A7A7E;">Keine neuen Antworten · letzte vor 12 Min</div>
+            <div class="text-[10.5px] dim mt-1">Such-Agent läuft weiter im Hintergrund</div>
           </div>
         </div>
 
@@ -1255,10 +1570,16 @@
               <span class="cfg-pill muted">Nordend</span>
               <span class="cfg-pill muted">★ Hell</span>
             </div>
-            <button class="hot-lead-cta tap" data-cta="Antworten">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              Mit Pack antworten
-            </button>
+            <div class="hot-lead-cta-row">
+              <button class="hot-lead-cta tap" data-cta="Antworten">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Mit Pack antworten
+              </button>
+              <button class="cta-ghost snooze tap" data-cta="Snooze" data-undo="Hot-Lead bis morgen geschoben" aria-label="Spaeter">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                Spaeter
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1283,7 +1604,7 @@
             </div>
             <div class="grid grid-cols-2 gap-2 mt-3">
               <button class="cta cta-ghost tap" style="min-height:40px;font-size:12px;" data-toast="Draft editiert">Editieren</button>
-              <button class="cta cta-apricot tap" style="min-height:40px;font-size:12px;" data-toast="Nachfrage gesendet">Senden</button>
+              <button class="cta cta-apricot tap esc-send-btn" style="min-height:40px;font-size:12px;" data-undo="Nachfrage Hartmann gesendet" data-final-toast="Nachfrage Hartmann gesendet">Senden</button>
             </div>
           </div>
           <div class="esc-card day7 tcard" data-id="esc2" data-ch="anruf" data-st="hot" data-cfg-list="Solo,2er-WG">
@@ -1296,7 +1617,7 @@
               <span class="score-mini mid" data-score-id="esc2">★ 0.71</span>
             </div>
             <div class="grid grid-cols-2 gap-2 mt-3">
-              <button class="cta cta-ghost tap" style="min-height:40px;font-size:12px;" data-toast="Snooze 1 Tag">Spaeter</button>
+              <button class="cta cta-ghost tap" style="min-height:40px;font-size:12px;" data-undo="Snooze 1 Tag · Schiele" data-final-toast="Snooze 1 Tag · Schiele">Spaeter</button>
               <button class="cta cta-apricot tap" style="min-height:40px;font-size:12px;" data-toast="Anruf-Tap +49 1XX XXX 04 12">Anrufen</button>
             </div>
           </div>
@@ -1611,7 +1932,9 @@
       </div>
 
       <div class="px-4 pt-2">
-        <div class="card overflow-hidden">
+        <div class="card overflow-hidden" style="position:relative;">
+          <!-- V4.5 Empf-29: Karte Onboarding-Tooltip beim Erstbesuch -->
+          <div class="karte-tooltip" id="karteTooltip">Tipp: LongPress + Drag = mehrere Pins markieren</div>
           <div class="map-wrap" style="height: 460px;">
             <svg viewBox="0 0 375 460" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full">
               <!-- Bezirks-Highlights (V4.3 F): primary=Apricot, secondary=neutral, other=ausgegraut -->
@@ -1835,8 +2158,8 @@
 
   </div>
 
-  <!-- TOAST -->
-  <div id="toast" class="toast">Erledigt</div>
+  <!-- TOAST (V4.5 Empf-26: aria-live polite + role=status) -->
+  <div id="toast" class="toast" aria-live="polite" role="status">Erledigt</div>
 
   <!-- TABBAR -->
   <div class="bottom">
@@ -2048,6 +2371,13 @@
         <div class="text-[12px] flex-1" id="packBannerText">Pack 4/5 + Buergschaft verfuegbar · ready fuer 2er-WG</div>
       </div>
 
+      <!-- V4.5 Empf-32: Onboarding-Reminder-Banner (sichtbar wenn Onboarding nicht fertig) -->
+      <div class="ob-reminder-banner" id="obReminderBanner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <div class="flex-1"><strong>Pack <span id="obReminderPack">0</span>/5</strong> · Onboarding fertigstellen</div>
+        <button class="font-mono text-[10.5px] tap" id="obReminderGo" style="color:#F59E0B;">Weiter</button>
+      </div>
+
       <!-- Dokumente -->
       <div class="mt-5">
         <div class="flex items-center justify-between mb-2">
@@ -2207,13 +2537,14 @@
         <div class="mt-2 text-[10.5px] dim leading-relaxed">Soft-Pflicht: Wohnungen ohne werden nicht ausgeblendet, aber niedriger gerankt.</div>
       </div>
 
-      <!-- Vitamin-B mit 3 Personen (V4.3 D) -->
+      <!-- Vitamin-B mit 3 Personen (V4.3 D + V4.5 Bug-2: Share-anonymisiert) -->
       <div class="mt-5">
         <div class="flex items-center justify-between mb-2">
           <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim">Vitamin-B-Liste</div>
           <button class="font-mono text-[10.5px] dim tap" data-toast="Person hinzufuegen">+ Person</button>
         </div>
-        <div class="card overflow-hidden">
+        <!-- Owner-Mode: vollstaendige Namen + Details -->
+        <div class="card overflow-hidden vit-real-profile">
           <div class="row" data-toast="Karl nachfragen">
             <div class="vit-avatar" style="width:32px;height:32px;font-size:12px;">K</div>
             <div class="min-w-0">
@@ -2242,6 +2573,85 @@
             <button class="mini-cta tap" data-toast="Manuel Frankfurt angeschrieben">Fragen</button>
           </div>
         </div>
+        <!-- V4.5 Bug-2: Share-Mode anonymisierte Variante (nur Initialen, kein Status, keine Budget-Zahlen) -->
+        <div class="card overflow-hidden vit-share-profile">
+          <div class="row">
+            <div class="vit-avatar" style="width:32px;height:32px;font-size:12px;">K</div>
+            <div class="min-w-0">
+              <div class="text-[13.5px] font-semibold truncate">K.</div>
+              <div class="text-[11px] dim truncate">Kontakt · anonymisiert (Read-only)</div>
+            </div>
+            <span class="pack-pill ok" style="font-size:10px;">privat</span>
+          </div>
+          <div class="row">
+            <div class="vit-avatar" style="width:32px;height:32px;font-size:11px;">MT</div>
+            <div class="min-w-0">
+              <div class="text-[13.5px] font-semibold truncate">MT.</div>
+              <div class="text-[11px] dim truncate">Kontakt · anonymisiert (Read-only)</div>
+            </div>
+            <span class="pack-pill ok" style="font-size:10px;">privat</span>
+          </div>
+          <div class="row">
+            <div class="vit-avatar" style="width:32px;height:32px;font-size:11px;">MF</div>
+            <div class="min-w-0">
+              <div class="text-[13.5px] font-semibold truncate">MF.</div>
+              <div class="text-[11px] dim truncate">Kontakt · anonymisiert (Read-only)</div>
+            </div>
+            <span class="pack-pill ok" style="font-size:10px;">privat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- V4.5 Empf-31: Pack-Matrix pro Konfig -->
+      <div class="mt-5">
+        <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim mb-2">Pack-Status pro Konfig</div>
+        <div class="card p-3">
+          <div class="pack-matrix" id="packMatrix">
+            <div class="pack-matrix-cell ok">
+              <div class="pack-matrix-label">Solo</div>
+              <div class="pack-matrix-value">5/5</div>
+            </div>
+            <div class="pack-matrix-cell ok">
+              <div class="pack-matrix-label">2er-WG</div>
+              <div class="pack-matrix-value">5/5</div>
+            </div>
+            <div class="pack-matrix-cell warn">
+              <div class="pack-matrix-label">3er-WG</div>
+              <div class="pack-matrix-value">4/5</div>
+            </div>
+            <div class="pack-matrix-cell crit">
+              <div class="pack-matrix-label">4er-WG</div>
+              <div class="pack-matrix-value">3/5</div>
+            </div>
+          </div>
+          <div class="mt-3 text-[10.5px] dim leading-relaxed">3er/4er brauchen Mitbewerber-Pack (Bonitaet + Selbstauskunft) für volle Punkte.</div>
+        </div>
+      </div>
+
+      <!-- V4.5 Visual-21: Theme-Toggle Auto / Light / Dark -->
+      <div class="mt-5">
+        <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim mb-2">Erscheinungsbild</div>
+        <div class="theme-radio-row" id="themeRadioRow">
+          <button class="theme-radio active" data-theme-val="auto">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg>
+            Auto
+          </button>
+          <button class="theme-radio" data-theme-val="light">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            Light
+          </button>
+          <button class="theme-radio" data-theme-val="dark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            Dark
+          </button>
+        </div>
+      </div>
+
+      <!-- V4.5 Schwaeche-7: Share-Mode Demo-Test-Button statt LongPress -->
+      <div class="mt-5">
+        <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim mb-2">Demo</div>
+        <button class="cta cta-ghost tap" id="shareModeTestBtn">Share-Modus testen</button>
+        <div class="mt-1 text-[10.5px] dim leading-relaxed">Zeigt wie Karl / Manuel die App sehen (anonymisiert, read-only).</div>
       </div>
 
       <!-- Such-Agent -->
@@ -2577,6 +2987,22 @@
         <button id="obNext" class="cta cta-apricot tap">Weiter</button>
       </div>
 
+      <!-- V4.5 Empf-32: Skip-Button -->
+      <button class="ob-skip" id="obSkipBtn">Spaeter erledigen — Pack bleibt vorlaeufig leer</button>
+
+      <div class="h-4"></div>
+    </div>
+  </div>
+
+  <!-- V4.5 Empf-28: QUICK-FILTER-SHEET (Cmd+K / Ctrl+K) -->
+  <div id="sheetQuickFilter" class="sheet layer2">
+    <div class="grab"></div>
+    <div class="px-5 pt-3 pb-2">
+      <div class="font-mono text-[11px] uppercase tracking-[0.14em] dim">Quick-Filter</div>
+      <h3 class="mt-1 text-[16px] font-semibold tracking-tight">Adresse, Vermieter, Bezirk...</h3>
+      <input type="text" id="qfInput" class="qf-input mt-3" placeholder="Tippen oder ↑↓ navigieren..." autocomplete="off" />
+      <div class="qf-hint">Cmd+K · Esc zum schliessen</div>
+      <div id="qfResults" class="mt-2"></div>
       <div class="h-4"></div>
     </div>
   </div>
@@ -2636,7 +3062,26 @@ const TODAY = {
     last: 'Anfrage gesendet 09.05.',
     next: 'AI-Antwort vorbereitet · pruefen + senden',
     contact: 'Hartmann Immobilien',
-    hasAI: true
+    hasAI: true,
+    lastTouchedISO: '2026-05-11T09:00:00Z',
+    recipientType: 'hv'
+  },
+  // V4.5 Bug-1: reply1 Drilldown-Object (vorher fehlte → Card silent fail)
+  reply1: {
+    channel: 'mail', status: 'antwort',
+    hasAI: true,
+    title: 'Frau Hartmann antwortet',
+    sub: 'Bethmannpark · Donnerstag 17h passt',
+    address: 'Bethmannstr., Bornheim',
+    district: 'Bornheim',
+    config: ['Solo','2er-WG'],
+    criteria: ['hell'],
+    last: 'Antwort vor 12 Min',
+    contact: 'Hartmann Immobilien',
+    next: 'Mit Pack antworten',
+    cta: 'Antworten',
+    lastTouchedISO: '2026-05-14T08:48:00Z',
+    recipientType: 'hv'
   },
   t2: {
     channel: 'vitamin', status: 'hot',
@@ -2953,7 +3398,7 @@ tabBtns.forEach(btn => {
     tabBtns.forEach(b => { b.classList.remove('active'); b.removeAttribute('aria-current'); });
     btn.classList.add('active');
     btn.setAttribute('aria-current', 'page');
-    document.getElementById('scroll').scrollTo({ top: 0, behavior: 'smooth' });
+    // V4.5 Schwaeche-14: kein erzwungenes scrollTo(0) — Restore wird im Capture-Phase-Handler erledigt
     closeSheets();
     if (v === 'inbox') renderInbox();
     if (v === 'karte') renderPins(currentMapFilter);
@@ -2965,6 +3410,7 @@ tabBtns.forEach(btn => {
    ============================================================ */
 const toast = document.getElementById('toast');
 function showToast(msg) {
+  toast.classList.remove('undo');
   toast.textContent = msg;
   toast.classList.add('show');
   clearTimeout(showToast._t);
@@ -2987,9 +3433,10 @@ const sheetOnboarding = document.getElementById('sheetOnboarding');
 
 const sheetWelcome    = document.getElementById('sheetWelcome');
 const sheetScore      = document.getElementById('sheetScore');
+const sheetQuickFilter = document.getElementById('sheetQuickFilter');
 
-const allSheets = [sheetDrill, sheetVoice, sheetFilter, sheetProfile, sheetGenerator, sheetAnruf, sheetVitamin, sheetMailNew, sheetOnboarding, sheetWelcome, sheetScore];
-const layer2Sheets = [sheetGenerator, sheetOnboarding, sheetAnruf, sheetVitamin, sheetMailNew, sheetWelcome, sheetScore];
+const allSheets = [sheetDrill, sheetVoice, sheetFilter, sheetProfile, sheetGenerator, sheetAnruf, sheetVitamin, sheetMailNew, sheetOnboarding, sheetWelcome, sheetScore, sheetQuickFilter];
+const layer2Sheets = [sheetGenerator, sheetOnboarding, sheetAnruf, sheetVitamin, sheetMailNew, sheetWelcome, sheetScore, sheetQuickFilter];
 
 function openSheet(el) {
   sheetBack.classList.add('show');
@@ -3002,15 +3449,20 @@ function closeSheet(el) {
     if (!stillOpen) sheetBack.classList.remove('show');
   }, 220);
 }
+// V4.5 Schwaeche-12: closeSheets schliesst sheetBack synchron (kein Pointer-Race mehr)
 function closeSheets() {
   allSheets.forEach(s => s.classList.remove('open'));
-  setTimeout(() => sheetBack.classList.remove('show'), 220);
+  sheetBack.classList.remove('show');
 }
 
 sheetBack.addEventListener('click', () => {
   const l2open = layer2Sheets.find(s => s.classList.contains('open'));
-  if (l2open) closeSheet(l2open);
-  else closeSheets();
+  if (l2open) {
+    closeSheet(l2open);
+  } else {
+    // V4.5 Schwaeche-12: alle Sheets schliessen, sheetBack SOFORT entfernen
+    closeSheets();
+  }
 });
 
 document.querySelectorAll('[data-close]').forEach(btn => {
@@ -3137,7 +3589,10 @@ const GEN_TEMPLATES = {
 };
 
 function openGenerator(type) {
-  currentGenType = type;
+  // V4.5 Bug-3: Case-Normalisierung am Eingang (verhindert latent crash via lowercase)
+  const key = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+  currentGenType = key;
+  type = key;
   const isAushang = type === 'Aushang';
   document.getElementById('genTitle').textContent = isAushang ? 'Aushang erstellen' : 'Brief an Hausverwaltung';
   document.getElementById('genSubtitle').textContent = isAushang
@@ -3190,11 +3645,14 @@ document.getElementById('genPrintBtn').addEventListener('click', () => {
    PROFILE / ONBOARDING
    ============================================================ */
 document.getElementById('avatarOpen').addEventListener('click', () => openSheet(sheetProfile));
-document.getElementById('openOnboarding').addEventListener('click', () => {
+
+// V4.5 Schwaeche-9: Helper-Funktion fuer Onboarding (resettet immer auf Step 1)
+function openOnboardingSheet() {
   appState.onboardingStep = 1;
   renderOnboardingStep();
   openSheet(sheetOnboarding);
-});
+}
+document.getElementById('openOnboarding').addEventListener('click', openOnboardingSheet);
 
 const OB_STEPS = [
   { title: 'Kriterien festlegen', sub: 'Budget, Bezirke, Konfig + Soft-Kriterien.' },
@@ -3406,10 +3864,26 @@ function updatePackUI() {
   const banner = document.getElementById('packBanner');
   const bannerText = document.getElementById('packBannerText');
   if (banner && bannerText) {
-    banner.style.background = 'rgba(16,185,129,0.10)';
-    banner.style.borderColor = 'rgba(16,185,129,0.25)';
-    banner.querySelector('svg').setAttribute('stroke', '#10B981');
-    bannerText.textContent = `Pack ${n}/5 + Buergschaft verfuegbar · 5/5 ready fuer 2er-WG`;
+    // V4.5 Visual-20: Pack-Banner conditional gruen/gelb je nach Vollstaendigkeit
+    if (n < 4) {
+      banner.style.background = 'rgba(245,158,11,0.10)';
+      banner.style.borderColor = 'rgba(245,158,11,0.25)';
+      banner.querySelector('svg').setAttribute('stroke', '#F59E0B');
+      bannerText.textContent = `Pack ${n}/5 · noch unvollstaendig · Onboarding fertigstellen`;
+    } else {
+      banner.style.background = 'rgba(16,185,129,0.10)';
+      banner.style.borderColor = 'rgba(16,185,129,0.25)';
+      banner.querySelector('svg').setAttribute('stroke', '#10B981');
+      bannerText.textContent = `Pack ${n}/5 + Buergschaft verfuegbar · 5/5 ready fuer 2er-WG`;
+    }
+  }
+  // V4.5 Empf-32: Onboarding-Reminder-Banner zeigen falls nicht fertig
+  const remBanner = document.getElementById('obReminderBanner');
+  if (remBanner) {
+    const isComplete = appState.onboardingStep >= 4 && n >= 4;
+    remBanner.classList.toggle('show', !isComplete);
+    const remPack = document.getElementById('obReminderPack');
+    if (remPack) remPack.textContent = n;
   }
 }
 
@@ -3866,6 +4340,7 @@ function renderInbox() {
   items.forEach((it) => {
     const el = document.createElement('div');
     el.className = 'inbox-card unread';
+    el.dataset.id = it.id;
     const ob = isOverBudget(it.price, it.cfg);
     const cfgPills = (it.cfg && it.cfg.length)
       ? it.cfg.map(c => {
@@ -3897,14 +4372,22 @@ function renderInbox() {
           <div class="text-[11px] mt-1 leading-tight" style="color:#5E6AD2;">${it.note}</div>
           <div class="flex flex-wrap gap-1.5 mt-2">${cfgPills}${criteriaPills}</div>
           <div class="inbox-triage">
-            <button class="tri-hot tap" data-toast="${it.title} → Hot">→ Zu Hot</button>
-            <button class="tap" data-toast="Snoozed bis morgen">Snoozen</button>
-            <button class="tap" data-toast="${it.title} verworfen">Verwerfen</button>
+            <button class="tri-hot tap" data-triage="hot" data-tid="${it.id}">→ Zu Hot</button>
+            <button class="tap" data-triage="snooze" data-tid="${it.id}">Snoozen</button>
+            <button class="tap" data-triage="discard" data-tid="${it.id}">Verwerfen</button>
           </div>
         </div>
       </div>
     `;
     inboxList.appendChild(el);
+  });
+
+  // V4.5 Bug-4: Triage-Handler an dynamische Buttons binden
+  inboxList.querySelectorAll('[data-triage]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triageInboxItem(btn.dataset.tid, btn.dataset.triage);
+    });
   });
 
   document.getElementById('inboxBadge').textContent = items.length;
@@ -3956,7 +4439,11 @@ document.getElementById('filterApply').addEventListener('click', () => {
   applyTodayFilter();
   renderPins(currentMapFilter);
   closeSheet(sheetFilter);
-  showToast('Filter aktiv · ' + document.getElementById('filterCount').textContent + ' Kriterien');
+  // V4.5 Schwaeche-11: bei 0 Kriterien kein Toast (nur Sheet zu)
+  const count = parseInt(document.getElementById('filterCount').textContent, 10) || 0;
+  if (count > 0) {
+    showToast('Filter aktiv · ' + count + ' Kriterien');
+  }
 });
 
 document.getElementById('filterReset').addEventListener('click', () => {
@@ -4105,30 +4592,11 @@ document.getElementById('shareBannerX').addEventListener('click', () => {
   document.getElementById('shareBanner').style.display = 'none';
 });
 
-// Tap-Hold Avatar fuer Demo-Toggle
-(function() {
-  const av = document.getElementById('avatarOpen');
-  let pressTimer;
-  let longPress = false;
-  av.addEventListener('mousedown', () => {
-    longPress = false;
-    pressTimer = setTimeout(() => { longPress = true; toggleShareMode(); showToast(document.body.classList.contains('share-mode') ? 'Share-Mode AN (Demo)' : 'Share-Mode AUS'); }, 700);
-  });
-  av.addEventListener('mouseup', () => clearTimeout(pressTimer));
-  av.addEventListener('mouseleave', () => clearTimeout(pressTimer));
-  av.addEventListener('touchstart', () => {
-    longPress = false;
-    pressTimer = setTimeout(() => { longPress = true; toggleShareMode(); showToast(document.body.classList.contains('share-mode') ? 'Share-Mode AN (Demo)' : 'Share-Mode AUS'); }, 700);
-  }, { passive: true });
-  av.addEventListener('touchend', (e) => {
-    clearTimeout(pressTimer);
-    if (longPress) { e.preventDefault(); }
-  });
-  // Override click to skip if long-press
-  av.addEventListener('click', (e) => {
-    if (longPress) { e.stopImmediatePropagation(); longPress = false; }
-  }, true);
-})();
+// V4.5 Schwaeche-7: Avatar-LongPress entfernt, Share-Mode-Test jetzt explizit im Profil-Sheet
+document.getElementById('shareModeTestBtn').addEventListener('click', () => {
+  toggleShareMode();
+  showToast(document.body.classList.contains('share-mode') ? 'Share-Mode AN (Demo)' : 'Share-Mode AUS');
+});
 
 /* ============================================================
    V4.4 Fix 10 — TERMIN-CARD Inline-Expand (Accordion)
@@ -4150,6 +4618,10 @@ document.querySelectorAll('.termin-head').forEach(head => {
       if (!wasOpen) {
         expand.classList.add('open');
         if (chev) chev.style.transform = 'rotate(180deg)';
+        // V4.5 Schwaeche-13: Smooth-Scroll-To nach Expand
+        setTimeout(() => {
+          expand.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 300);
       }
     }
     e.stopPropagation();
@@ -4163,13 +4635,55 @@ document.querySelectorAll('.termin-head').forEach(t => {
 
 /* ============================================================
    V4.4 Fix 13 — Inbox-Section in Today (kollabierbar + Mini-Cards)
+   V4.5 Bug-5: Chevron-Rotation per CSS .inbox-section.open .inbox-section-chev
+   V4.5 Bug-4 + Schwaeche-17: Triage-Buttons funktional (INBOX-Splice + fade-out + Count-Update)
    ============================================================ */
 document.getElementById('inboxSectionHead').addEventListener('click', () => {
   document.getElementById('inbox-section-today').classList.toggle('open');
 });
 
+function updateInboxSectionCount() {
+  const c = document.getElementById('inboxSectionCount');
+  if (c) c.textContent = INBOX.length + ' neu';
+  const head = document.querySelector('#inboxSectionHead span');
+  if (head) head.textContent = INBOX.length + ' ungelesene Inserate triagieren';
+  const badge = document.getElementById('inboxBadge');
+  if (badge) badge.textContent = INBOX.length;
+}
+
+// V4.5 Bug-4: Triage-Action mit Fade-Out + State-Removal
+function triageInboxItem(id, action) {
+  const idx = INBOX.findIndex(x => x.id === id);
+  if (idx < 0) return;
+  const item = INBOX[idx];
+  const label = item ? item.title : '';
+  // Optimistic UI: alle DOM-Knoten mit dieser ID fade-out
+  const miniNodes = document.querySelectorAll(`.inbox-mini[data-id="${id}"]`);
+  const fullNodes = document.querySelectorAll(`.inbox-card[data-id="${id}"]`);
+  miniNodes.forEach(n => n.classList.add('fade-out'));
+  fullNodes.forEach(n => n.classList.add('fade-out'));
+  // Undo-Toast (V4.5 Empf-24)
+  const undoLabel = action === 'hot' ? `${label} → Hot` :
+                    action === 'snooze' ? `${label} · Snooze 1 Tag` :
+                    `${label} verworfen`;
+  const tid = setTimeout(() => {
+    INBOX.splice(idx, 1);
+    miniNodes.forEach(n => n.remove());
+    fullNodes.forEach(n => n.remove());
+    updateInboxSectionCount();
+    renderInbox();
+    renderInboxMiniInToday();
+  }, 280);
+  showUndoToast(undoLabel, () => {
+    clearTimeout(tid);
+    miniNodes.forEach(n => n.classList.remove('fade-out'));
+    fullNodes.forEach(n => n.classList.remove('fade-out'));
+  });
+}
+
 function renderInboxMiniInToday() {
   const body = document.getElementById('inboxSectionBody');
+  if (!body) return;
   const html = INBOX.slice(0, 6).map((it, idx) => {
     const cfgPills = (it.cfg || []).slice(0, 2).map(c => {
       const cls = c === 'Solo' ? 'solo' : c === '2er-WG' ? 'k2' : c === '3er-WG' ? 'k3' : 'k4';
@@ -4178,7 +4692,7 @@ function renderInboxMiniInToday() {
     const score = (0.92 - idx * 0.05).toFixed(2);
     const scoreCls = score >= 0.85 ? '' : score >= 0.70 ? 'mid' : 'low';
     return `
-      <div class="inbox-mini">
+      <div class="inbox-mini" data-id="${it.id}">
         <div class="min-w-0">
           <div class="flex items-center gap-1.5">
             <span class="source-badge ${it.source === 'KA' ? 'ka' : it.source === 'WG' ? 'wg' : it.source === 'eBay' ? 'ebay' : ''}" style="font-size:8.5px;padding:1px 5px;">${it.source}</span>
@@ -4190,15 +4704,25 @@ function renderInboxMiniInToday() {
         </div>
         <span class="score-mini ${scoreCls}" data-score-id="${it.id}" style="align-self:flex-start;">★ ${score}</span>
         <div class="inbox-mini-triage">
-          <button class="t-hot" data-toast="${it.title} → Hot">Zu Hot</button>
-          <button data-toast="Snooze">Spaeter</button>
-          <button class="t-discard" data-toast="${it.title} verworfen">Verwerfen</button>
+          <button class="t-hot" data-triage="hot" data-tid="${it.id}">Zu Hot</button>
+          <button data-triage="snooze" data-tid="${it.id}">Spaeter</button>
+          <button class="t-discard" data-triage="discard" data-tid="${it.id}">Verwerfen</button>
         </div>
       </div>
     `;
   }).join('');
   body.innerHTML = html;
-  // Score-Mini-Tap haengt am Body via Delegation (s.u.)
+  // V4.5 Bug-4: Triage-Buttons Handler binden
+  body.querySelectorAll('[data-triage]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triageInboxItem(btn.dataset.tid, btn.dataset.triage);
+    });
+  });
+  // V4.5 Empf-27: Empty-State falls keine Inserate mehr
+  if (INBOX.length === 0) {
+    body.innerHTML = '<div class="text-center text-[12px] dim py-6">Inbox leer · Such-Agent laeuft im Hintergrund</div>';
+  }
 }
 
 /* ============================================================
@@ -4319,21 +4843,32 @@ openDrillDown = function(data) {
       sachlich: 'Mietinteresse · Termin: <span class="ai-slot">Do 17:00</span> · Pack: vollstaendig · Buergschaft: verfuegbar · Bonitaet: vorhanden · Kontakt: +49 1XX XXX... · Jonathan'
     };
 
+    // V4.5 Empf-33: Recipient-Type → Default-Tonfall
+    const DEFAULT_TONE = { hv: 'sachlich', priv: 'persoenlich', wg: 'kurz' };
+    const defaultTone = DEFAULT_TONE[data.recipientType] || 'persoenlich';
+
     document.getElementById('aiGenerateBtn').addEventListener('click', () => {
       document.getElementById('aiGenerateBtn').style.display = 'none';
       document.getElementById('aiSpinnerBlock').style.display = '';
       setTimeout(() => {
         document.getElementById('aiSpinnerBlock').style.display = 'none';
         document.getElementById('aiVariantsBlock').style.display = '';
-        document.getElementById('aiVarText').innerHTML = AI_VARIANTS.kurz;
-        document.querySelectorAll('#aiVarTabs .gen-tab').forEach(t => {
-          t.addEventListener('click', () => {
+        // V4.5 Empf-33: pre-select richtigen Ton fuer Empfaenger-Typ
+        document.querySelectorAll('#aiVarTabs .gen-tab').forEach(b => {
+          b.classList.toggle('active', b.dataset.av === defaultTone);
+        });
+        document.getElementById('aiVarText').innerHTML = AI_VARIANTS[defaultTone];
+        // V4.5 Schwaeche-8: Memory-Leak-Fix — Clone+Replace statt erneutes addEventListener
+        document.querySelectorAll('#aiVarTabs .gen-tab').forEach(tab => {
+          const clone = tab.cloneNode(true);
+          tab.parentNode.replaceChild(clone, tab);
+          clone.addEventListener('click', () => {
             document.querySelectorAll('#aiVarTabs .gen-tab').forEach(b => b.classList.remove('active'));
-            t.classList.add('active');
-            document.getElementById('aiVarText').innerHTML = AI_VARIANTS[t.dataset.av];
+            clone.classList.add('active');
+            document.getElementById('aiVarText').innerHTML = AI_VARIANTS[clone.dataset.av];
           });
         });
-        showToast('3 Tonvarianten bereit');
+        showToast('3 Tonvarianten bereit · ' + defaultTone + ' vorgewaehlt');
       }, 1500);
     });
   }
@@ -4347,16 +4882,281 @@ openDrillDown = function(data) {
 })();
 
 /* ============================================================
+   V4.5 Empf-24: Universal Undo-Toast Helper
+   ============================================================ */
+function showUndoToast(label, undoCb, delay) {
+  delay = delay || 5000;
+  const t = document.getElementById('toast');
+  t.classList.add('undo');
+  t.innerHTML = `<span class="undo-label">${label}</span><span class="undo-cta">↺ Tap zum Abbrechen</span>`;
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  let cancelled = false;
+  const handler = (e) => {
+    if (cancelled) return;
+    cancelled = true;
+    if (undoCb) undoCb();
+    t.classList.remove('show', 'undo');
+    t.removeEventListener('click', handler);
+    showToast('Abgebrochen');
+  };
+  t.addEventListener('click', handler);
+  showToast._t = setTimeout(() => {
+    cancelled = true;
+    t.classList.remove('show', 'undo');
+    t.removeEventListener('click', handler);
+    setTimeout(() => { t.textContent = label; }, 200);
+  }, delay);
+}
+
+// Generic helper für Buttons mit data-undo: "Label"
+function undoableAction(label, action) {
+  showUndoToast(label, null, 5000);
+  const tid = setTimeout(action, 5000);
+  const t = document.getElementById('toast');
+  const cancel = () => { clearTimeout(tid); t.removeEventListener('click', cancel); };
+  t.addEventListener('click', cancel, { once: true });
+  return tid;
+}
+
+// V4.5 Empf-24: Generic Click-Handler fuer alle [data-undo] Buttons
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-undo]');
+  if (!btn) return;
+  e.stopPropagation();
+  const label = btn.dataset.undo;
+  const finalToast = btn.dataset.finalToast;
+  const tid = setTimeout(() => {
+    if (finalToast) {
+      const t = document.getElementById('toast');
+      t.classList.remove('undo');
+      t.textContent = finalToast;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 1600);
+    }
+  }, 5000);
+  showUndoToast(label, () => clearTimeout(tid), 5000);
+}, true);
+
+/* ============================================================
+   V4.5 Schwaeche-14: Scroll-Position pro View persistieren
+   ============================================================ */
+appState.scrollPos = { today: 0, karte: 0, inbox: 0, stats: 0 };
+let _currentView = 'today';
+const scrollEl = document.getElementById('scroll');
+// Hook in Tab-Switching
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Save current
+    appState.scrollPos[_currentView] = scrollEl.scrollTop;
+    const target = btn.dataset.view;
+    _currentView = target;
+    // Restore target (after layout settle)
+    setTimeout(() => {
+      scrollEl.scrollTo({ top: appState.scrollPos[target] || 0, behavior: 'auto' });
+    }, 50);
+  }, true);
+});
+
+/* ============================================================
+   V4.5 Empf-25: Keyboard-Shortcuts (j/k/e/s/?)
+   ============================================================ */
+function getFocusableCards() {
+  return [...document.querySelectorAll('.tcard[data-id]')].filter(c => c.offsetParent !== null);
+}
+let _kbdFocusIdx = -1;
+function setKbdFocus(idx) {
+  const cards = getFocusableCards();
+  if (!cards.length) return;
+  idx = ((idx % cards.length) + cards.length) % cards.length;
+  cards.forEach(c => c.classList.remove('kbd-focus'));
+  cards[idx].classList.add('kbd-focus');
+  cards[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  _kbdFocusIdx = idx;
+}
+
+document.addEventListener('keydown', (e) => {
+  // Skip if user is typing in an input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    if (e.key === 'Escape' && e.target.id !== 'qfInput') e.target.blur();
+    return;
+  }
+  // V4.5 Empf-28: Cmd+K / Ctrl+K Quick-Filter
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    openQuickFilter();
+    return;
+  }
+  if (e.key === 'Escape') {
+    closeSheets();
+    document.querySelectorAll('.tcard.kbd-focus').forEach(c => c.classList.remove('kbd-focus'));
+    return;
+  }
+  if (e.key === 'j') { e.preventDefault(); setKbdFocus(_kbdFocusIdx + 1); }
+  else if (e.key === 'k') { e.preventDefault(); setKbdFocus(_kbdFocusIdx - 1); }
+  else if (e.key === 'e') {
+    const cards = getFocusableCards();
+    if (cards[_kbdFocusIdx]) {
+      showUndoToast('Erledigt: ' + (cards[_kbdFocusIdx].querySelector('.text-\\[15px\\], .text-\\[14px\\]')?.textContent || 'Card'), null, 5000);
+    }
+  }
+  else if (e.key === 's') {
+    const cards = getFocusableCards();
+    if (cards[_kbdFocusIdx]) {
+      showUndoToast('Snooze: ' + (cards[_kbdFocusIdx].querySelector('.text-\\[15px\\], .text-\\[14px\\]')?.textContent || 'Card'), null, 5000);
+    }
+  }
+  else if (e.key === '/') {
+    e.preventDefault();
+    document.getElementById('captureInput').focus();
+  }
+});
+
+/* ============================================================
+   V4.5 Empf-28: Quick-Filter Sheet (Cmd+K) — Fuzzy-Suche
+   ============================================================ */
+function openQuickFilter() {
+  openSheet(sheetQuickFilter);
+  setTimeout(() => {
+    const inp = document.getElementById('qfInput');
+    inp.value = '';
+    inp.focus();
+    renderQfResults('');
+  }, 120);
+}
+
+function fuzzyMatch(needle, haystack) {
+  if (!needle) return true;
+  needle = needle.toLowerCase();
+  haystack = haystack.toLowerCase();
+  return haystack.includes(needle);
+}
+
+function renderQfResults(q) {
+  const all = [];
+  Object.entries(TODAY).forEach(([id, d]) => {
+    all.push({ id, title: d.title, sub: (d.address || '') + ' · ' + (d.district || ''), src: 'Today' });
+  });
+  PINS.forEach(p => {
+    all.push({ id: p.id, title: p.title, sub: p.sub + ' · ' + p.district, src: 'Karte' });
+  });
+  INBOX.forEach(it => {
+    all.push({ id: it.id, title: it.title, sub: it.rooms + '-Zi · ' + it.price + ' EUR · ' + it.district, src: 'Inbox' });
+  });
+  const results = all.filter(r => fuzzyMatch(q, r.title) || fuzzyMatch(q, r.sub)).slice(0, 12);
+  const out = document.getElementById('qfResults');
+  if (!results.length) {
+    out.innerHTML = '<div class="text-center text-[12px] dim py-4">Keine Treffer</div>';
+    return;
+  }
+  out.innerHTML = results.map(r => `
+    <div class="qf-result">
+      <div class="flex-1 min-w-0">
+        <div class="text-[13px] font-semibold truncate">${r.title}</div>
+        <div class="qf-result-mute truncate">${r.sub}</div>
+      </div>
+      <span class="font-mono text-[9.5px] dim">${r.src}</span>
+    </div>
+  `).join('');
+}
+document.getElementById('qfInput').addEventListener('input', (e) => renderQfResults(e.target.value));
+
+/* ============================================================
+   V4.5 Empf-30: Stale-Lead-Detection (dynamische Tage)
+   ============================================================ */
+function daysSince(iso) {
+  if (!iso) return 0;
+  const ms = Date.now() - new Date(iso).getTime();
+  return Math.floor(ms / 86400000);
+}
+function updateEscalationDayBadges() {
+  // Aktualisiere Esc-Card-Badges dynamisch basierend auf lastTouchedISO
+  const escCards = document.querySelectorAll('#escalationSection .esc-card');
+  escCards.forEach(card => {
+    const id = card.dataset.id;
+    const data = TODAY[id];
+    if (data && data.lastTouchedISO) {
+      const days = daysSince(data.lastTouchedISO);
+      const badge = card.querySelector('.esc-day-badge');
+      if (badge) badge.textContent = days >= 3 ? `TAG ${Math.max(days, 3)}` : 'BALD';
+    }
+  });
+}
+// Setze lastTouchedISO auch fuer esc1 (Hartmann) und esc2 (Schiele) dynamisch
+TODAY.esc1 = { ...TODAY.t1, lastTouchedISO: new Date(Date.now() - 3 * 86400000).toISOString() };
+TODAY.esc2 = { ...TODAY.t5, lastTouchedISO: new Date(Date.now() - 7 * 86400000).toISOString() };
+
+/* ============================================================
+   V4.5 Empf-32: Onboarding Skip Button
+   ============================================================ */
+document.getElementById('obSkipBtn').addEventListener('click', () => {
+  closeSheet(sheetOnboarding);
+  showToast('Onboarding spaeter · Pack bleibt vorlaeufig');
+  appState.packComplete = Math.max(0, appState.packComplete - 1); // simulate incomplete
+  updatePackUI();
+});
+document.getElementById('obReminderGo').addEventListener('click', () => {
+  closeSheets();
+  setTimeout(openOnboardingSheet, 240);
+});
+
+/* ============================================================
+   V4.5 Visual-21: Theme-Toggle (Auto / Light / Dark) + Persist
+   ============================================================ */
+function applyTheme(val) {
+  if (val === 'auto') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', val);
+  }
+  localStorage.setItem('theme', val);
+  document.querySelectorAll('#themeRadioRow .theme-radio').forEach(b => {
+    b.classList.toggle('active', b.dataset.themeVal === val);
+  });
+}
+document.querySelectorAll('#themeRadioRow .theme-radio').forEach(b => {
+  b.addEventListener('click', () => applyTheme(b.dataset.themeVal));
+});
+// Initial load
+(function() {
+  const saved = localStorage.getItem('theme') || 'auto';
+  applyTheme(saved);
+})();
+
+/* ============================================================
+   V4.5 Empf-29: Karte First-Visit Tooltip (LongPress-Drag-Hint)
+   ============================================================ */
+(function() {
+  const seen = localStorage.getItem('karte-tooltip-shown');
+  if (seen) return;
+  const karteBtn = document.querySelector('[data-view="karte"]');
+  if (!karteBtn) return;
+  karteBtn.addEventListener('click', () => {
+    setTimeout(() => {
+      const tip = document.getElementById('karteTooltip');
+      if (!tip) return;
+      tip.classList.add('show');
+      setTimeout(() => {
+        tip.classList.remove('show');
+        localStorage.setItem('karte-tooltip-shown', '1');
+      }, 2500);
+    }, 200);
+  }, { once: true });
+})();
+
+/* ============================================================
    INIT
    ============================================================ */
 renderPins('all');
 renderInbox();
 renderInboxConfigCounts();
 renderInboxMiniInToday();
+updateInboxSectionCount();
 updateTodayFilterCounts();
 applyTodayFilter();
 updatePackUI();
 updateAvatarProgress(4);
+updateEscalationDayBadges();
 
 // Inbox-Section: ungeoeffnet starten (kollabiert)
 document.getElementById('inbox-section-today').classList.remove('open');
