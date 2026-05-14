@@ -3,11 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Wohnung V4.7 · A11y + Vision + Stats-Kill</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<meta name="description" content="Wohnungs-Funnel — Capture, Triage, Karte, Inbox · mobile-first Klickdummy" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=()" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='6'%20fill='%23FF8A65'/%3E%3Cpath%20d='M12%204l7%206v9h-4v-5h-6v5H5v-9z'%20fill='%23181818'/%3E%3C/svg%3E" />
+<title>Wohnung V4.9 · Multi-Agent + Self-Explanatory</title>
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     darkMode: 'media',
@@ -15,7 +22,7 @@
       extend: {
         fontFamily: {
           sans: ['"Inter Tight"', 'ui-sans-serif', 'system-ui'],
-          mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular']
+          mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace']
         },
         colors: {
           paper:'#FAFAF8', paper2:'#F3F2EE', ink:'#18181B', ink2:'#3A3A3D',
@@ -130,7 +137,7 @@
     .pill.active { background:#FAFAF8; color:#18181B; border-color:#FAFAF8; }
   }
   .pill .swatch { width: 8px; height: 8px; border-radius: 999px; }
-  .pill .pcnt { font-family: "JetBrains Mono", ui-monospace; font-size: 10px; opacity: 0.7; margin-left: 2px; }
+  .pill .pcnt { font-family: ui-monospace, ui-monospace; font-size: 10px; opacity: 0.7; margin-left: 2px; }
   .pill.kr-on { background: rgba(255,138,101,0.16); color:#FF8A65; border-color: rgba(255,138,101,0.40); }
   @media (prefers-color-scheme: dark) {
     .pill.kr-on { background: rgba(255,138,101,0.20); color:#FFB59A; border-color: rgba(255,138,101,0.40); }
@@ -172,7 +179,7 @@
   }
   .hot-lead .jetzt-label {
     display:inline-flex; align-items:center; gap:5px;
-    font-family: "JetBrains Mono", ui-monospace;
+    font-family: ui-monospace, ui-monospace;
     font-size: 10.5px; font-weight: 600; color: var(--apricot-text);
     letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
   }
@@ -251,7 +258,7 @@
 
   .section-label {
     font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #7A7A7E; font-family: "JetBrains Mono", ui-monospace;
+    color: #7A7A7E; font-family: ui-monospace, ui-monospace;
     padding: 14px 4px 8px 4px;
   }
   @media (prefers-color-scheme: dark) { .section-label { color: #9A9A9E; } }
@@ -287,7 +294,7 @@
     position:absolute; top: 4px; right: 14px;
     min-width: 16px; height: 16px; border-radius: 999px;
     background:#FF8A65; color:#18181B;
-    font-family: "JetBrains Mono"; font-size: 9.5px; font-weight: 700;
+    font-family: ui-monospace; font-size: 9.5px; font-weight: 700;
     display:flex; align-items:center; justify-content:center; padding: 0 4px;
   }
   @media (prefers-color-scheme: dark) {
@@ -393,7 +400,7 @@
     width: 24px; height: 24px; border-radius: 50%;
     display:flex; align-items:center; justify-content:center;
     color: #FFFFFF; font-size: 10px; font-weight: 700;
-    font-family: "JetBrains Mono", ui-monospace;
+    font-family: ui-monospace, ui-monospace;
     box-shadow: 0 2px 8px rgba(20,18,12,0.25), 0 0 0 2px #FFFFFF;
     position: relative;
   }
@@ -449,11 +456,11 @@
 
   .stat-card { padding: 14px; border-radius: 16px; }
   .stat-num {
-    font-family: "JetBrains Mono", ui-monospace;
+    font-family: ui-monospace, ui-monospace;
     font-size: 26px; font-weight: 500;
     letter-spacing: -0.02em; line-height: 1;
   }
-  .stat-unit { font-family: "JetBrains Mono", ui-monospace; font-size: 12px; color: #7A7A7E; }
+  .stat-unit { font-family: ui-monospace, ui-monospace; font-size: 12px; color: #7A7A7E; }
   @media (prefers-color-scheme: dark) { .stat-unit { color: #9A9A9E; } }
   .stat-label { font-size: 11px; color:#7A7A7E; margin-top: 4px; }
   @media (prefers-color-scheme: dark) { .stat-label { color:#9A9A9E; } }
@@ -468,7 +475,7 @@
     text-align: center; font-size: 11px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: #7A7A7E; padding-top: 22px;
-    font-family: "JetBrains Mono", ui-monospace;
+    font-family: ui-monospace, ui-monospace;
   }
   @media (prefers-color-scheme: dark) { .caption { color: #6E6E72; } }
   .footer-caption {
@@ -493,7 +500,7 @@
   }
   .toast.undo .undo-label { font-weight: 600; }
   .toast.undo .undo-cta {
-    font-family: "JetBrains Mono"; font-size: 11px;
+    font-family: ui-monospace; font-size: 11px;
     color: #FF8A65; font-weight: 700;
     margin-left: auto;
     border-left: 1px solid rgba(255,255,255,0.20);
@@ -569,7 +576,7 @@
   .pack-pill {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 4px 10px; border-radius: 999px;
-    font-size: 10.5px; font-weight: 600; font-family: "JetBrains Mono";
+    font-size: 10.5px; font-weight: 600; font-family: ui-monospace;
   }
   .pack-pill.ok { background: rgba(16,185,129,0.14); color: #10B981; }
   .pack-pill.warn { background: rgba(245,158,11,0.14); color: #F59E0B; }
@@ -577,7 +584,7 @@
   .step-dot {
     width: 28px; height: 28px; border-radius: 999px;
     display: flex; align-items: center; justify-content: center;
-    font-family: "JetBrains Mono"; font-size: 11px; font-weight: 600;
+    font-family: ui-monospace; font-size: 11px; font-weight: 600;
     background: rgba(20,18,12,0.06); color: #7A7A7E;
     transition: background .25s ease, color .25s ease;
   }
@@ -593,14 +600,14 @@
   .clash-pill {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 4px 10px; border-radius: 999px;
-    font-size: 10.5px; font-weight: 600; font-family: "JetBrains Mono";
+    font-size: 10.5px; font-weight: 600; font-family: ui-monospace;
     background: rgba(251,146,60,0.14); color: #FB923C;
   }
 
   /* V4.7 E-2 — Apricot-Text auf #C7553D (4.6:1) statt #FF8A65 */
   .filter-active-hint {
     display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10.5px; font-family: "JetBrains Mono"; color: var(--apricot-text);
+    font-size: 10.5px; font-family: ui-monospace; color: var(--apricot-text);
   }
 
   /* Konfig-Pill */
@@ -624,7 +631,7 @@
   .score-badge {
     display: inline-flex; align-items: center; gap: 3px;
     padding: 3px 8px; border-radius: 999px;
-    font-family: "JetBrains Mono"; font-size: 10.5px; font-weight: 600;
+    font-family: ui-monospace; font-size: 10.5px; font-weight: 600;
     background: rgba(255,138,101,0.14); color: #FF8A65;
   }
   .score-badge.high { background: rgba(16,185,129,0.14); color: #10B981; }
@@ -632,7 +639,7 @@
   .source-badge {
     display: inline-flex; align-items: center;
     padding: 2px 7px; border-radius: 6px;
-    font-family: "JetBrains Mono"; font-size: 9.5px; font-weight: 600;
+    font-family: ui-monospace; font-size: 9.5px; font-weight: 600;
     letter-spacing: 0.04em;
     background: rgba(94,106,210,0.12); color:#5E6AD2;
   }
@@ -691,7 +698,7 @@
     padding: 3px 8px; border-radius: 999px;
     font-size: 10.5px; font-weight: 600;
     background: rgba(16,185,129,0.14); color: #10B981;
-    font-family: "JetBrains Mono";
+    font-family: ui-monospace;
   }
   .vit-status.warn { background: rgba(245,158,11,0.14); color: #F59E0B; }
 
@@ -726,7 +733,7 @@
   .reply-card .plate-reply .antwort-badge {
     position: absolute; top: -6px; right: -6px;
     background: #FF8A65; color:#18181B;
-    font-size: 9px; font-weight: 700; font-family: "JetBrains Mono";
+    font-size: 9px; font-weight: 700; font-family: ui-monospace;
     padding: 1px 5px; border-radius: 999px;
     border: 1.5px solid #FFFFFF;
   }
@@ -744,7 +751,7 @@
     margin-top: 4px;
     font-size: 11.5px; font-weight: 500;
     color: #C56313; display: flex; align-items: center; gap: 5px;
-    font-family: "JetBrains Mono", ui-monospace;
+    font-family: ui-monospace, ui-monospace;
   }
   @media (prefers-color-scheme: dark) {
     .hot-lead-xl .reason-line { color: #FB923C; }
@@ -774,7 +781,7 @@
   }
   .mini-row .copy-tag {
     margin-left: auto;
-    font-family: "JetBrains Mono"; font-size: 10px;
+    font-family: ui-monospace; font-size: 10px;
     color: #FF8A65; cursor: pointer;
   }
   .check-mini {
@@ -804,7 +811,7 @@
   .score-mini {
     display: inline-flex; align-items: center; gap: 3px;
     padding: 10px; border-radius: 999px;
-    font-family: "JetBrains Mono"; font-size: 10px; font-weight: 600;
+    font-family: ui-monospace; font-size: 10px; font-weight: 600;
     background: rgba(16,185,129,0.14); color: #10B981;
     cursor: pointer; line-height: 1;
     min-width: 44px; min-height: 44px;
@@ -815,7 +822,7 @@
   .pin-score {
     position: absolute; top: -4px; right: -4px;
     background: #FFFFFF; color: #10B981;
-    font-family: "JetBrains Mono"; font-size: 8px; font-weight: 700;
+    font-family: ui-monospace; font-size: 8px; font-weight: 700;
     padding: 1px 4px; border-radius: 999px;
     border: 1.2px solid currentColor;
     min-width: 16px; text-align: center; line-height: 1.1;
@@ -842,7 +849,7 @@
 
   /* V4.7 Vision #4 — Mute-Score (normale Cards, kein Pill-BG) */
   .score-mute {
-    font-family: "JetBrains Mono", ui-monospace;
+    font-family: ui-monospace, ui-monospace;
     font-size: 11px; font-weight: 600;
     color: #6E6E72; padding: 2px 4px; cursor: pointer;
     min-width: 44px; min-height: 44px;
@@ -893,13 +900,351 @@
 
   /* Onboarding-Templates static (B3) — hidden bis Step aktiv */
   .ob-template[hidden] { display: none !important; }
+
+  /* ============================================================
+     V4.9 — Performance + font-display
+     ============================================================ */
+  @font-face { font-family: 'Inter Tight'; font-display: swap; src: local('Inter Tight'); }
+
+  /* content-visibility: auto fuer inaktive Tab-Views */
+  .view.hidden-tab { content-visibility: auto; contain-intrinsic-size: 800px; }
+
+  /* ============================================================
+     V4.9 MOTION — Signature-Mikrointeraktionen (M1-M7)
+     ============================================================ */
+
+  /* M1 — Critical Hot-Card Heartbeat (Frist < 24h) */
+  .hot-lead.urgent { animation: hot-heartbeat 2.6s ease-in-out infinite; }
+  @keyframes hot-heartbeat {
+    0%, 100% {
+      box-shadow: 0 1px 0 rgba(20,18,12,0.03), 0 14px 32px -14px rgba(255,138,101,0.35), inset 0 0 0 1px rgba(255,138,101,0.18);
+    }
+    50% {
+      box-shadow: 0 1px 0 rgba(20,18,12,0.03), 0 18px 40px -10px rgba(255,138,101,0.50), inset 0 0 0 1px rgba(255,138,101,0.32);
+    }
+  }
+
+  /* M2 — Score-Bubble Slide-Out */
+  .score-mini, .score-mute, .pin-score {
+    transition: transform .24s cubic-bezier(.34,1.56,.64,1), opacity .24s ease;
+  }
+  .dismissing .score-mini, .dismissing .score-mute,
+  .inbox-card.fade-out .score-mute, .inbox-card.fade-out .score-mini {
+    transform: translateX(60px) rotate(15deg); opacity: 0;
+  }
+
+  /* M3 — Channel-Shapes fuer Pin-Dots */
+  .pin-dot[data-ch="mail"]    { border-radius: 7px; }
+  .pin-dot[data-ch="brief"]   { border-radius: 50% 50% 50% 12%; transform: rotate(-45deg); }
+  .pin-dot[data-ch="brief"] > * { transform: rotate(45deg); }
+  .pin-dot[data-ch="aushang"] { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+  .pin-dot[data-ch="anruf"]   { border-radius: 50%; }
+  .pin-dot[data-ch="hv"]      { border-radius: 4px; }
+  .pin-dot[data-ch="makler"]  { border-radius: 50% 8% 50% 8%; }
+  .pin-dot[data-ch="vitamin"] { border-radius: 50%; }
+  .pin-dot[data-ch="aushang"], .pin-dot[data-ch="mail"], .pin-dot[data-ch="hv"] {
+    box-shadow: 0 2px 8px rgba(20,18,12,0.30); outline: 2px solid #FFFFFF; outline-offset: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .pin-dot[data-ch="aushang"], .pin-dot[data-ch="mail"], .pin-dot[data-ch="hv"] { outline-color: #1A1A1C; }
+  }
+
+  /* M4 — Filter-Pill Spring-Bounce */
+  .pill.just-activated { animation: pill-spring .28s cubic-bezier(.34, 1.56, .64, 1); }
+  @keyframes pill-spring {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(0.94); }
+    70%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  /* M5 — Avatar-Ring Slow-Rotate (Onboarding-Incomplete) */
+  .avatar-ring.incomplete { animation: avatar-rotate 8s linear infinite; }
+  @keyframes avatar-rotate {
+    from { transform: rotate(-90deg); }
+    to   { transform: rotate(270deg); }
+  }
+  .avatar-ring.complete { animation: none; transform: rotate(-90deg); }
+
+  /* M6 — Sheet Spring-Bounce Open */
+  .sheet { transition: transform .38s cubic-bezier(.34, 1.46, .64, 1); }
+  .sheet.closing { transition: transform .22s cubic-bezier(.4, 0, 1, 1); }
+
+  /* M7 — Capture-Bar Scroll-Anker Crossfade */
+  .capture-wrap { transition: backdrop-filter .22s ease; }
+  .capture-wrap::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 0.5px; background: rgba(20,18,12,0.10);
+    opacity: 0; transition: opacity .22s ease; pointer-events: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    .capture-wrap::after { background: rgba(255,255,255,0.10); }
+  }
+  .capture-wrap.scrolled::after { opacity: 1; }
+
+  /* Motion Reduced-Motion overrides */
+  @media (prefers-reduced-motion: reduce) {
+    .hot-lead.urgent, .pill.just-activated, .avatar-ring.incomplete { animation: none !important; }
+    .dismissing .score-mini, .dismissing .score-mute,
+    .inbox-card.fade-out .score-mute, .inbox-card.fade-out .score-mini { transform: none !important; }
+    .sheet { transition: transform 0.01ms linear !important; }
+  }
+
+  /* ============================================================
+     V4.9 SHARE-MODE — Personalisierte Welcome-Ansicht
+     ============================================================ */
+  body.share-mode .bottom { display: none; }
+  body.share-mode .avatar-wrap { display: none; }
+  .share-welcome {
+    padding: 14px 16px 8px 16px;
+  }
+  .share-welcome h1 {
+    font-size: 22px; font-weight: 600; letter-spacing: -0.015em;
+    line-height: 1.18; margin-bottom: 6px;
+  }
+  .share-welcome .share-sub {
+    font-size: 13px; color: #6E6E72; line-height: 1.45;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-welcome .share-sub { color: #A8A8AC; }
+  }
+  .share-card {
+    background: #FFFFFF; border-radius: 18px;
+    border: 1px solid rgba(20,18,12,0.06);
+    box-shadow: 0 1px 0 rgba(20,18,12,0.03), 0 8px 22px -14px rgba(20,18,12,0.20);
+    overflow: hidden; margin-bottom: 12px;
+    transition: opacity .22s ease, transform .22s ease;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-card { background:#1D1D20; border-color: rgba(255,255,255,0.06); }
+  }
+  .share-card.voted-skip { opacity: 0.40; }
+  .share-card.voted-like { box-shadow: 0 1px 0 rgba(20,18,12,0.03), 0 14px 32px -14px rgba(255,138,101,0.40), inset 0 0 0 1.5px rgba(255,138,101,0.45); }
+  .share-photo {
+    width: 100%; height: 160px;
+    background: linear-gradient(135deg, #FFD9C2 0%, #FFB59A 45%, #FF8A65 100%);
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    padding: 12px;
+    position: relative;
+  }
+  .share-photo.alt2 { background: linear-gradient(135deg, #C7E9D6 0%, #A0D4B0 50%, #6EBA8E 100%); }
+  .share-photo.alt3 { background: linear-gradient(135deg, #CDD5F5 0%, #A5B0E2 50%, #5E6AD2 100%); }
+  .share-photo .share-pin {
+    background: rgba(255,255,255,0.92); color: #18181B;
+    font-size: 10.5px; font-weight: 600;
+    padding: 4px 10px; border-radius: 999px;
+    backdrop-filter: blur(8px);
+  }
+  .share-body {
+    padding: 12px 14px 8px 14px;
+  }
+  .share-title {
+    font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+    line-height: 1.2; margin-bottom: 2px;
+  }
+  .share-meta {
+    font-size: 12px; color: #6E6E72;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-meta { color: #A8A8AC; }
+  }
+  .share-actions {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px; padding: 10px 12px 12px 12px;
+    border-top: 1px solid rgba(20,18,12,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-actions { border-top-color: rgba(255,255,255,0.06); }
+  }
+  .share-btn {
+    min-height: 44px; padding: 8px 10px; border-radius: 12px;
+    font-size: 13px; font-weight: 500;
+    background: transparent; color: #18181B;
+    border: 1px solid rgba(20,18,12,0.08);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    cursor: pointer;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-btn { color: #FAFAF8; border-color: rgba(255,255,255,0.10); }
+  }
+  .share-btn.active.up   { background: rgba(255,138,101,0.16); color: #C7553D; border-color: rgba(255,138,101,0.40); }
+  .share-btn.active.down { background: rgba(122,122,126,0.14); color: #6E6E72; border-color: rgba(122,122,126,0.30); }
+  .share-btn.active.note { background: rgba(94,106,210,0.14); color: #5E6AD2; border-color: rgba(94,106,210,0.30); }
+  @media (prefers-color-scheme: dark) {
+    .share-btn.active.up   { color:#FFB59A; }
+    .share-btn.active.down { color:#A8A8AC; }
+  }
+  .share-score-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 9px; border-radius: 999px;
+    font-size: 10.5px; font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    background: rgba(16,185,129,0.14); color: #10B981;
+    margin-top: 6px;
+  }
+  .share-footer {
+    text-align: center; font-size: 11px; color: #6E6E72;
+    padding: 12px 16px 22px 16px;
+    border-top: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-footer { color: #A8A8AC; }
+  }
+  .share-comment-row {
+    padding: 10px 12px 12px 12px;
+    border-top: 1px solid rgba(20,18,12,0.05);
+    display: none;
+  }
+  .share-card.commenting .share-comment-row { display: block; }
+  .share-comment-row textarea {
+    width: 100%; min-height: 60px;
+    border: 1px solid rgba(20,18,12,0.10);
+    border-radius: 10px; padding: 8px 10px;
+    font-family: inherit; font-size: 13px;
+    background: transparent; color: inherit;
+    outline: none; resize: vertical;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-comment-row textarea { border-color: rgba(255,255,255,0.12); }
+  }
+  .share-comment-row .share-comment-cta {
+    margin-top: 8px; min-height: 40px; width: 100%;
+    background: #18181B; color:#FAFAF8;
+    border-radius: 10px; border: 0;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+  }
+  @media (prefers-color-scheme: dark) {
+    .share-comment-row .share-comment-cta { background:#FAFAF8; color:#18181B; }
+  }
+
+  /* ============================================================
+     V4.9 COACHMARKS — First-Run Hints (max 2)
+     ============================================================ */
+  .coachmark {
+    position: absolute; z-index: 75;
+    background: #18181B; color: #FAFAF8;
+    border-radius: 14px; padding: 10px 14px;
+    font-family: 'Inter Tight', system-ui;
+    font-size: 13px; font-style: italic; font-weight: 500;
+    line-height: 1.35; max-width: 220px;
+    box-shadow: 0 10px 30px -8px rgba(20,18,12,0.45);
+    opacity: 0; transform: translateY(-6px);
+    transition: opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+  }
+  .coachmark.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .coachmark::before {
+    content: ''; position: absolute;
+    width: 12px; height: 12px; background: inherit;
+    transform: rotate(45deg);
+  }
+  .coachmark.point-up::before {
+    top: -4px; left: 24px;
+  }
+  .coachmark.point-right::before {
+    right: -4px; top: 50%; margin-top: -6px;
+  }
+  .coachmark-skip {
+    display: inline-block; margin-top: 6px;
+    font-size: 11px; font-style: normal; font-weight: 600;
+    color: #FF8A65; cursor: pointer;
+    border: 0; background: transparent; padding: 0;
+  }
+
+  /* ============================================================
+     V4.9 — Vitamin-B Tage-Counter Status-Pill
+     ============================================================ */
+  .vit-days {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    margin-left: 6px;
+  }
+  .vit-days.fresh   { background: rgba(122,122,126,0.10); color: #6E6E72; }
+  .vit-days.warm    { background: rgba(255,181,154,0.30); color: #C7553D; }
+  .vit-days.stale   { background: rgba(251,146,60,0.16); color: #C56313; }
+  @media (prefers-color-scheme: dark) {
+    .vit-days.fresh { color: #A8A8AC; }
+    .vit-days.warm  { color: #FFB59A; }
+    .vit-days.stale { color: #FB923C; }
+  }
+
+  /* ============================================================
+     V4.9 — Budget-Konfig 4-Spalten-Matrix im Profil
+     ============================================================ */
+  .budget-matrix {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .budget-cell {
+    background: rgba(20,18,12,0.04);
+    border: 1px solid rgba(20,18,12,0.06);
+    border-radius: 12px;
+    padding: 10px 6px 8px 6px;
+    text-align: center;
+  }
+  @media (prefers-color-scheme: dark) {
+    .budget-cell { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.06); }
+  }
+  .budget-cell .b-label {
+    font-size: 10px; font-weight: 600;
+    color: #6E6E72; text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 4px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    .budget-cell .b-label { color: #A8A8AC; }
+  }
+  .budget-cell .b-eur {
+    font-size: 14px; font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .budget-cell .b-pp {
+    font-size: 10px; color: #6E6E72; margin-top: 2px;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    .budget-cell .b-pp { color: #A8A8AC; }
+  }
+
+  /* ============================================================
+     V4.9 — Stale-Lead Escalation-Card
+     ============================================================ */
+  .stale-card {
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .stale-card { background: rgba(245,158,11,0.10); border-color: rgba(245,158,11,0.30); }
+  }
+  .stale-icon {
+    width: 32px; height: 32px; border-radius: 10px;
+    background: rgba(245,158,11,0.18); color: #C56313;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .stale-icon { color: #F59E0B; }
+  }
+  .stale-title { font-size: 13px; font-weight: 600; }
+  .stale-sub { font-size: 11px; color: #6E6E72; margin-top: 1px; }
+  @media (prefers-color-scheme: dark) {
+    .stale-sub { color: #A8A8AC; }
+  }
 </style>
 </head>
 <body class="font-sans text-ink dark:text-inkD antialiased">
 
 <a href="#view-today" class="sr-only focus:not-sr-only" style="position:absolute;top:8px;left:8px;z-index:200;background:#18181B;color:#FAFAF8;padding:8px 12px;border-radius:8px;">Zum Hauptinhalt</a>
 
-<div class="caption">Wohnung · V4.7 · A11y + Vision · WCAG 2.2 AA</div>
+<div class="caption">Wohnung · V4.9 · Multi-Agent + Self-Explanatory · WCAG 2.2 AA</div>
 
 <div class="frame">
   <div class="notch"></div>
@@ -944,18 +1289,18 @@
         <label for="captureInput" class="sr-only">Schnellaufnahme</label>
         <div class="capture">
           <span class="w-7 h-7 rounded-full bg-apricot/15 text-apricot flex items-center justify-center font-semibold leading-none shrink-0" aria-hidden="true">+</span>
-          <input id="captureInput" type="text" placeholder="Was tust du als naechstes?" autocomplete="off" aria-label="Schnellaufnahme" />
+          <input id="captureInput" type="text" placeholder="Was steht an?" autocomplete="off" aria-label="Schnellaufnahme" />
           <button id="voiceOpen" class="w-11 h-11 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-disabled="true" aria-label="Sprachnotiz (noch nicht verfuegbar)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0"/><path d="M12 18v3"/></svg>
           </button>
         </div>
 
         <div class="tag-row" id="tagRow">
-          <button class="pill tap" data-tag="Mail"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#5E6AD2"></span>Mail</button>
-          <button class="pill tap" data-tag="Brief"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#FB923C"></span>Brief</button>
-          <button class="pill tap" data-tag="Aushang"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#10B981"></span>Aushang</button>
-          <button class="pill tap" data-tag="Anruf"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#A06AE6"></span>Anruf</button>
-          <button class="pill tap" data-tag="Vitamin"><span class="pill-plus">+</span><span class="pill-label-prefix">Erfasse</span><span class="swatch" style="background:#F59E0B"></span>Vitamin&nbsp;B</button>
+          <button class="pill tap" data-tag="Mail"><span class="pill-plus">+</span><span class="swatch" style="background:#5E6AD2"></span>Inserat antworten</button>
+          <button class="pill tap" data-tag="Brief"><span class="pill-plus">+</span><span class="swatch" style="background:#FB923C"></span>Brief schreiben</button>
+          <button class="pill tap" data-tag="Aushang"><span class="pill-plus">+</span><span class="swatch" style="background:#10B981"></span>Foto machen</button>
+          <button class="pill tap" data-tag="Anruf"><span class="pill-plus">+</span><span class="swatch" style="background:#A06AE6"></span>Anrufen</button>
+          <button class="pill tap" data-tag="Vitamin"><span class="pill-plus">+</span><span class="swatch" style="background:#F59E0B"></span>Bekannte fragen</button>
         </div>
       </div>
 
@@ -977,8 +1322,8 @@
         <!-- NEU-Sektion mit Reply-Push-Card -->
         <div id="replyNeuSection">
           <div class="section-label flex items-center justify-between">
-            <span>NEU · 1 ungelesen</span>
-            <span class="font-mono dim normal-case tracking-normal text-[11px]">Antwort vor 12 Min</span>
+            <span>Neu · 1 Antwort</span>
+            <span class="font-mono dim normal-case tracking-normal text-[11px]">vor 12 Min</span>
           </div>
           <div class="reply-card tcard" data-id="reply1" data-ch="mail" data-st="antwort" data-cfg-list="Solo,2er-WG">
             <div class="plate-reply">
@@ -987,31 +1332,31 @@
             </div>
             <div class="min-w-0">
               <div class="text-[14px] font-semibold tracking-tight truncate">Frau Hartmann antwortet</div>
-              <div class="text-[11.5px] dim truncate">Bethmannpark · "Donnerstag 17h passt..."</div>
+              <div class="text-[11.5px] dim truncate">Bornheim Mitte · "Donnerstag 17h passt..."</div>
             </div>
             <span class="score-mute" data-score-id="reply1" role="button" tabindex="0" aria-label="Match-Score 0.92"><span class="sr-only">Match-Score </span>0.92</span>
           </div>
         </div>
 
         <div class="section-label flex items-center justify-between" style="padding-top:14px;">
-          <span>HOT · jetzt</span>
+          <span>Heute zuerst</span>
           <span class="font-mono dim normal-case tracking-normal text-[11px]" id="todayHotCount">1 Aktion</span>
         </div>
 
         <!-- HOT-Lead-Card XL -->
         <div id="todayHotLeadWrap">
-          <div class="hot-lead hot-lead-xl tcard" data-id="t1" data-ch="mail" data-st="hot" data-cfg-list="Solo,2er-WG">
-            <div class="jetzt-label morgen-label"><span class="jetzt-dot"></span>MORGEN-PFLICHT</div>
+          <div class="hot-lead hot-lead-xl tcard urgent" data-id="t1" data-ch="mail" data-st="hot" data-cfg-list="Solo,2er-WG">
+            <div class="jetzt-label morgen-label"><span class="jetzt-dot"></span>BIS MORGEN OFFEN</div>
             <div class="flex items-start gap-3">
               <div class="plate-xl">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg>
               </div>
               <div class="min-w-0 flex-1">
                 <div class="hot-lead-title">Hartmann Immobilien</div>
-                <div class="hot-lead-sub">Bethmannpark · 2-Zi · 1.140 EUR warm</div>
+                <div class="hot-lead-sub">Bornheim Mitte · 2-Zi · 1.140 EUR warm</div>
                 <div class="reason-line">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                  <span>Antwort seit 2 Tagen offen — wird sonst kalt</span>
+                  <span>Antwort offen seit 2 Tagen</span>
                 </div>
               </div>
               <span class="score-mini" data-score-id="t1" role="button" tabindex="0" aria-label="Match-Score 0.94" style="align-self:flex-start;"><span class="sr-only">Match-Score </span>0.94</span>
@@ -1025,9 +1370,9 @@
             <div class="hot-lead-cta-row">
               <button class="hot-lead-cta tap" data-cta="Antworten">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                Mit Pack antworten
+                Mit Bewerbungsmappe antworten
               </button>
-              <button class="cta-ghost snooze tap" data-cta="Snooze" data-undo="Hot-Lead bis morgen geschoben" aria-label="Spaeter">
+              <button class="cta-ghost snooze tap" data-cta="Spaeter" data-undo="Bis morgen verschoben" aria-label="Spaeter zeigen">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
                 Spaeter
               </button>
@@ -1047,48 +1392,60 @@
               <div class="text-[15px] font-semibold tracking-tight truncate">Karl · 2er-WG Bornheim</div>
               <div class="text-[12px] dim truncate">Wochenende-Check fuer Termin</div>
             </div>
-            <button class="mini-cta tap" data-cta="Karl fragen">Fragen</button>
+            <button class="mini-cta tap" data-cta="Karl nachfragen">Nachfragen</button>
           </div>
         </div>
 
-        <!-- VITAMIN-B faellig -->
+        <!-- Stale-Lead Auto-Card (Karl seit X Tagen still) -->
+        <div class="stale-card tcard" data-id="stale1" data-ch="vitamin" data-st="aktiv" data-cfg-list="3er-WG">
+          <div class="stale-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="stale-title">Manuel-T seit 7 Tagen still</div>
+            <div class="stale-sub">Schwelle "hoeflich nachhaken" erreicht</div>
+          </div>
+          <button class="mini-cta tap" data-cta="Manuel-T nachhaken" style="background:#FF8A65;color:#18181B;">Nachhaken</button>
+        </div>
+
+        <!-- Kontakte · nachfragen -->
         <div class="section-label flex items-center justify-between">
-          <span>VITAMIN-B · faellig</span>
+          <span>Kontakte · nachfragen</span>
           <span class="font-mono dim normal-case tracking-normal text-[11px]">3 offen</span>
         </div>
 
         <div class="space-y-2" id="todayVitamin">
-          <div class="vit-card tcard" data-id="vk" data-ch="vitamin" data-st="aktiv" data-cfg-list="Solo,2er-WG">
+          <div class="vit-card tcard" data-id="vk" data-ch="vitamin" data-st="aktiv" data-cfg-list="Solo,2er-WG" data-last-contact="2026-05-12">
             <div class="vit-avatar">K</div>
             <div class="min-w-0 flex-1">
-              <div class="text-[14px] font-semibold leading-tight">Karl · 2er-WG Frankfurt</div>
-              <div class="text-[11px] dim leading-tight mt-0.5">Letzte Nachfrage vor 2 Tagen · Budget 2k OK</div>
+              <div class="text-[14px] font-semibold leading-tight">Karl · 2er-WG Frankfurt<span class="vit-days fresh js-vit-days">2 d</span></div>
+              <div class="text-[11px] dim leading-tight mt-0.5">Vor 2 Tagen gefragt · Budget 2k OK</div>
             </div>
             <span class="vit-status">verfuegbar</span>
           </div>
 
-          <div class="vit-card tcard" data-id="vmt" data-ch="vitamin" data-st="aktiv" data-cfg-list="3er-WG">
+          <div class="vit-card tcard" data-id="vmt" data-ch="vitamin" data-st="aktiv" data-cfg-list="3er-WG" data-last-contact="2026-05-07">
             <div class="vit-avatar">MT</div>
             <div class="min-w-0 flex-1">
-              <div class="text-[14px] font-semibold leading-tight">Manuel Tuebingen · 3er-WG</div>
-              <div class="text-[11px] leading-tight mt-0.5" style="color:#F59E0B;font-family:'JetBrains Mono';">Letzte Nachfrage vor 7 Tagen · +600 EUR</div>
+              <div class="text-[14px] font-semibold leading-tight">Manuel-T · 3er-WG<span class="vit-days warm js-vit-days">7 d</span></div>
+              <div class="text-[11px] leading-tight mt-0.5" style="color:#C56313;">Antwort offen seit 7 Tagen · +600 EUR</div>
             </div>
             <span class="vit-status warn">unsicher</span>
           </div>
 
-          <div class="vit-card tcard" data-id="vmf" data-ch="vitamin" data-st="aktiv" data-cfg-list="4er-WG">
+          <div class="vit-card tcard" data-id="vmf" data-ch="vitamin" data-st="aktiv" data-cfg-list="4er-WG" data-last-contact="2026-04-30">
             <div class="vit-avatar">MF</div>
             <div class="min-w-0 flex-1">
-              <div class="text-[14px] font-semibold leading-tight">Manuel Frankfurt · 4er-WG</div>
-              <div class="text-[11px] leading-tight mt-0.5" style="color:#FB923C;font-family:'JetBrains Mono';">Letzte Nachfrage vor 14 Tagen · Lissabon</div>
+              <div class="text-[14px] font-semibold leading-tight">Manuel-L · 4er-WG<span class="vit-days stale js-vit-days">14 d</span></div>
+              <div class="text-[11px] leading-tight mt-0.5" style="color:#C56313;">Antwort offen seit 14 Tagen · Lissabon</div>
             </div>
-            <span class="vit-status warn" style="background:rgba(251,146,60,0.16);color:#FB923C;">Lissabon</span>
+            <span class="vit-status warn" style="background:rgba(251,146,60,0.16);color:#C56313;">Lissabon</span>
           </div>
         </div>
 
-        <!-- TERMINE -->
+        <!-- Termine -->
         <div class="section-label flex items-center justify-between">
-          <span>TERMINE · diese Woche</span>
+          <span>Termine · diese Woche</span>
           <span class="font-mono dim normal-case tracking-normal text-[11px]">2 geplant</span>
         </div>
 
@@ -1102,8 +1459,8 @@
                 </div>
               </div>
               <div class="min-w-0">
-                <div class="text-[15px] font-semibold tracking-tight truncate">Bethmannpark · Do 16:00</div>
-                <div class="text-[12px] dim truncate flex items-center gap-1.5"><span>23 Min ab iLive</span><span class="clash-pill" style="padding:1px 6px; font-size:9.5px;">Job-Konflikt</span></div>
+                <div class="text-[15px] font-semibold tracking-tight truncate">Bornheim Mitte · Do 16:00</div>
+                <div class="text-[12px] dim truncate flex items-center gap-1.5"><span>23 Min ab Zuhause</span><span class="clash-pill" style="padding:1px 6px; font-size:9.5px;">Job-Konflikt</span></div>
               </div>
               <svg class="termin-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" style="transition:transform .2s ease;"><path d="m6 9 6 6 6-6"/></svg>
             </div>
@@ -1111,19 +1468,19 @@
               <div class="termin-expand-inner">
                 <div class="mini-row">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5E6AD2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
-                  <span>Eckenheimer Landstr. 95, 60318 Frankfurt</span>
-                  <span class="copy-tag" data-toast="Adresse kopiert">kopieren</span>
+                  <span>Bornheim Mitte, 60385 Frankfurt</span>
+                  <span class="copy-tag" data-toast="Adresse in Zwischenablage">kopieren</span>
                 </div>
                 <div class="mini-row">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                  <span>23 Min ab iLive · S6 + 5 Min Fuss</span>
+                  <span>23 Min ab Zuhause · S6 + 5 Min Fuss</span>
                   <span class="copy-tag" style="color:#10B981;">live</span>
                 </div>
                 <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim mt-1">Vorbereitung</div>
-                <label class="check-mini"><input type="checkbox" checked/><span>Pack auf Handy</span></label>
-                <label class="check-mini"><input type="checkbox"/><span>Anfahrt geprueft (Stau-Check)</span></label>
+                <label class="check-mini"><input type="checkbox" checked/><span>Bewerbungsmappe auf Handy</span></label>
+                <label class="check-mini"><input type="checkbox"/><span>Anfahrt geprueft</span></label>
                 <div class="termin-cta-row">
-                  <button class="termin-mini-cta call tap" data-toast="Anruf: +49 1XX XXX 04 12">
+                  <button class="termin-mini-cta call tap" data-toast="Anruf: +49 1XX XXX XX XX">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A14 14 0 013 6a2 2 0 012-2z"/></svg>
                     Anrufen
                   </button>
@@ -1145,8 +1502,8 @@
                 </div>
               </div>
               <div class="min-w-0">
-                <div class="text-[15px] font-semibold tracking-tight truncate">Rotlintstr. 8 · Sa 11:00</div>
-                <div class="text-[12px] dim truncate">18 Min ab iLive · bestaetigt</div>
+                <div class="text-[15px] font-semibold tracking-tight truncate">Nordend-Ost · Sa 11:00</div>
+                <div class="text-[12px] dim truncate">18 Min ab Zuhause · bestaetigt</div>
               </div>
               <svg class="termin-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" style="transition:transform .2s ease;"><path d="m6 9 6 6 6-6"/></svg>
             </div>
@@ -1154,19 +1511,19 @@
               <div class="termin-expand-inner">
                 <div class="mini-row">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5E6AD2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
-                  <span>Rotlintstr. 8, 60389 Frankfurt</span>
-                  <span class="copy-tag" data-toast="Adresse kopiert">kopieren</span>
+                  <span>Nordend-Ost, 60389 Frankfurt</span>
+                  <span class="copy-tag" data-toast="Adresse in Zwischenablage">kopieren</span>
                 </div>
                 <div class="mini-row">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                  <span>18 Min ab iLive · U4</span>
+                  <span>18 Min ab Zuhause · U4</span>
                   <span class="copy-tag" style="color:#10B981;">live</span>
                 </div>
                 <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim mt-1">Vorbereitung</div>
-                <label class="check-mini"><input type="checkbox" checked/><span>Pack auf Handy</span></label>
+                <label class="check-mini"><input type="checkbox" checked/><span>Bewerbungsmappe auf Handy</span></label>
                 <label class="check-mini"><input type="checkbox" checked/><span>WG-Fragen vorbereitet</span></label>
                 <div class="termin-cta-row">
-                  <button class="termin-mini-cta call tap" data-toast="Anruf: +49 1XX XXX 11 07">Anrufen</button>
+                  <button class="termin-mini-cta call tap" data-toast="Anruf: +49 1XX XXX XX XX">Anrufen</button>
                   <button class="termin-mini-cta route tap" data-toast="Route in Maps geoeffnet">Route</button>
                 </div>
               </div>
@@ -1175,7 +1532,7 @@
         </div>
 
         <div class="section-label flex items-center justify-between">
-          <span>HEUTE</span>
+          <span>Heute</span>
           <span id="todayHeuteFilterHint" class="filter-active-hint" style="display:none;"><span>•</span><span>Filter aktiv</span></span>
         </div>
 
@@ -1189,9 +1546,9 @@
             </div>
             <div class="min-w-0">
               <div class="text-[15px] font-semibold tracking-tight truncate">St. Bernhard Kirche</div>
-              <div class="text-[12px] dim truncate">Aushang aufhaengen · Foto</div>
+              <div class="text-[12px] dim truncate">Aushang aufhaengen + Foto machen</div>
             </div>
-            <button class="mini-cta tap" data-cta="Erledigt + Foto">Foto</button>
+            <button class="mini-cta tap" data-cta="Foto + erledigt">Foto + erledigt</button>
           </div>
 
           <div class="acard hair tcard" data-id="t4" data-ch="brief" data-st="aktiv" data-cfg-list="Solo,2er-WG">
@@ -1205,7 +1562,7 @@
               <div class="text-[15px] font-semibold tracking-tight truncate">HV Schmitt · Nordend</div>
               <div class="text-[12px] dim truncate">Brief drucken + einwerfen</div>
             </div>
-            <button class="mini-cta tap" data-cta="Brief versandfertig">Brief</button>
+            <button class="mini-cta tap" data-cta="Drucken + ab">Drucken + ab</button>
           </div>
 
           <div class="acard hair tcard" data-id="t5" data-ch="anruf" data-st="aktiv" data-cfg-list="Solo,2er-WG">
@@ -1219,7 +1576,7 @@
               <div class="text-[15px] font-semibold tracking-tight truncate">Makler Schiele</div>
               <div class="text-[12px] dim truncate">Eskalation Bornheim</div>
             </div>
-            <button class="mini-cta tap" data-cta="Anruf starten">Anruf</button>
+            <button class="mini-cta tap" data-cta="Anruf starten">Anrufen</button>
           </div>
 
           <div class="acard hair tcard" data-id="t6" data-ch="mail" data-st="aktiv" data-cfg-list="2er-WG,3er-WG">
@@ -1230,14 +1587,14 @@
               </div>
             </div>
             <div class="min-w-0">
-              <div class="text-[15px] font-semibold tracking-tight truncate">Rotlintstr. 8</div>
+              <div class="text-[15px] font-semibold tracking-tight truncate">Nordend-Ost WG</div>
               <div class="text-[12px] dim truncate">IS24 · Anschreiben senden</div>
             </div>
-            <button class="mini-cta tap" data-cta="Anschreiben senden">Senden</button>
+            <button class="mini-cta tap" data-cta="Anschreiben senden">Anschreiben senden</button>
           </div>
         </div>
 
-        <div class="section-label">SPAETER</div>
+        <div class="section-label">Spaeter</div>
 
         <div class="card" id="todaySpaeter">
           <div class="acard tcard" data-id="t7" data-ch="aushang" data-st="warten" data-cfg-list="2er-WG,3er-WG">
@@ -1251,8 +1608,14 @@
               <div class="text-[15px] font-semibold tracking-tight truncate">Uni Westend · Casino</div>
               <div class="text-[12px] dim truncate">Aushang vorbereiten</div>
             </div>
-            <button class="mini-cta tap" data-cta="Aushang vorbereiten">Plan</button>
+            <button class="mini-cta tap" data-cta="Aushang vorbereiten">Vorbereiten</button>
           </div>
+        </div>
+
+        <!-- V4.9 — Empty-State (versteckt, JS-toggleable) -->
+        <div id="todayEmpty" style="display:none;" class="text-center px-6 py-10">
+          <div class="text-[14px] font-medium mb-1">Nichts heute. Auch das ist ein Fortschritt.</div>
+          <div class="text-[12px] dim">Neu erfassen oder Inbox checken.</div>
         </div>
 
         <div class="h-8"></div>
@@ -1320,7 +1683,12 @@
           </div>
         </div>
 
-        <div class="text-center text-[11px] dim mt-3">Apricot-Bezirke = Primaer · Tippe Pin fuer Detail</div>
+        <div class="text-center text-[11px] dim mt-3">Orange Bezirke = bevorzugt · Pin tippen fuer Details</div>
+        <!-- Karten-Empty-State -->
+        <div id="karteEmpty" style="display:none;" class="text-center px-6 py-6">
+          <div class="text-[13px] font-medium mb-1">Noch keine Pins. Plus oben rechts zum Erstellen.</div>
+          <div class="text-[11px] dim">Oder Filter erweitern.</div>
+        </div>
         <div class="h-8"></div>
       </div>
     </main>
@@ -1330,7 +1698,7 @@
       <div class="capture-wrap">
         <div class="flex items-end justify-between px-1 pt-2 pb-2">
           <div>
-            <div class="font-mono text-[11px] tracking-[0.16em] dim uppercase">Such-Agent · ungelesen</div>
+            <div class="font-mono text-[11px] tracking-[0.16em] dim uppercase">Such-Agent</div>
             <h1 class="text-[20px] font-semibold tracking-tight leading-tight">Inbox</h1>
           </div>
           <button id="filterOpen" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-paper2 dark:bg-paper2D text-[12px] font-medium" style="min-height:44px;">
@@ -1339,18 +1707,54 @@
             <span id="filterCount" class="font-mono text-[10px] bg-apricot text-ink rounded-full px-1.5 ml-1" aria-live="polite" aria-label="0 Filter aktiv">0</span>
           </button>
         </div>
+        <div id="inboxLoading" class="text-[11px] dim px-1" style="display:none;">Sucht neue Inserate ...</div>
       </div>
 
       <div class="px-4 pt-2">
         <div class="card overflow-hidden" id="inboxList"></div>
-        <div id="inboxEmpty" class="text-center text-[12px] dim py-8" style="display:none;">Keine ungelesenen Inserate fuer aktuellen Filter</div>
-        <div class="text-center text-[11px] dim mt-3">Filter-Sheet ist Single-SoT · Triage pro Eintrag</div>
+        <div id="inboxEmpty" class="text-center py-8" style="display:none;">
+          <div class="text-[13px] font-medium mb-2">Keine Inserate fuer diesen Filter</div>
+          <button id="inboxEmptyCta" class="mini-cta">Filter aendern</button>
+        </div>
+        <div class="text-center text-[11px] dim mt-3">Eintrag tippen fuer Optionen</div>
         <div class="h-8"></div>
+      </div>
+    </main>
+
+    <!-- ============== V4.9 VIEW: SHARE-MODE ============== -->
+    <main id="view-share" class="view hidden-tab" role="main" tabindex="0">
+      <div class="share-welcome">
+        <div class="font-mono text-[11px] tracking-[0.16em] dim uppercase">Eingeladen</div>
+        <h1>Hi <span id="shareGuestName">Karl</span>, schau dir Wohnungs-Kandidaten an.</h1>
+        <div class="share-sub">Jonathan zeigt dir <span id="shareCount">3</span> Wohnungs-Vorschlaege fuer eine moegliche WG ab September. Daumen rauf/runter oder kurz kommentieren.</div>
+      </div>
+
+      <div class="px-4 pt-2" id="shareList">
+        <!-- Cards via JS gerendert -->
+      </div>
+
+      <div class="share-footer">
+        Geteilt von Jonathan · Read-only · <span id="shareLikeCount">0</span> Daumen rauf
       </div>
     </main>
 
     <!-- V4.7 Reductio — Stats-View KOMPLETT entfernt; Tage-Counter bleibt im Today-Header -->
 
+  </div>
+
+  <!-- V4.9 — Offline-Banner -->
+  <div id="offlineBanner" style="display:none; position:absolute; top:50px; left:12px; right:12px; z-index:90; background:#18181B; color:#FAFAF8; padding:10px 14px; border-radius:12px; font-size:12px; box-shadow:0 6px 18px -8px rgba(20,18,12,0.40);" role="status" aria-live="polite">
+    Offline. Aktionen werden gespeichert und gesendet, sobald Verbindung da ist.
+  </div>
+
+  <!-- V4.9 — Coachmarks (First-Run) -->
+  <div id="coachmark1" class="coachmark point-up" style="top: 200px; left: 16px;">
+    Hier landen alle Aktionen fuer heute.
+    <button class="coachmark-skip" data-coach-next="2">Verstanden</button>
+  </div>
+  <div id="coachmark2" class="coachmark point-up" style="top: 158px; left: 16px;">
+    Tippe + um schnell zu erfassen — Inserat, Brief, Foto.
+    <button class="coachmark-skip" data-coach-close="1">Los geht's</button>
   </div>
 
   <!-- TOAST (Empf-26: aria-live + role=status) -->
@@ -1494,9 +1898,9 @@
             <div class="avatar-inner" aria-hidden="true">J</div>
           </div>
           <div class="min-w-0">
-            <div class="font-mono text-[10.5px] uppercase tracking-[0.12em] dim">Mein Pack</div>
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.12em] dim">Meine Bewerbungsmappe</div>
             <h2 id="sheetProfileTitle" class="text-[18px] font-semibold tracking-tight leading-tight truncate">Jonathan</h2>
-            <div class="text-[11.5px] dim"><span id="profileOnboardingLabel">Pack vollstaendig · Agent aktiv</span></div>
+            <div class="text-[11.5px] dim"><span id="profileOnboardingLabel">Mappe komplett · Agent laeuft</span></div>
           </div>
         </div>
         <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Profil schliessen">
@@ -1506,7 +1910,7 @@
 
       <div id="packBanner" class="mt-4 rounded-2xl p-3 flex items-center gap-2" style="background:rgba(16,185,129,0.10); border:1px solid rgba(16,185,129,0.25)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="9"/></svg>
-        <div class="text-[12px] flex-1" id="packBannerText" aria-live="polite">Pack 4/5 + Buergschaft verfuegbar · ready fuer 2er-WG</div>
+        <div class="text-[12px] flex-1" id="packBannerText" aria-live="polite">Mappe 4/5 + Buergschaft · bereit fuer 2er-WG</div>
       </div>
 
       <div class="mt-5">
@@ -1578,25 +1982,33 @@
       </div>
 
       <div class="mt-5">
-        <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim mb-2">Konfig-Praefs</div>
-        <div class="card p-3 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[12.5px] dim">Solo (max)</span>
-            <span class="font-mono text-[13px] font-semibold">1.700 EUR warm</span>
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim">Budget je Konfiguration</div>
+          <span class="font-mono text-[10.5px] dim">kalt · pro Wohnung</span>
+        </div>
+        <div class="budget-matrix">
+          <div class="budget-cell">
+            <div class="b-label">Solo</div>
+            <div class="b-eur">1.300</div>
+            <div class="b-pp">1 Person</div>
           </div>
-          <div class="flex items-center justify-between">
-            <span class="text-[12.5px] dim">2er-WG (max)</span>
-            <span class="font-mono text-[13px] font-semibold">2.000 EUR warm</span>
+          <div class="budget-cell">
+            <div class="b-label">2er</div>
+            <div class="b-eur">1.700</div>
+            <div class="b-pp">850 / Kopf</div>
           </div>
-          <div class="flex items-center justify-between">
-            <span class="text-[12.5px] dim">3er-WG (max)</span>
-            <span class="font-mono text-[13px] font-semibold">2.600 EUR warm</span>
+          <div class="budget-cell">
+            <div class="b-label">3er</div>
+            <div class="b-eur">2.200</div>
+            <div class="b-pp">730 / Kopf</div>
           </div>
-          <div class="flex items-center justify-between">
-            <span class="text-[12.5px] dim">4er-WG (max)</span>
-            <span class="font-mono text-[13px] font-semibold">3.200 EUR warm</span>
+          <div class="budget-cell">
+            <div class="b-label">4er</div>
+            <div class="b-eur">2.900</div>
+            <div class="b-pp">725 / Kopf</div>
           </div>
         </div>
+        <div class="mt-2 text-[10.5px] dim leading-relaxed">Eingabe in Euro · alle 4 Konfigs aktiv im Filter.</div>
       </div>
 
       <div class="mt-5">
@@ -1617,10 +2029,10 @@
         </div>
       </div>
 
-      <!-- C3: Vitamin-B nur 1 Stelle — hier im Profil. Tag-Pill "Vitamin" scrollt hierher -->
+      <!-- Bekannte fragen-Liste -->
       <div class="mt-5" id="profileVitaminSection">
         <div class="flex items-center justify-between mb-2">
-          <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim">Vitamin-B-Liste</div>
+          <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim">Bekannte fragen</div>
           <button class="font-mono text-[10.5px] dim tap" data-toast="Person hinzufuegen">+ Person</button>
         </div>
         <div class="card overflow-hidden">
@@ -1630,23 +2042,23 @@
               <div class="text-[13.5px] font-semibold truncate">Karl</div>
               <div class="text-[11px] dim truncate">2er-WG · Budget 2k OK</div>
             </div>
-            <button class="mini-cta tap" data-toast="Karl angeschrieben">Fragen</button>
+            <button class="mini-cta tap" data-toast="Karl angeschrieben">Nachfragen</button>
           </div>
-          <div class="row" data-toast="Manuel Tuebingen nachfragen">
+          <div class="row" data-toast="Manuel-T nachfragen">
             <div class="vit-avatar" style="width:32px;height:32px;font-size:11px;">MT</div>
             <div class="min-w-0">
-              <div class="text-[13.5px] font-semibold truncate">Manuel Tuebingen</div>
+              <div class="text-[13.5px] font-semibold truncate">Manuel-T</div>
               <div class="text-[11px] dim truncate">3er-WG · braucht 600 EUR extra</div>
             </div>
-            <button class="mini-cta tap" data-toast="Manuel Tuebingen angeschrieben">Fragen</button>
+            <button class="mini-cta tap" data-toast="Manuel-T angeschrieben">Nachfragen</button>
           </div>
-          <div class="row" data-toast="Manuel Frankfurt nachfragen">
-            <div class="vit-avatar" style="width:32px;height:32px;font-size:11px;">MF</div>
+          <div class="row" data-toast="Manuel-L nachfragen">
+            <div class="vit-avatar" style="width:32px;height:32px;font-size:11px;">ML</div>
             <div class="min-w-0">
-              <div class="text-[13.5px] font-semibold truncate">Manuel Frankfurt</div>
+              <div class="text-[13.5px] font-semibold truncate">Manuel-L</div>
               <div class="text-[11px] dim truncate">4er-WG · Lissabon, unklar</div>
             </div>
-            <button class="mini-cta tap" data-toast="Manuel Frankfurt angeschrieben">Fragen</button>
+            <button class="mini-cta tap" data-toast="Manuel-L angeschrieben">Nachfragen</button>
           </div>
         </div>
       </div>
@@ -1670,8 +2082,8 @@
       </div>
 
       <div class="mt-5 grid grid-cols-2 gap-2">
-        <button id="openOnboarding" class="cta cta-ghost tap">Setup-Wizard</button>
-        <button class="cta cta-apricot tap" data-toast="Pack-Vorschau geoeffnet">Pack-Vorschau</button>
+        <button id="openOnboarding" class="cta cta-ghost tap">Einrichten</button>
+        <button class="cta cta-apricot tap" data-toast="Mappe geoeffnet">Mappe ansehen</button>
       </div>
 
       <div class="h-4"></div>
@@ -1730,7 +2142,7 @@
           </div>
           <div class="min-w-0 flex-1">
             <div class="text-[13px] font-semibold" id="genTargetTitle">St. Bernhard Kirche</div>
-            <div class="text-[11px] dim" id="genTargetSub">Eckenheimer Landstr. · Nordend-Ost</div>
+            <div class="text-[11px] dim" id="genTargetSub">Nordend-Ost</div>
           </div>
         </div>
       </div>
@@ -1758,27 +2170,27 @@
       </div>
 
       <div class="mt-4 card overflow-hidden">
-        <div class="row tap" data-toast="Makler Schiele angerufen">
+        <a href="tel:+491XXXXXXXXX" class="row tap" style="text-decoration:none;color:inherit;display:grid;">
           <div class="plate anruf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A14 14 0 013 6a2 2 0 012-2z"/></svg></div>
           <div class="min-w-0">
             <div class="text-[13.5px] font-semibold truncate">Makler Schiele</div>
-            <div class="text-[11px] dim truncate font-mono">+49 1XX XXX 04 12</div>
+            <div class="text-[11px] dim truncate font-mono">+49 1XX XXX XX XX</div>
           </div>
-        </div>
-        <div class="row tap" data-toast="HV Schmitt angerufen">
+        </a>
+        <a href="tel:+491XXXXXXXXX" class="row tap" style="text-decoration:none;color:inherit;display:grid;">
           <div class="plate anruf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A14 14 0 013 6a2 2 0 012-2z"/></svg></div>
           <div class="min-w-0">
             <div class="text-[13.5px] font-semibold truncate">HV Schmitt</div>
-            <div class="text-[11px] dim truncate font-mono">+49 1XX XXX 02 88</div>
+            <div class="text-[11px] dim truncate font-mono">+49 1XX XXX XX XX</div>
           </div>
-        </div>
-        <div class="row tap" data-toast="Frau Klein angerufen">
+        </a>
+        <a href="tel:+491XXXXXXXXX" class="row tap" style="text-decoration:none;color:inherit;display:grid;">
           <div class="plate anruf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A14 14 0 013 6a2 2 0 012-2z"/></svg></div>
           <div class="min-w-0">
             <div class="text-[13.5px] font-semibold truncate">Frau Klein · Innenstadt</div>
-            <div class="text-[11px] dim truncate font-mono">+49 1XX XXX 17 04</div>
+            <div class="text-[11px] dim truncate font-mono">+49 1XX XXX XX XX</div>
           </div>
-        </div>
+        </a>
       </div>
 
       <div class="mt-4">
@@ -1931,7 +2343,7 @@
 
 </div>
 
-<div class="footer-caption">Mobile-first 375 px · Light + Dark via System · V4.7 · A11y AA · 3-Tab Nav · Stats-Kill</div>
+<div class="footer-caption">Mobile-first 375 px · Light + Dark via System · V4.9 · Multi-Agent + Self-Explanatory + Share-Mode</div>
 </content>
 </invoke>
 <script>
@@ -1967,25 +2379,25 @@ function inferConfig(zimmer, qm, price) {
   return cfgs.filter(c => price <= BUDGET[c]);
 }
 
-/* TODAY-Daten (D: 8-10 Cards) */
+/* TODAY-Daten (D: 8-10 Cards) — V4.9: PII anonymisiert */
 const TODAY = {
   reply1: {
     channel: 'mail', status: 'antwort', hasAI: true,
     title: 'Frau Hartmann antwortet',
-    sub: 'Bethmannpark · Donnerstag 17h passt',
-    address: 'Bethmannstr., Bornheim',
+    sub: 'Bornheim Mitte · Donnerstag 17h passt',
+    address: 'Bornheim Mitte',
     district: 'Bornheim', config: ['Solo','2er-WG'], criteria: ['hell'],
     last: 'Antwort vor 12 Min', contact: 'Hartmann Immobilien',
-    next: 'Mit Pack antworten', cta: 'Antworten',
+    next: 'Mit Bewerbungsmappe antworten', cta: 'Antworten',
     recipientType: 'hv'
   },
   t1: {
     channel: 'mail', status: 'hot', hasAI: true,
     title: 'Hartmann Immobilien',
-    sub: 'Bethmannpark · 2-Zi · 1.140 EUR warm',
-    address: 'Bethmannstr., Bornheim',
+    sub: 'Bornheim Mitte · 2-Zi · 1.140 EUR warm',
+    address: 'Bornheim Mitte',
     config: ['Solo','2er-WG'], district: 'Bornheim', criteria: ['hell','stockwerk'],
-    cta: 'Mit Pack antworten',
+    cta: 'Mit Bewerbungsmappe antworten',
     last: 'Anfrage gesendet 09.05.',
     next: 'AI-Antwort vorbereitet · pruefen + senden',
     contact: 'Hartmann Immobilien', recipientType: 'hv'
@@ -1996,17 +2408,17 @@ const TODAY = {
     sub: 'Wochenende-Check fuer Termin',
     address: 'Bornheim Mitte',
     config: ['Solo','2er-WG'], district: 'Bornheim', criteria: [],
-    cta: 'Karl fragen', last: 'Letzte Nachricht 09.05.',
+    cta: 'Karl nachfragen', last: 'Letzte Nachricht 09.05.',
     next: 'Kurz fragen ob Wochenende Zeit', contact: 'Karl'
   },
   t3: {
     channel: 'aushang', status: 'aktiv',
     title: 'St. Bernhard Kirche',
-    sub: 'Eckenheimer Landstr. · Nordend-Ost',
-    address: 'Eckenheimer Landstr., Nordend-Ost',
+    sub: 'Nordend-Ost · Aushang',
+    address: 'Nordend-Ost',
     config: ['2er-WG','3er-WG'], district: 'Nordend-Ost', criteria: [],
-    cta: 'Erledigt + Foto', last: 'Pfarrer OK · 11.05.',
-    next: 'A5-Aushang aufhaengen + Foto-Beweis', contact: 'Pfarrbuero'
+    cta: 'Foto + erledigt', last: 'Pfarrer OK · 11.05.',
+    next: 'A5-Aushang aufhaengen + Foto machen', contact: 'Pfarrbuero'
   },
   t4: {
     channel: 'brief', status: 'aktiv',
@@ -2014,7 +2426,7 @@ const TODAY = {
     sub: 'Anschreiben + Bewerbungs-PDF',
     address: 'Nordend',
     config: ['Solo','2er-WG'], district: 'Nordend', criteria: [],
-    cta: 'Brief versandfertig', last: 'Recherche 07.05.',
+    cta: 'Drucken + ab', last: 'Recherche 07.05.',
     next: 'Drucken + heute Abend einwerfen', contact: 'HV Schmitt',
     recipientType: 'hv'
   },
@@ -2024,14 +2436,14 @@ const TODAY = {
     sub: 'Eskalation Bornheim',
     address: 'Bornheim Mitte',
     config: ['Solo','2er-WG'], district: 'Bornheim', criteria: [],
-    cta: 'Anruf starten', last: 'Versuch 07.05. · keiner abgehoben',
-    next: 'Heute 16:00 erneut probieren', contact: '+49 1XX XXX 04 12'
+    cta: 'Anrufen', last: 'Versuch 07.05. · keiner abgehoben',
+    next: 'Heute 16:00 erneut probieren', contact: '+49 1XX XXX XX XX'
   },
   t6: {
     channel: 'mail', status: 'aktiv', hasAI: false,
-    title: 'Rotlintstr. 8',
+    title: 'Nordend-Ost WG',
     sub: 'IS24 · 720 EUR · 18 qm WG',
-    address: 'Rotlintstr., Nordend-Ost',
+    address: 'Nordend-Ost',
     config: ['2er-WG','3er-WG'], district: 'Nordend-Ost', criteria: ['hell'],
     cta: 'Anschreiben senden', last: 'Entwurf bereit',
     next: 'Selbstauskunft anhaengen + senden', contact: 'WG via IS24',
@@ -2041,9 +2453,9 @@ const TODAY = {
     channel: 'aushang', status: 'warten',
     title: 'Uni Westend · Casino',
     sub: 'Studi-Brett · A5 erlaubt',
-    address: 'Theodor-W.-Adorno-Platz, Westend',
+    address: 'Westend',
     config: ['2er-WG','3er-WG'], district: 'Westend', criteria: [],
-    cta: 'Aushang vorbereiten', last: 'Recherche heute morgen',
+    cta: 'Vorbereiten', last: 'Recherche heute morgen',
     next: 'A5-Plakat drucken bis Freitag', contact: 'Hausmeister'
   },
   vk: {
@@ -2052,63 +2464,78 @@ const TODAY = {
     sub: 'Bereit · Budget 2k warm OK',
     address: 'Frankfurt',
     config: ['Solo','2er-WG'], district: 'Bornheim', criteria: [],
-    cta: 'Karl fragen', last: 'Letzte Nachricht 11.05.',
-    next: 'Wochenende-Termin klaeren', contact: 'Karl'
+    cta: 'Karl nachfragen', last: 'Letzte Nachricht 11.05.',
+    next: 'Wochenende-Termin klaeren', contact: 'Karl',
+    lastContact: '2026-05-12'
   },
   vmt: {
     channel: 'vitamin', status: 'aktiv',
-    title: 'Manuel Tuebingen · 3er-WG',
+    title: 'Manuel-T · 3er-WG',
     sub: 'braucht 600 EUR extra · Stand pruefen',
-    address: 'Tuebingen → Frankfurt',
+    address: 'Frankfurt-Ziel',
     config: ['3er-WG'], district: 'Nordend', criteria: [],
-    cta: 'Manuel Tuebingen fragen', last: 'Vor 2 Wochen',
-    next: 'Vor Mai-Ende Stand abklaeren', contact: 'Manuel Tuebingen'
+    cta: 'Manuel-T nachfragen', last: 'Vor 2 Wochen',
+    next: 'Vor Mai-Ende Stand abklaeren', contact: 'Manuel-T',
+    lastContact: '2026-05-07'
   },
   vmf: {
     channel: 'vitamin', status: 'aktiv',
-    title: 'Manuel Frankfurt · 4er-WG',
+    title: 'Manuel-L · 4er-WG',
     sub: 'Lissabon · weitere 600 EUR',
-    address: 'Lissabon → Frankfurt',
+    address: 'Frankfurt-Ziel',
     config: ['4er-WG'], district: 'Bornheim', criteria: [],
-    cta: 'Manuel Frankfurt fragen', last: 'Vor 3 Wochen',
-    next: 'Telegram an Lissabon ob Frankfurt-Plan steht', contact: 'Manuel Frankfurt'
+    cta: 'Manuel-L nachfragen', last: 'Vor 3 Wochen',
+    next: 'Nachricht ob Frankfurt-Plan steht', contact: 'Manuel-L',
+    lastContact: '2026-04-30'
   },
   termin1: {
     channel: 'termin', status: 'hot', isTermin: true,
-    title: 'Bethmannpark · Besichtigung',
+    title: 'Bornheim Mitte · Besichtigung',
     sub: '2-Zi · 1.140 EUR warm · Hartmann',
-    address: 'Bethmannstr., Bornheim',
+    address: 'Bornheim Mitte',
     when: 'Donnerstag 16. Mai · 16:00',
-    travel: '23 Min ab iLive · S-Bahn + 5 Min Fuss',
-    clash: 'Konflikt: Office-Block bis 17:00 (FELS)',
+    travel: '23 Min ab Zuhause · S-Bahn + 5 Min Fuss',
+    clash: 'Konflikt: Office-Block bis 17:00',
     config: ['Solo','2er-WG'], district: 'Bornheim', criteria: ['hell'],
     contact: 'Hartmann Immobilien'
   },
   termin2: {
     channel: 'termin', status: 'aktiv', isTermin: true,
-    title: 'Rotlintstr. 8 · WG-Casting',
+    title: 'Nordend-Ost · WG-Casting',
     sub: 'WG-Zimmer · 720 EUR · 3 Mitbewerber',
-    address: 'Rotlintstr., Nordend-Ost',
+    address: 'Nordend-Ost',
     when: 'Samstag 18. Mai · 11:00',
-    travel: '18 Min ab iLive · U-Bahn',
+    travel: '18 Min ab Zuhause · U-Bahn',
     clash: null,
     config: ['2er-WG','3er-WG'], district: 'Nordend-Ost', criteria: [],
     contact: 'WG via IS24-Chat'
   }
 };
 
-/* PINS — 10 Stueck (A7: p15-p17 Premium raus) */
+/* V4.9 — Share-Mode Wohnungs-Kandidaten */
+const SHARE_CANDIDATES = [
+  { id:'sc1', title:'Bornheim Mitte · 2-Zi',  meta:'1.140 EUR warm · 64 qm · 3. OG',  pin:'2er-WG ideal',   score:'★ 9/10 Match', photoVariant:'' },
+  { id:'sc2', title:'Nordend-Ost · 3-Zi',     meta:'2.280 EUR warm · 82 qm · Dachterrasse',  pin:'3er-WG · viel Platz', score:'★ 8/10 Match', photoVariant:'alt2' },
+  { id:'sc3', title:'Bockenheim · 2-Zi',      meta:'920 EUR warm · 58 qm · Privatvermieter',  pin:'Solo o. 2er', score:'★ 7/10 Match', photoVariant:'alt3' }
+];
+
+const SHARE_NAMES = {
+  karl: 'Karl', 'manuel-t': 'Manuel-T', 'manuel-l': 'Manuel-L',
+  malou: 'Malou', default: 'Freund'
+};
+
+/* PINS — 10 Stueck (V4.9: PII anonymisiert) */
 const PINS = [
-  { id:'p1',  ch:'mail',    st:'hot',     x:62, y:32, title:'Bethmannpark', sub:'IS24 · 1.140 EUR · Bornheim', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Antwort senden', cta:'Antworten' },
+  { id:'p1',  ch:'mail',    st:'hot',     x:62, y:32, title:'Bornheim Mitte', sub:'IS24 · 1.140 EUR', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Antwort senden', cta:'Antworten' },
   { id:'p2',  ch:'mail',    st:'aktiv',   x:73, y:38, title:'Bornheim 2-Zi',sub:'IS24 · 1.290 EUR', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Nachfassen Fr', cta:'Erinnern' },
   { id:'p3',  ch:'mail',    st:'warten',  x:45, y:34, title:'Garten+Keller 3-Zi',sub:'WG · 1.840 EUR · Nordend', cfg:['2er-WG','3er-WG'], district:'Nordend', next:'Anschreiben', cta:'Schreiben' },
   { id:'p4',  ch:'aushang', st:'aktiv',   x:65, y:28, title:'St. Bernhard', sub:'Kirchen-Aushang · OK', cfg:['2er-WG'], district:'Nordend-Ost', next:'Foto-Check', cta:'Foto' },
-  { id:'p5',  ch:'aushang', st:'warten',  x:78, y:42, title:'Baeck. Eichendorff',sub:'A5 erlaubt · Bornheim', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Aushang bringen', cta:'Plan' },
-  { id:'p7',  ch:'aushang', st:'warten',  x:18, y:30, title:'Uni Westend',  sub:'Studi-Brett · Casino', cfg:['2er-WG','3er-WG'], district:'Westend', next:'A5 drucken', cta:'Plan' },
+  { id:'p5',  ch:'aushang', st:'warten',  x:78, y:42, title:'Baeckerei Bornheim',sub:'A5 erlaubt · Bornheim', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Aushang bringen', cta:'Vorbereiten' },
+  { id:'p7',  ch:'aushang', st:'warten',  x:18, y:30, title:'Uni Westend',  sub:'Studi-Brett · Casino', cfg:['2er-WG','3er-WG'], district:'Westend', next:'A5 drucken', cta:'Vorbereiten' },
   { id:'p8',  ch:'hv',      st:'aktiv',   x:42, y:30, title:'HV Schmitt',   sub:'12 Objekte · Brief raus', cfg:['Solo','2er-WG'], district:'Nordend', next:'Nachfassen Fr', cta:'Anruf vormerken' },
   { id:'p10', ch:'makler',  st:'aktiv',   x:74, y:36, title:'Makler Schiele',sub:'Eskalation · Bornheim', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Heute 16:00', cta:'Anrufen' },
-  { id:'p12', ch:'vitamin', st:'hot',     x:76, y:39, title:'Karl (Bornheim)', sub:'2er-WG · Budget 2k OK', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Wochenende-Check', cta:'Fragen' },
-  { id:'p13', ch:'vitamin', st:'aktiv',   x:51, y:30, title:'Manuel Tuebingen', sub:'3er-WG · 600 EUR extra', cfg:['3er-WG'], district:'Nordend', next:'Stand pruefen', cta:'Fragen' }
+  { id:'p12', ch:'vitamin', st:'hot',     x:76, y:39, title:'Karl (Bornheim)', sub:'2er-WG · Budget 2k OK', cfg:['Solo','2er-WG'], district:'Bornheim', next:'Wochenende-Check', cta:'Nachfragen' },
+  { id:'p13', ch:'vitamin', st:'aktiv',   x:51, y:30, title:'Manuel-T', sub:'3er-WG · 600 EUR extra', cfg:['3er-WG'], district:'Nordend', next:'Stand pruefen', cta:'Nachfragen' }
 ];
 
 const PIN_SCORES = {
@@ -2116,14 +2543,14 @@ const PIN_SCORES = {
   p8:0.74, p10:0.71, p12:0.91, p13:0.66
 };
 
-/* INBOX — 6 Items (D: ib9/ib10 raus) */
+/* INBOX — 6 Items (V4.9: PII anonymisiert) */
 const INBOX = [
-  { id:'ib1', source:'IS24', score:9, scoreClass:'high', title:'Hellerhofstr. 4 · Bornheim', price:1180, rooms:2, qm:64, district:'Bornheim', criteria:['hell','stockwerk','bodentief'], note:'Suedseite · 3. OG · neu (2h)', cfg: inferConfig(2,64,1180) },
-  { id:'ib2', source:'KA', score:7, scoreClass:'', title:'Mertonstr. 12 · Bockenheim', price:920, rooms:2, qm:58, district:'Bockenheim', criteria:['hell'], note:'Helle Eckwohnung · Privatvermieter (4h)', cfg: inferConfig(2,58,920) },
-  { id:'ib3', source:'WG', score:8, scoreClass:'high', title:'Sandweg 88 · Nordend-Ost', price:2280, rooms:3, qm:82, district:'Nordend-Ost', criteria:['hell','dachterrasse','stockwerk'], note:'Dachterrasse · 4. OG · 3er-WG (6h)', cfg: inferConfig(3,82,2280) },
-  { id:'ib4', source:'IS24', score:6, scoreClass:'', title:'Friedberger Landstr. · Nordend', price:1450, rooms:2, qm:68, district:'Nordend', criteria:['bodentief'], note:'2. OG · Altbau (8h)', cfg: inferConfig(2,68,1450) },
-  { id:'ib5', source:'KA', score:9, scoreClass:'high', title:'Kettenhofweg 30 · Westend', price:1890, rooms:3, qm:88, district:'Westend', criteria:['hell','stockwerk','bodentief'], note:'Hochparterre · Eichenparkett (12h)', cfg: inferConfig(3,88,1890) },
-  { id:'ib6', source:'WG', score:7, scoreClass:'', title:'Roederbergweg 19 · Bornheim', price:2540, rooms:4, qm:102, district:'Bornheim', criteria:['dachterrasse'], note:'Dachterrasse · 5. OG · 4er-WG (18h)', cfg: inferConfig(4,102,2540) }
+  { id:'ib1', source:'IS24', score:9, scoreClass:'high', title:'Bornheim Mitte · 2-Zi', price:1180, rooms:2, qm:64, district:'Bornheim', criteria:['hell','stockwerk','bodentief'], note:'Suedseite · 3. OG · neu (2h)', cfg: inferConfig(2,64,1180), hot:true },
+  { id:'ib2', source:'KA', score:7, scoreClass:'', title:'Bockenheim · 2-Zi', price:920, rooms:2, qm:58, district:'Bockenheim', criteria:['hell'], note:'Helle Eckwohnung · Privatvermieter (4h)', cfg: inferConfig(2,58,920) },
+  { id:'ib3', source:'WG', score:8, scoreClass:'high', title:'Nordend-Ost · 3-Zi mit Dachterrasse', price:2280, rooms:3, qm:82, district:'Nordend-Ost', criteria:['hell','dachterrasse','stockwerk'], note:'Dachterrasse · 4. OG · 3er-WG (6h)', cfg: inferConfig(3,82,2280), hot:true },
+  { id:'ib4', source:'IS24', score:6, scoreClass:'', title:'Nordend · 2-Zi Altbau', price:1450, rooms:2, qm:68, district:'Nordend', criteria:['bodentief'], note:'2. OG · Altbau (8h)', cfg: inferConfig(2,68,1450) },
+  { id:'ib5', source:'KA', score:9, scoreClass:'high', title:'Westend · 3-Zi Hochparterre', price:1890, rooms:3, qm:88, district:'Westend', criteria:['hell','stockwerk','bodentief'], note:'Hochparterre · Eichenparkett (12h)', cfg: inferConfig(3,88,1890), hot:true },
+  { id:'ib6', source:'WG', score:7, scoreClass:'', title:'Bornheim · 4er-WG mit Dachterrasse', price:2540, rooms:4, qm:102, district:'Bornheim', criteria:['dachterrasse'], note:'Dachterrasse · 5. OG · 4er-WG (18h)', cfg: inferConfig(4,102,2540) }
 ];
 
 /* ============================================================
@@ -2349,15 +2776,21 @@ document.getElementById('voiceOpen').addEventListener('click', (e) => {
   showToast('Sprachnotiz noch nicht verfuegbar');
 });
 
-/* V4.7 Vision #5 — Capture-Bar Scroll-Anker */
+/* V4.7 Vision #5 — Capture-Bar Scroll-Anker (V4.9: passive listener) */
 if (scrollEl) {
+  let scrollScheduled = false;
   scrollEl.addEventListener('scroll', () => {
-    document.querySelectorAll('.capture-wrap').forEach(cw => {
-      const parent = cw.closest('.view');
-      if (!parent || parent.classList.contains('hidden-tab')) return;
-      cw.classList.toggle('scrolled', scrollEl.scrollTop > 4);
+    if (scrollScheduled) return;
+    scrollScheduled = true;
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.capture-wrap').forEach(cw => {
+        const parent = cw.closest('.view');
+        if (!parent || parent.classList.contains('hidden-tab')) return;
+        cw.classList.toggle('scrolled', scrollEl.scrollTop > 4);
+      });
+      scrollScheduled = false;
     });
-  });
+  }, { passive: true });
 }
 
 /* V4.7 A-10 — Cards keyboard-aktivierbar (Enter/Space) */
@@ -2391,6 +2824,12 @@ document.getElementById('captureInput').addEventListener('keydown', (e) => {
 
 document.querySelectorAll('#tagRow .pill').forEach(p => {
   p.addEventListener('click', () => {
+    // M4 Spring-Bounce
+    p.classList.remove('just-activated');
+    void p.offsetWidth;
+    p.classList.add('just-activated');
+    setTimeout(() => p.classList.remove('just-activated'), 320);
+
     const tag = p.dataset.tag;
     if (tag === 'Aushang' || tag === 'Brief') {
       openGenerator(tag);
@@ -2399,7 +2838,7 @@ document.querySelectorAll('#tagRow .pill').forEach(p => {
     } else if (tag === 'Anruf') {
       openSheet(sheetAnruf);
     } else if (tag === 'Vitamin') {
-      // C3: oeffne Profil-Sheet und scrolle zur Vitamin-B-Section
+      // C3: oeffne Profil-Sheet und scrolle zur Bekannte-fragen-Section
       openSheet(sheetProfile);
       setTimeout(() => {
         const sec = document.getElementById('profileVitaminSection');
@@ -2469,8 +2908,8 @@ function applyTodayFilter() {
 let currentGenType = 'Aushang';
 
 const GEN_TEMPLATES = {
-  Aushang: '<strong>Suche helle Wohnung im Nordend / Bornheim · ab Sept 26</strong><br/>Hi! Ich bin Jonathan, berufstaetig in Frankfurt, zuverlaessig, rauchfrei. Suche eine helle 2-Zi (oder 2er/3er-WG) bis 1.700 EUR warm (Solo) bis 2.600 EUR (3er). Bewerbungs-Pack vollstaendig.<br/><br/><span class="dim">→ Kontakt: +49 1XX XXX...</span>',
-  Brief: 'Sehr geehrte Damen und Herren,<br/><br/>seit einigen Jahren wohne ich in Frankfurt und arbeite hier. Mein Mietvertrag laeuft Ende August aus, ich suche eine ruhige Wohnung in Nordend / Bornheim. Bei einem passenden Objekt freue ich mich ueber einen Hinweis — anbei mein vollstaendiges Bewerbungs-Pack inkl. Buergschaft.<br/><br/>Mit freundlichen Gruessen<br/>Jonathan'
+  Aushang: '<strong>Suche helle Wohnung im Nordend / Bornheim · ab Sept 26</strong><br/>Hi! Ich bin Jonathan, berufstaetig in Frankfurt, zuverlaessig, rauchfrei. Suche eine helle 2-Zi (oder 2er/3er-WG) bis 1.700 EUR (Solo) bis 2.200 EUR (3er) kalt. Bewerbungsmappe komplett.<br/><br/><span class="dim">→ Kontakt: +49 1XX XXX XX XX</span>',
+  Brief: 'Sehr geehrte Damen und Herren,<br/><br/>seit einigen Jahren wohne ich in Frankfurt und arbeite hier. Mein Mietvertrag laeuft Ende August aus, ich suche eine ruhige Wohnung in Nordend / Bornheim. Bei einem passenden Objekt freue ich mich ueber einen Hinweis — anbei meine vollstaendige Bewerbungsmappe inkl. Buergschaft.<br/><br/>Mit freundlichen Gruessen<br/>Jonathan'
 };
 
 function openGenerator(type) {
@@ -2490,7 +2929,7 @@ function openGenerator(type) {
   const plate = document.getElementById('genTargetPlate');
   if (isAushang) {
     targetTitle.textContent = 'St. Bernhard Kirche';
-    targetSub.textContent = 'Eckenheimer Landstr. · Nordend-Ost';
+    targetSub.textContent = 'Nordend-Ost';
     plate.className = 'plate aushang';
   } else {
     targetTitle.textContent = 'HV Schmitt · Nordend';
@@ -2610,12 +3049,12 @@ function updatePackUI() {
       banner.style.background = 'rgba(245,158,11,0.10)';
       banner.style.borderColor = 'rgba(245,158,11,0.25)';
       banner.querySelector('svg').setAttribute('stroke', '#F59E0B');
-      bannerText.textContent = `Pack ${n}/5 · noch unvollstaendig · Onboarding fertigstellen`;
+      bannerText.textContent = `Mappe ${n}/5 · noch unvollstaendig · Einrichten oeffnen`;
     } else {
       banner.style.background = 'rgba(16,185,129,0.10)';
       banner.style.borderColor = 'rgba(16,185,129,0.25)';
       banner.querySelector('svg').setAttribute('stroke', '#10B981');
-      bannerText.textContent = `Pack ${n}/5 + Buergschaft verfuegbar · 5/5 ready fuer 2er-WG`;
+      bannerText.textContent = `Mappe ${n}/5 + Buergschaft · bereit fuer 2er-WG`;
     }
   }
 }
@@ -2650,36 +3089,37 @@ document.querySelectorAll('.tcard, .acard').forEach(card => {
 
 /* C5: renderAIBlock — unified, 3 Tabs immer manuell waehlbar */
 const AI_VARIANTS = {
-  kurz: 'Sehr geehrte Damen und Herren, ich bin sehr interessiert und kann <span class="ai-slot">Donnerstag 17h</span> zur Besichtigung. Bewerbungs-Pack im Anhang. Beste Gruesse, Jonathan',
+  kurz: 'Sehr geehrte Damen und Herren, ich bin sehr interessiert und kann <span class="ai-slot">Donnerstag 17h</span> zur Besichtigung. Bewerbungsmappe im Anhang. Beste Gruesse, Jonathan',
   persoenlich: 'Hallo, vielen Dank fuer die schnelle Antwort! Die Wohnung waere mein Wunsch — ich kann <span class="ai-slot">Donnerstag 17h</span>. Anbei meine Selbstauskunft + Bonitaet, Eltern-Buergschaft <span class="ai-slot">bei Bedarf</span> verfuegbar. Jonathan',
-  sachlich: 'Mietinteresse · Termin: <span class="ai-slot">Do 17:00</span> · Pack: vollstaendig · Buergschaft: verfuegbar · Kontakt: +49 1XX XXX... · Jonathan'
+  stichpunkte: 'Mietinteresse · Termin: <span class="ai-slot">Do 17:00</span> · Mappe: komplett · Buergschaft: verfuegbar · Kontakt: +49 1XX XXX XX XX · Jonathan'
 };
 
 function renderAIBlock(hasAI) {
   // 3 Tabs sichtbar, manuell waehlbar (A11: keine recipientType-Logik)
   const packPillHTML = appState.packComplete >= 4
-    ? '<span class="pack-pill ok">Pack 4/5 + Buergschaft</span>'
-    : `<span class="pack-pill warn">Pack ${appState.packComplete}/5</span>`;
+    ? '<span class="pack-pill ok">Mappe 4/5 + Buergschaft</span>'
+    : `<span class="pack-pill warn">Mappe ${appState.packComplete}/5 — Bewerbungsmappe noch nicht vollstaendig</span>`;
+  const sendBtnLabel = appState.packComplete >= 4 ? 'Mit Mappe senden' : 'Trotzdem senden';
   return `
     <div class="mt-4">
       <div class="flex items-center justify-between mb-2">
-        <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim">AI-Antwort${hasAI ? '' : ' · on-demand'}</div>
+        <div class="text-[11px] font-mono uppercase tracking-[0.10em] dim">Vorschlag${hasAI ? '' : ' · auf Anfrage'}</div>
         ${packPillHTML}
       </div>
       <div class="flex gap-1.5 p-1 rounded-2xl bg-paper2 dark:bg-paper2D" id="aiVarTabs">
         <button class="flex-1 py-2.5 px-2 rounded-xl text-[12px] font-medium active-ai" data-av="kurz" style="background:#18181B;color:#FAFAF8;border:0;cursor:pointer;min-height:44px;">Kurz</button>
         <button class="flex-1 py-2.5 px-2 rounded-xl text-[12px] font-medium" data-av="persoenlich" style="background:transparent;color:#7A7A7E;border:0;cursor:pointer;min-height:44px;">Persoenlich</button>
-        <button class="flex-1 py-2.5 px-2 rounded-xl text-[12px] font-medium" data-av="sachlich" style="background:transparent;color:#7A7A7E;border:0;cursor:pointer;min-height:44px;">Sachlich</button>
+        <button class="flex-1 py-2.5 px-2 rounded-xl text-[12px] font-medium" data-av="stichpunkte" style="background:transparent;color:#7A7A7E;border:0;cursor:pointer;min-height:44px;">Stichpunkte</button>
       </div>
       <div class="ai-card mt-3">
         <div class="flex items-center gap-1.5 mb-2 text-[10.5px] font-mono uppercase tracking-[0.10em]" style="color:#5E6AD2">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.3 6.9L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.7-.1z"/></svg>
-          <span>Vorgeschlagen · personalisierbar</span>
+          <span>Vorschlag · du kannst aendern</span>
         </div>
         <div class="text-[13px] leading-relaxed" id="aiVarText">${AI_VARIANTS.kurz}</div>
         <div class="mt-3 grid grid-cols-2 gap-2">
           <button class="cta cta-ghost tap" style="min-height:40px;font-size:12.5px;" data-toast="Vorschlag verworfen">Verwerfen</button>
-          <button class="cta cta-apricot tap" style="min-height:40px;font-size:12.5px;" data-toast="Mit Pack gesendet">Mit Pack senden</button>
+          <button class="cta cta-apricot tap" style="min-height:40px;font-size:12.5px;" data-toast="Mit Bewerbungsmappe gesendet">${sendBtnLabel}</button>
         </div>
       </div>
     </div>
@@ -2927,7 +3367,7 @@ function renderPins(filter='all') {
     const scoreColor = score >= 0.80 ? '#10B981' : score >= 0.60 ? '#FF8A65' : '#6E6E72';
     const scoreHTML = `<div class="pin-score" style="color:${scoreColor};" aria-hidden="true">${Math.round(score * 100)}</div>`;
     el.innerHTML = `
-      <div class="pin-dot" style="background:${ch.color};">
+      <div class="pin-dot" data-ch="${p.ch}" style="background:${ch.color};">
         ${ringHTML}
         ${icon}
         ${scoreHTML}
@@ -3265,6 +3705,234 @@ document.addEventListener('keydown', (e) => {
     if (anyOpen) closeSheet(anyOpen);
   }
 });
+
+/* ============================================================
+   V4.9 — Score-Mini Filter-Pills Spring-Bounce (M4)
+   ============================================================ */
+function springPill(p) {
+  p.classList.remove('just-activated');
+  void p.offsetWidth;
+  p.classList.add('just-activated');
+  setTimeout(() => p.classList.remove('just-activated'), 320);
+}
+document.querySelectorAll('#todayFilterBar .pill, .chip-channel, #filterChannel .pill, #filterConfig .pill, #filterStatus .pill').forEach(p => {
+  p.addEventListener('click', () => springPill(p));
+});
+
+/* ============================================================
+   V4.9 — Vitamin-B Tage-Counter (data-last-contact → vit-days)
+   ============================================================ */
+function updateVitDays() {
+  const today = new Date();
+  document.querySelectorAll('[data-last-contact]').forEach(el => {
+    const last = new Date(el.dataset.lastContact);
+    const diff = Math.floor((today - last) / 86400000);
+    const pill = el.querySelector('.js-vit-days');
+    if (pill) {
+      pill.textContent = diff + ' d';
+      pill.classList.remove('fresh', 'warm', 'stale');
+      if (diff <= 5) pill.classList.add('fresh');
+      else if (diff <= 10) pill.classList.add('warm');
+      else pill.classList.add('stale');
+    }
+  });
+}
+updateVitDays();
+
+/* ============================================================
+   V4.9 — Avatar-Ring Onboarding-Incomplete-Animation (M5)
+   ============================================================ */
+function updateAvatarRing() {
+  const incomplete = appState.onboardingStep < 4;
+  document.querySelectorAll('.js-avatar-ring').forEach(r => {
+    r.classList.toggle('incomplete', incomplete);
+    r.classList.toggle('complete', !incomplete);
+  });
+}
+updateAvatarRing();
+
+/* ============================================================
+   V4.9 — Inbox-Empty CTA
+   ============================================================ */
+const inboxEmptyCta = document.getElementById('inboxEmptyCta');
+if (inboxEmptyCta) inboxEmptyCta.addEventListener('click', () => openSheet(sheetFilter));
+
+/* ============================================================
+   V4.9 — Coachmarks (First-Run, max 2)
+   ============================================================ */
+function maybeShowCoachmarks() {
+  if (localStorage.getItem('coachmarks-v49-seen') === '1') return;
+  if (document.body.classList.contains('share-mode')) return;
+  setTimeout(() => {
+    const cm1 = document.getElementById('coachmark1');
+    if (cm1) cm1.classList.add('show');
+  }, 800);
+}
+document.querySelectorAll('[data-coach-next]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.getElementById('coachmark1').classList.remove('show');
+    setTimeout(() => {
+      const cm2 = document.getElementById('coachmark2');
+      if (cm2) cm2.classList.add('show');
+    }, 150);
+  });
+});
+document.querySelectorAll('[data-coach-close]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.getElementById('coachmark1').classList.remove('show');
+    document.getElementById('coachmark2').classList.remove('show');
+    localStorage.setItem('coachmarks-v49-seen', '1');
+  });
+});
+
+/* ============================================================
+   V4.9 — SHARE-MODE Init via URL-Param ?share=karl
+   ============================================================ */
+function initShareMode() {
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('share');
+  if (!guest) return;
+  document.body.classList.add('share-mode');
+  // Tabs aller anderen Views ausblenden
+  ['view-today','view-karte','view-inbox'].forEach(id => {
+    const v = document.getElementById(id);
+    if (v) v.classList.add('hidden-tab');
+  });
+  const share = document.getElementById('view-share');
+  if (share) share.classList.remove('hidden-tab');
+  // Personalisierter Name
+  const name = SHARE_NAMES[guest.toLowerCase()] || SHARE_NAMES.default;
+  const nameEl = document.getElementById('shareGuestName');
+  if (nameEl) nameEl.textContent = name;
+  const cntEl = document.getElementById('shareCount');
+  if (cntEl) cntEl.textContent = SHARE_CANDIDATES.length;
+  renderShareCards(guest);
+}
+
+function renderShareCards(guest) {
+  const list = document.getElementById('shareList');
+  if (!list) return;
+  list.innerHTML = SHARE_CANDIDATES.map(c => `
+    <div class="share-card" data-id="${c.id}">
+      <div class="share-photo ${c.photoVariant}">
+        <span class="share-pin">${c.pin}</span>
+      </div>
+      <div class="share-body">
+        <div class="share-title">${c.title}</div>
+        <div class="share-meta">${c.meta}</div>
+        <span class="share-score-pill">${c.score}</span>
+      </div>
+      <div class="share-actions">
+        <button class="share-btn js-share-up" data-act="up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V20H4V11h3zM14 2l1 7h6l-3 11h-9V9l5-7z"/></svg>Daumen hoch</button>
+        <button class="share-btn js-share-down" data-act="down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13V4H4v9h3zM14 22l1-7h6L18 4h-9v11l5 7z"/></svg>Daumen runter</button>
+        <button class="share-btn js-share-note" data-act="note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Notiz</button>
+      </div>
+      <div class="share-comment-row">
+        <textarea placeholder="Kurze Notiz an Jonathan..." aria-label="Kommentar"></textarea>
+        <button class="share-comment-cta js-share-comment-send">Senden</button>
+      </div>
+    </div>
+  `).join('');
+
+  // Wire Buttons
+  const storageKey = 'share-votes-' + (guest || 'default');
+  const votes = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  // Apply stored
+  Object.entries(votes).forEach(([id, v]) => {
+    const card = list.querySelector(`[data-id="${id}"]`);
+    if (!card) return;
+    if (v === 'up') card.classList.add('voted-like');
+    if (v === 'down') card.classList.add('voted-skip');
+    const btn = card.querySelector(`[data-act="${v}"]`);
+    if (btn) btn.classList.add('active', v);
+  });
+  updateShareLikeCount(votes);
+
+  list.querySelectorAll('.share-card .share-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const card = btn.closest('.share-card');
+      const id = card.dataset.id;
+      const act = btn.dataset.act;
+      if (act === 'note') {
+        card.classList.toggle('commenting');
+        return;
+      }
+      card.classList.remove('voted-skip', 'voted-like');
+      card.querySelectorAll('.share-btn').forEach(b => b.classList.remove('active','up','down','note'));
+      if (act === 'up') {
+        card.classList.add('voted-like');
+        btn.classList.add('active','up');
+        votes[id] = 'up';
+        showToast('Daumen hoch · gespeichert');
+      } else if (act === 'down') {
+        card.classList.add('voted-skip');
+        btn.classList.add('active','down');
+        votes[id] = 'down';
+        showToast('Daumen runter · gespeichert');
+      }
+      localStorage.setItem(storageKey, JSON.stringify(votes));
+      updateShareLikeCount(votes);
+    });
+  });
+  list.querySelectorAll('.js-share-comment-send').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const card = btn.closest('.share-card');
+      const ta = card.querySelector('textarea');
+      if (ta && ta.value.trim()) {
+        showToast('Notiz an Jonathan gesendet');
+        card.classList.remove('commenting');
+        ta.value = '';
+      }
+    });
+  });
+}
+
+function updateShareLikeCount(votes) {
+  const n = Object.values(votes).filter(v => v === 'up').length;
+  const el = document.getElementById('shareLikeCount');
+  if (el) el.textContent = n;
+}
+
+initShareMode();
+if (!document.body.classList.contains('share-mode')) maybeShowCoachmarks();
+
+/* ============================================================
+   V4.9 — Online/Offline-Banner
+   ============================================================ */
+function updateOnlineState() {
+  const b = document.getElementById('offlineBanner');
+  if (!b) return;
+  b.style.display = navigator.onLine ? 'none' : 'block';
+}
+window.addEventListener('online', updateOnlineState);
+window.addEventListener('offline', updateOnlineState);
+updateOnlineState();
+
+/* ============================================================
+   V4.9 — Voice-Permission-Microcopy (Override)
+   ============================================================ */
+const voiceBtn = document.getElementById('voiceOpen');
+if (voiceBtn) {
+  voiceBtn.replaceWith(voiceBtn.cloneNode(true)); // alte Listener kappen
+  document.getElementById('voiceOpen').addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    showToast('Mikrofon-Zugriff fehlt. iOS-Einstellungen oeffnen.');
+  });
+}
+
+/* ============================================================
+   V4.9 — Pack-Incomplete-Pre-Send Confirm (CTA in Hot-Lead)
+   ============================================================ */
+document.querySelectorAll('.hot-lead-cta').forEach(b => {
+  b.addEventListener('click', (e) => {
+    if (appState.packComplete < 4) {
+      e.stopPropagation(); e.preventDefault();
+      if (confirm('Bewerbungsmappe noch nicht vollstaendig. Trotzdem senden?')) {
+        showToast('Mit Mappe gesendet (trotz Lücken)');
+      }
+    }
+  });
+}, true);
 
 </script>
 
