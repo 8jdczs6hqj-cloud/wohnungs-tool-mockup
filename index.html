@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Wohnung V4.6 · Reductio · -35% Code · USP intakt</title>
+<title>Wohnung V4.7 · A11y + Vision + Stats-Kill</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
           mute:'#7A7A7E', line:'#E6E4DD', card:'#FFFFFF',
           inkD:'#FAFAF8', paperD:'#18181B', paper2D:'#222225', cardD:'#1D1D20',
           lineD:'#2A2A2D', muteD:'#9A9A9E',
-          apricot:'#FF8A65', apricot2:'#FFB59A', indigo:'#5E6AD2',
+          apricot:'#FF8A65', apricot2:'#FFB59A', apricotText:'#C7553D', indigo:'#5E6AD2',
           ok:'#10B981', warn:'#F59E0B', hot:'#FB923C',
           pinMail:'#5E6AD2', pinAushang:'#10B981', pinHV:'#FB923C',
           pinMakler:'#A06AE6', pinVitamin:'#F59E0B'
@@ -34,6 +34,14 @@
 <style>
   html, body { background:#EFEDE6; }
   @media (prefers-color-scheme: dark) { html, body { background:#0B0B0C; } }
+
+  /* A11y MUST-FIX A-12 — Screen-reader-only-Klasse */
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0 }
+  .focus\:not-sr-only:focus { position:static; width:auto; height:auto; margin:0; overflow:visible; clip:auto; white-space:normal; }
+
+  /* E-2 — Apricot-Text-Variable mit besserem Kontrast (Light-Mode) */
+  :root { --apricot-text:#C7553D; }
+  @media (prefers-color-scheme: dark) { :root { --apricot-text:#FFB59A; } }
 
   .frame {
     width: 375px; height: 812px; margin: 24px auto;
@@ -165,7 +173,7 @@
   .hot-lead .jetzt-label {
     display:inline-flex; align-items:center; gap:5px;
     font-family: "JetBrains Mono", ui-monospace;
-    font-size: 10.5px; font-weight: 600; color: #FF8A65;
+    font-size: 10.5px; font-weight: 600; color: var(--apricot-text);
     letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
   }
   .hot-lead .jetzt-dot {
@@ -332,8 +340,9 @@
   }
   @media (prefers-color-scheme: dark) { .cta-ghost { color:#FAFAF8; border-color: rgba(255,255,255,0.10); } }
 
-  .dim { color:#7A7A7E; }
-  @media (prefers-color-scheme: dark) { .dim { color:#9A9A9E; } }
+  /* E-3 — dim auf #6E6E72 (5.0:1) */
+  .dim { color:#6E6E72; }
+  @media (prefers-color-scheme: dark) { .dim { color:#A8A8AC; } }
 
   .hair { box-shadow: inset 0 -1px 0 0 rgba(20,18,12,0.07); }
   @media (prefers-color-scheme: dark) { .hair { box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.07); } }
@@ -588,9 +597,10 @@
     background: rgba(251,146,60,0.14); color: #FB923C;
   }
 
+  /* V4.7 E-2 — Apricot-Text auf #C7553D (4.6:1) statt #FF8A65 */
   .filter-active-hint {
     display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10.5px; font-family: "JetBrains Mono"; color: #FF8A65;
+    font-size: 10.5px; font-family: "JetBrains Mono"; color: var(--apricot-text);
   }
 
   /* Konfig-Pill */
@@ -685,21 +695,21 @@
   }
   .vit-status.warn { background: rgba(245,158,11,0.14); color: #F59E0B; }
 
-  /* Reply-Push-Card mit Pulse */
+  /* V4.7 Vision #1 — Reply-Card neutraler Border (Apricot nur via Antwort-Badge + Pulse-Dot links) */
   .reply-card {
     background: #FFFFFF; border-radius: 18px;
-    border: 1.2px solid rgba(255,138,101,0.45);
-    box-shadow: 0 1px 0 rgba(20,18,12,0.03), 0 6px 22px -14px rgba(255,138,101,0.40);
+    border: 1px solid rgba(20,18,12,0.06);
+    box-shadow: 0 1px 0 rgba(20,18,12,0.03), 0 6px 22px -14px rgba(20,18,12,0.18);
     padding: 12px 14px; position: relative;
     display: grid; grid-template-columns: 36px 1fr auto;
     gap: 12px; align-items: center; cursor: pointer;
   }
   @media (prefers-color-scheme: dark) {
-    .reply-card { background:#1F1A18; border-color: rgba(255,138,101,0.45); }
+    .reply-card { background:#1F1F23; border-color: rgba(255,255,255,0.06); }
   }
   .reply-card::before {
     content: ''; position: absolute; left: -3px; top: 50%;
-    width: 12px; height: 12px; border-radius: 999px;
+    width: 10px; height: 10px; border-radius: 999px;
     background: #FF8A65; transform: translateY(-50%);
     animation: reply-pulse 3.6s ease-in-out infinite;
   }
@@ -733,8 +743,11 @@
   .hot-lead-xl .reason-line {
     margin-top: 4px;
     font-size: 11.5px; font-weight: 500;
-    color: #FB923C; display: flex; align-items: center; gap: 5px;
+    color: #C56313; display: flex; align-items: center; gap: 5px;
     font-family: "JetBrains Mono", ui-monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    .hot-lead-xl .reason-line { color: #FB923C; }
   }
   .hot-lead-xl .reason-line svg { flex-shrink: 0; }
   .hot-lead-xl .morgen-label { letter-spacing: 0.16em; }
@@ -814,6 +827,56 @@
   #view-today { overflow-x: hidden; }
   #view-today > * { min-width: 0; }
 
+  /* V4.7 A-14 — Sticky-Bar Focus-Obscured-Fix */
+  .scroll { scroll-padding-top: 130px; }
+  .tcard, .acard, .inbox-card, .reply-card, .row, .vit-card, .pin { scroll-margin-top: 130px; }
+
+  /* V4.7 Vision #5 — Capture-Bar Scroll-Anker (border-Bottom on scroll) */
+  .capture-wrap.scrolled {
+    border-bottom: 0.5px solid rgba(20,18,12,0.10);
+    backdrop-filter: blur(16px);
+  }
+  @media (prefers-color-scheme: dark) {
+    .capture-wrap.scrolled { border-bottom-color: rgba(255,255,255,0.10); }
+  }
+
+  /* V4.7 Vision #4 — Mute-Score (normale Cards, kein Pill-BG) */
+  .score-mute {
+    font-family: "JetBrains Mono", ui-monospace;
+    font-size: 11px; font-weight: 600;
+    color: #6E6E72; padding: 2px 4px; cursor: pointer;
+    min-width: 44px; min-height: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  @media (prefers-color-scheme: dark) { .score-mute { color: #A8A8AC; } }
+
+  /* V4.7 A-13 — Inbox-Triage min 44pt + Touch-Spacing 8 */
+  .inbox-triage { gap: 8px !important; }
+  .inbox-triage button { min-height: 44px !important; padding: 10px 8px !important; }
+
+  /* V4.7 E-2 — Apricot-Text-Color fuer Text-only-Apricot */
+  .apricot-text { color: var(--apricot-text); }
+
+  /* V4.7 Vision #6 — Dark-Mode Bezirks-Labels staerker */
+  @media (prefers-color-scheme: dark) {
+    .district-label { fill: #9A9A9E; font-weight: 500; }
+  }
+
+  /* V4.7 A-15 — prefers-reduced-motion */
+  @media (prefers-color-scheme: dark) {
+    .cardD2 { background:#1F1F23; } /* Vision F2 NICE */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .pulse-once, .jetzt-blink, .pin-ring-pulse, .reply-card::before,
+    .jetzt-dot, .antwort-badge.pulse-once { animation: none !important; }
+  }
+
   /* Schwaeche-10: Tag-Pill als Erfasse-CTA */
   #tagRow .pill .pill-plus {
     display: inline-flex; align-items: center; justify-content: center;
@@ -834,7 +897,9 @@
 </head>
 <body class="font-sans text-ink dark:text-inkD antialiased">
 
-<div class="caption">Wohnung · V4.6 · Reductio · USP intakt · -35%</div>
+<a href="#view-today" class="sr-only focus:not-sr-only" style="position:absolute;top:8px;left:8px;z-index:200;background:#18181B;color:#FAFAF8;padding:8px 12px;border-radius:8px;">Zum Hauptinhalt</a>
+
+<div class="caption">Wohnung · V4.7 · A11y + Vision · WCAG 2.2 AA</div>
 
 <div class="frame">
   <div class="notch"></div>
@@ -853,7 +918,7 @@
   <div id="scroll" class="scroll">
 
     <!-- ============== VIEW: TODAY ============== -->
-    <main id="view-today" class="view">
+    <main id="view-today" class="view" role="tabpanel" aria-labelledby="tab-today" tabindex="0">
 
       <div class="capture-wrap">
         <div class="flex items-end justify-between px-1 pt-2 pb-2 gap-2">
@@ -867,20 +932,21 @@
               <div class="font-mono text-[10px] dim">bis 31.08.</div>
             </div>
             <button id="avatarOpen" class="avatar-wrap" aria-label="Profil oeffnen">
-              <svg class="avatar-ring js-avatar-ring" viewBox="0 0 44 44">
+              <svg class="avatar-ring js-avatar-ring" viewBox="0 0 44 44" aria-hidden="true">
                 <circle class="track" cx="22" cy="22" r="20"/>
                 <circle class="progress js-avatar-progress" cx="22" cy="22" r="20" stroke-dasharray="125.6" stroke-dashoffset="0"/>
               </svg>
-              <div class="avatar-inner">J</div>
+              <div class="avatar-inner" aria-hidden="true">J</div>
             </button>
           </div>
         </div>
 
+        <label for="captureInput" class="sr-only">Schnellaufnahme</label>
         <div class="capture">
-          <span class="w-7 h-7 rounded-full bg-apricot/15 text-apricot flex items-center justify-center font-semibold leading-none shrink-0">+</span>
+          <span class="w-7 h-7 rounded-full bg-apricot/15 text-apricot flex items-center justify-center font-semibold leading-none shrink-0" aria-hidden="true">+</span>
           <input id="captureInput" type="text" placeholder="Was tust du als naechstes?" autocomplete="off" aria-label="Schnellaufnahme" />
-          <button id="voiceOpen" class="w-11 h-11 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Sprachnotiz">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0"/><path d="M12 18v3"/></svg>
+          <button id="voiceOpen" class="w-11 h-11 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-disabled="true" aria-label="Sprachnotiz (noch nicht verfuegbar)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0"/><path d="M12 18v3"/></svg>
           </button>
         </div>
 
@@ -923,7 +989,7 @@
               <div class="text-[14px] font-semibold tracking-tight truncate">Frau Hartmann antwortet</div>
               <div class="text-[11.5px] dim truncate">Bethmannpark · "Donnerstag 17h passt..."</div>
             </div>
-            <span class="score-mini" data-score-id="reply1">0.92</span>
+            <span class="score-mute" data-score-id="reply1" role="button" tabindex="0" aria-label="Match-Score 0.92"><span class="sr-only">Match-Score </span>0.92</span>
           </div>
         </div>
 
@@ -948,7 +1014,7 @@
                   <span>Antwort seit 2 Tagen offen — wird sonst kalt</span>
                 </div>
               </div>
-              <span class="score-mini" data-score-id="t1" style="align-self:flex-start;">0.94</span>
+              <span class="score-mini" data-score-id="t1" role="button" tabindex="0" aria-label="Match-Score 0.94" style="align-self:flex-start;"><span class="sr-only">Match-Score </span>0.94</span>
             </div>
             <div class="hot-lead-meta">
               <span class="cfg-pill solo">Solo</span>
@@ -972,7 +1038,7 @@
         <div class="card mt-3" id="todayHot">
           <div class="acard tcard" data-id="t2" data-ch="vitamin" data-st="hot">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="prio-strip prio-hot"></span>
+              <span class="prio-strip prio-hot" aria-hidden="true"><span class="sr-only">Prioritaet Hot</span></span>
               <div class="plate vitamin">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20a7 7 0 0114 0"/><circle cx="17" cy="10" r="2.5"/><path d="M14 20a5 5 0 016-5"/></svg>
               </div>
@@ -1030,7 +1096,7 @@
           <div class="termin-wrap">
             <div class="acard hair tcard termin-head" data-id="termin1" data-ch="termin" data-st="hot" data-cfg-list="Solo,2er-WG">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="prio-strip prio-hot"></span>
+                <span class="prio-strip prio-hot" aria-hidden="true"><span class="sr-only">Prioritaet Hot</span></span>
                 <div class="plate termin">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
                 </div>
@@ -1073,7 +1139,7 @@
           <div class="termin-wrap">
             <div class="acard tcard termin-head" data-id="termin2" data-ch="termin" data-st="aktiv" data-cfg-list="2er-WG,3er-WG">
               <div class="flex items-center gap-3 min-w-0">
-                <span class="prio-strip prio-soon"></span>
+                <span class="prio-strip prio-soon" aria-hidden="true"><span class="sr-only">Prioritaet Spaeter</span></span>
                 <div class="plate termin">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
                 </div>
@@ -1116,7 +1182,7 @@
         <div class="card" id="todayHeute">
           <div class="acard hair tcard" data-id="t3" data-ch="aushang" data-st="aktiv" data-cfg-list="2er-WG,3er-WG">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="prio-strip prio-today"></span>
+              <span class="prio-strip prio-today" aria-hidden="true"><span class="sr-only">Prioritaet Heute</span></span>
               <div class="plate aushang">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
               </div>
@@ -1130,7 +1196,7 @@
 
           <div class="acard hair tcard" data-id="t4" data-ch="brief" data-st="aktiv" data-cfg-list="Solo,2er-WG">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="prio-strip prio-today"></span>
+              <span class="prio-strip prio-today" aria-hidden="true"><span class="sr-only">Prioritaet Heute</span></span>
               <div class="plate brief">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 8l8 5 8-5"/></svg>
               </div>
@@ -1144,7 +1210,7 @@
 
           <div class="acard hair tcard" data-id="t5" data-ch="anruf" data-st="aktiv" data-cfg-list="Solo,2er-WG">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="prio-strip prio-today"></span>
+              <span class="prio-strip prio-today" aria-hidden="true"><span class="sr-only">Prioritaet Heute</span></span>
               <div class="plate anruf">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A14 14 0 013 6a2 2 0 012-2z"/></svg>
               </div>
@@ -1158,7 +1224,7 @@
 
           <div class="acard hair tcard" data-id="t6" data-ch="mail" data-st="aktiv" data-cfg-list="2er-WG,3er-WG">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="prio-strip prio-soon"></span>
+              <span class="prio-strip prio-soon" aria-hidden="true"><span class="sr-only">Prioritaet Spaeter</span></span>
               <div class="plate mail">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg>
               </div>
@@ -1176,7 +1242,7 @@
         <div class="card" id="todaySpaeter">
           <div class="acard tcard" data-id="t7" data-ch="aushang" data-st="warten" data-cfg-list="2er-WG,3er-WG">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="prio-strip prio-soon"></span>
+              <span class="prio-strip prio-soon" aria-hidden="true"><span class="sr-only">Prioritaet Spaeter</span></span>
               <div class="plate aushang">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
               </div>
@@ -1194,7 +1260,7 @@
     </main>
 
     <!-- ============== VIEW: KARTE ============== -->
-    <main id="view-karte" class="view hidden-tab">
+    <main id="view-karte" class="view hidden-tab" role="tabpanel" aria-labelledby="tab-karte" tabindex="0">
       <div class="capture-wrap">
         <div class="flex items-end justify-between px-1 pt-2 pb-2">
           <div>
@@ -1220,7 +1286,9 @@
       <div class="px-4 pt-2">
         <div class="card overflow-hidden" style="position:relative;">
           <div class="map-wrap" style="height: 460px;">
-            <svg viewBox="0 0 375 460" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full">
+            <svg viewBox="0 0 375 460" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full" role="img" aria-labelledby="mapTitle mapDesc">
+              <title id="mapTitle">Frankfurt-Bezirke mit Wohnungs-Pins</title>
+              <desc id="mapDesc">Pins verteilt auf Bezirke: Bornheim, Nordend, Bockenheim, Westend, Nordend-Ost, Innenstadt, Sachsenhausen</desc>
               <polygon class="district secondary" data-district="Westend" points="20,120 70,90 145,100 160,170 130,225 35,210"/>
               <text class="district-label" x="68" y="160">Westend</text>
               <polygon class="district other" data-district="Bockenheim" points="20,120 30,55 110,40 145,100 70,90"/>
@@ -1242,12 +1310,12 @@
 
             <div id="pinsLayer" class="absolute inset-0"></div>
 
-            <div class="legend">
-              <div class="legend-row"><span class="legend-dot" style="background:#5E6AD2"></span><span class="dim">Inserat</span></div>
-              <div class="legend-row"><span class="legend-dot" style="background:#10B981"></span><span class="dim">Aushang</span></div>
-              <div class="legend-row"><span class="legend-dot" style="background:#FB923C"></span><span class="dim">HV</span></div>
-              <div class="legend-row"><span class="legend-dot" style="background:#A06AE6"></span><span class="dim">Makler</span></div>
-              <div class="legend-row"><span class="legend-dot" style="background:#F59E0B"></span><span class="dim">Vit-B</span></div>
+            <div class="legend" role="list" aria-label="Pin-Farben Legende">
+              <div class="legend-row" role="listitem"><span class="legend-dot" style="background:#5E6AD2" aria-hidden="true"></span><span class="dim">Inserat</span></div>
+              <div class="legend-row" role="listitem"><span class="legend-dot" style="background:#10B981" aria-hidden="true"></span><span class="dim">Aushang</span></div>
+              <div class="legend-row" role="listitem"><span class="legend-dot" style="background:#FB923C" aria-hidden="true"></span><span class="dim">HV</span></div>
+              <div class="legend-row" role="listitem"><span class="legend-dot" style="background:#A06AE6" aria-hidden="true"></span><span class="dim">Makler</span></div>
+              <div class="legend-row" role="listitem"><span class="legend-dot" style="background:#F59E0B" aria-hidden="true"></span><span class="dim">Vit-B</span></div>
             </div>
           </div>
         </div>
@@ -1258,7 +1326,7 @@
     </main>
 
     <!-- ============== VIEW: INBOX (SoT — C2) ============== -->
-    <main id="view-inbox" class="view hidden-tab">
+    <main id="view-inbox" class="view hidden-tab" role="tabpanel" aria-labelledby="tab-inbox" tabindex="0">
       <div class="capture-wrap">
         <div class="flex items-end justify-between px-1 pt-2 pb-2">
           <div>
@@ -1268,7 +1336,7 @@
           <button id="filterOpen" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-paper2 dark:bg-paper2D text-[12px] font-medium" style="min-height:44px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
             Filter
-            <span id="filterCount" class="font-mono text-[10px] bg-apricot text-ink rounded-full px-1.5 ml-1">0</span>
+            <span id="filterCount" class="font-mono text-[10px] bg-apricot text-ink rounded-full px-1.5 ml-1" aria-live="polite" aria-label="0 Filter aktiv">0</span>
           </button>
         </div>
       </div>
@@ -1281,73 +1349,31 @@
       </div>
     </main>
 
-    <!-- ============== VIEW: STATS (B1 — nur 2 Cards) ============== -->
-    <main id="view-stats" class="view hidden-tab">
-      <div class="capture-wrap">
-        <div class="flex items-end justify-between px-1 pt-2 pb-2">
-          <div>
-            <div class="font-mono text-[11px] tracking-[0.16em] dim uppercase">Aktuell</div>
-            <h1 class="text-[20px] font-semibold tracking-tight leading-tight">Stats</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-4 pt-2">
-        <div class="grid grid-cols-2 gap-3">
-          <div class="card stat-card">
-            <div class="flex items-baseline gap-1">
-              <span class="stat-num">111</span>
-              <span class="stat-unit">Tage</span>
-            </div>
-            <div class="stat-label">bis 31.08.</div>
-            <!-- C4: einzige Progress-Bar fuer Vertragsfrist -->
-            <div class="mt-3 h-[5px] rounded-full overflow-hidden" style="background: rgba(20,18,12,0.07);">
-              <div class="h-full rounded-full" style="width: 38%; background: linear-gradient(90deg, #FF8A65, #FFB59A);"></div>
-            </div>
-          </div>
-
-          <div class="card stat-card">
-            <div class="flex items-baseline gap-1">
-              <span class="stat-num" id="statsCaseCount">18</span>
-              <span class="stat-unit">Faelle</span>
-            </div>
-            <div class="stat-label">aktiv aktuell</div>
-            <div class="mt-3 text-[11px] dim leading-tight">Today + Inbox + Karte zusammen</div>
-          </div>
-        </div>
-
-        <div class="h-8"></div>
-      </div>
-    </main>
+    <!-- V4.7 Reductio — Stats-View KOMPLETT entfernt; Tage-Counter bleibt im Today-Header -->
 
   </div>
 
   <!-- TOAST (Empf-26: aria-live + role=status) -->
   <div id="toast" class="toast" aria-live="polite" role="status">Erledigt</div>
 
-  <!-- TABBAR -->
+  <!-- V4.7 TABBAR — 3-Tab + tablist-Pattern (E-10), Stats raus, Profil via Avatar -->
   <div class="bottom">
-    <div class="tabbar">
-      <button class="tab active tap" data-view="today" aria-label="Today" aria-current="page">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg>
+    <div class="tabbar" role="tablist" aria-label="Hauptnavigation" style="grid-template-columns: repeat(3, 1fr);">
+      <button class="tab active tap" data-view="today" role="tab" aria-selected="true" aria-controls="view-today" id="tab-today">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg>
         <span>Today</span>
-        <span class="tab-dot"></span>
+        <span class="tab-dot" aria-hidden="true"></span>
       </button>
-      <button class="tab tap" data-view="karte" aria-label="Karte">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><path d="M9 3v15M15 6v15"/></svg>
+      <button class="tab tap" data-view="karte" role="tab" aria-selected="false" aria-controls="view-karte" id="tab-karte">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><path d="M9 3v15M15 6v15"/></svg>
         <span>Karte</span>
-        <span class="tab-dot"></span>
+        <span class="tab-dot" aria-hidden="true"></span>
       </button>
-      <button class="tab tap" data-view="inbox" aria-label="Inbox">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
+      <button class="tab tap" data-view="inbox" role="tab" aria-selected="false" aria-controls="view-inbox" id="tab-inbox">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
         <span>Inbox</span>
-        <span class="tab-dot"></span>
-        <span id="inboxBadge" class="tab-badge">6</span>
-      </button>
-      <button class="tab tap" data-view="stats" aria-label="Stats">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 5-6"/></svg>
-        <span>Stats</span>
-        <span class="tab-dot"></span>
+        <span class="tab-dot" aria-hidden="true"></span>
+        <span id="inboxBadge" class="tab-badge" aria-label="6 ungelesen">6</span>
       </button>
     </div>
   </div>
@@ -1358,21 +1384,22 @@
   <div id="sheetBack" class="sheet-back"></div>
 
   <!-- 1. Drilldown -->
-  <div id="sheetDrill" class="sheet">
-    <div class="grab"></div>
+  <div id="sheetDrill" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetDrillTitle" aria-hidden="true">
+    <div class="grab" aria-hidden="true"></div>
+    <h2 id="sheetDrillTitle" class="sr-only">Detail</h2>
     <div id="sheetDrillBody" class="px-5 pt-3 pb-2"></div>
   </div>
 
   <!-- 2. Filter (Single-SoT, B2: reduzierte Bezirke + C1: Konfig-Multi hier) -->
-  <div id="sheetFilter" class="sheet">
+  <div id="sheetFilter" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetFilterTitle" aria-hidden="true">
     <div class="grab"></div>
     <div class="px-5 pt-3 pb-2">
       <div class="flex items-start justify-between">
         <div>
           <div class="font-mono text-[11px] uppercase tracking-[0.14em] dim">Filter</div>
-          <h3 class="mt-1 text-[18px] font-semibold tracking-tight">Was willst du sehen?</h3>
+          <h2 id="sheetFilterTitle" class="mt-1 text-[18px] font-semibold tracking-tight">Was willst du sehen?</h2>
         </div>
-        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="schliessen">
+        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Filter schliessen">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
@@ -1454,32 +1481,32 @@
   </div>
 
   <!-- 3. PROFILE -->
-  <div id="sheetProfile" class="sheet">
+  <div id="sheetProfile" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetProfileTitle" aria-hidden="true">
     <div class="grab"></div>
     <div class="px-5 pt-3 pb-2">
       <div class="flex items-start justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
-          <div class="avatar-wrap" style="cursor:default;">
-            <svg class="avatar-ring js-avatar-ring" viewBox="0 0 44 44">
+          <div class="avatar-wrap" style="cursor:default;" role="presentation">
+            <svg class="avatar-ring js-avatar-ring" viewBox="0 0 44 44" aria-hidden="true">
               <circle class="track" cx="22" cy="22" r="20"/>
               <circle class="progress js-avatar-progress" cx="22" cy="22" r="20" stroke-dasharray="125.6" stroke-dashoffset="0"/>
             </svg>
-            <div class="avatar-inner">J</div>
+            <div class="avatar-inner" aria-hidden="true">J</div>
           </div>
           <div class="min-w-0">
             <div class="font-mono text-[10.5px] uppercase tracking-[0.12em] dim">Mein Pack</div>
-            <h3 class="text-[18px] font-semibold tracking-tight leading-tight truncate">Jonathan</h3>
-            <div class="text-[11.5px] dim"><span id="profileOnboardingLabel">Onboarding 4 von 4 fertig</span></div>
+            <h2 id="sheetProfileTitle" class="text-[18px] font-semibold tracking-tight leading-tight truncate">Jonathan</h2>
+            <div class="text-[11.5px] dim"><span id="profileOnboardingLabel">Pack vollstaendig · Agent aktiv</span></div>
           </div>
         </div>
-        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="schliessen">
+        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Profil schliessen">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
 
       <div id="packBanner" class="mt-4 rounded-2xl p-3 flex items-center gap-2" style="background:rgba(16,185,129,0.10); border:1px solid rgba(16,185,129,0.25)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.7" stroke-linecap="round"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="9"/></svg>
-        <div class="text-[12px] flex-1" id="packBannerText">Pack 4/5 + Buergschaft verfuegbar · ready fuer 2er-WG</div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="9"/></svg>
+        <div class="text-[12px] flex-1" id="packBannerText" aria-live="polite">Pack 4/5 + Buergschaft verfuegbar · ready fuer 2er-WG</div>
       </div>
 
       <div class="mt-5">
@@ -1652,16 +1679,16 @@
   </div>
 
   <!-- 4. GENERATOR (B4: 1 Default-Template pro Typ, kein Tab-Switcher) -->
-  <div id="sheetGenerator" class="sheet layer2">
+  <div id="sheetGenerator" class="sheet layer2" role="dialog" aria-modal="true" aria-labelledby="genTitle" aria-hidden="true">
     <div class="grab"></div>
     <div class="px-5 pt-3 pb-2">
       <div class="flex items-start justify-between">
         <div>
           <div class="font-mono text-[11px] uppercase tracking-[0.14em] dim">Generator</div>
-          <h3 id="genTitle" class="mt-1 text-[18px] font-semibold tracking-tight">Aushang erstellen</h3>
+          <h2 id="genTitle" class="mt-1 text-[18px] font-semibold tracking-tight">Aushang erstellen</h2>
           <div id="genSubtitle" class="text-[11.5px] dim mt-0.5">Vorlage + Foto + drucken</div>
         </div>
-        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="schliessen">
+        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Generator schliessen">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
@@ -1717,15 +1744,15 @@
   </div>
 
   <!-- 5. ANRUF -->
-  <div id="sheetAnruf" class="sheet layer2">
-    <div class="grab"></div>
+  <div id="sheetAnruf" class="sheet layer2" role="dialog" aria-modal="true" aria-labelledby="sheetAnrufTitle" aria-hidden="true">
+    <div class="grab" aria-hidden="true"></div>
     <div class="px-5 pt-3 pb-2">
       <div class="flex items-start justify-between">
         <div>
           <div class="font-mono text-[11px] uppercase tracking-[0.14em] dim">Anruf</div>
-          <h3 class="mt-1 text-[18px] font-semibold tracking-tight">Wen anrufen?</h3>
+          <h2 id="sheetAnrufTitle" class="mt-1 text-[18px] font-semibold tracking-tight">Wen anrufen?</h2>
         </div>
-        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="schliessen">
+        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Anruf-Auswahl schliessen">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
@@ -1762,28 +1789,28 @@
   </div>
 
   <!-- 6. ONBOARDING (B3: statische Templates) -->
-  <div id="sheetOnboarding" class="sheet layer2">
-    <div class="grab"></div>
+  <div id="sheetOnboarding" class="sheet layer2" role="dialog" aria-modal="true" aria-labelledby="obTitle" aria-hidden="true">
+    <div class="grab" aria-hidden="true"></div>
     <div class="px-5 pt-3 pb-2">
       <div class="flex items-start justify-between">
         <div>
           <div class="font-mono text-[11px] uppercase tracking-[0.14em] dim">Setup · Schritt <span id="obStep">1</span> von 4</div>
-          <h3 id="obTitle" class="mt-1 text-[18px] font-semibold tracking-tight">Kriterien festlegen</h3>
+          <h2 id="obTitle" class="mt-1 text-[18px] font-semibold tracking-tight">Kriterien festlegen</h2>
           <div id="obSubtitle" class="text-[11.5px] dim mt-0.5">Budget, Bezirke, Konfig, Kriterien.</div>
         </div>
-        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="schliessen">
+        <button data-close class="w-9 h-9 rounded-full bg-paper2 dark:bg-paper2D flex items-center justify-center shrink-0" aria-label="Onboarding schliessen">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <div class="mt-4 flex items-center gap-1" id="obStepper">
-        <div class="step-dot active" data-stp="1">1</div>
-        <div class="step-line" data-stl="1"></div>
-        <div class="step-dot" data-stp="2">2</div>
-        <div class="step-line" data-stl="2"></div>
-        <div class="step-dot" data-stp="3">3</div>
-        <div class="step-line" data-stl="3"></div>
-        <div class="step-dot" data-stp="4">4</div>
+      <div class="mt-4 flex items-center gap-1" id="obStepper" role="list" aria-label="Onboarding-Fortschritt">
+        <div class="step-dot active" data-stp="1" aria-current="step" role="listitem"><span class="sr-only">Schritt </span>1</div>
+        <div class="step-line" data-stl="1" aria-hidden="true"></div>
+        <div class="step-dot" data-stp="2" role="listitem"><span class="sr-only">Schritt </span>2</div>
+        <div class="step-line" data-stl="2" aria-hidden="true"></div>
+        <div class="step-dot" data-stp="3" role="listitem"><span class="sr-only">Schritt </span>3</div>
+        <div class="step-line" data-stl="3" aria-hidden="true"></div>
+        <div class="step-dot" data-stp="4" role="listitem"><span class="sr-only">Schritt </span>4</div>
       </div>
 
       <div class="mt-2 flex justify-between text-[10px] font-mono uppercase tracking-[0.08em] dim">
@@ -1904,7 +1931,7 @@
 
 </div>
 
-<div class="footer-caption">Mobile-first 375 px · Light + Dark via System · V4.6 · Reductio (-35%) · USP intakt</div>
+<div class="footer-caption">Mobile-first 375 px · Light + Dark via System · V4.7 · A11y AA · 3-Tab Nav · Stats-Kill</div>
 </content>
 </invoke>
 <script>
@@ -2115,26 +2142,35 @@ const appState = {
 };
 
 /* ============================================================
-   TAB SWITCHING
+   V4.7 — TAB SWITCHING (E-10 tablist-Pattern, Stats raus)
    ============================================================ */
 const views = {
   today: document.getElementById('view-today'),
   karte: document.getElementById('view-karte'),
-  inbox: document.getElementById('view-inbox'),
-  stats: document.getElementById('view-stats')
+  inbox: document.getElementById('view-inbox')
 };
 const tabBtns = document.querySelectorAll('[data-view]');
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const v = btn.dataset.view;
     Object.entries(views).forEach(([k, el]) => {
+      if (!el) return;
       if (k === v) el.classList.remove('hidden-tab');
       else el.classList.add('hidden-tab');
     });
-    tabBtns.forEach(b => { b.classList.remove('active'); b.removeAttribute('aria-current'); });
+    tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
     btn.classList.add('active');
-    btn.setAttribute('aria-current', 'page');
+    btn.setAttribute('aria-selected', 'true');
     closeSheets();
+    // A-5: Fokus auf neue View-h1 fuer Screen-Reader-Ansage
+    const targetView = views[v];
+    if (targetView) {
+      const h1 = targetView.querySelector('h1');
+      if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
+    }
     if (v === 'inbox') renderInbox();
     if (v === 'karte') renderPins(currentMapFilter);
   });
@@ -2207,20 +2243,82 @@ const sheetOnboarding = document.getElementById('sheetOnboarding');
 const allSheets = [sheetDrill, sheetFilter, sheetProfile, sheetGenerator, sheetAnruf, sheetOnboarding];
 const layer2Sheets = [sheetGenerator, sheetOnboarding, sheetAnruf];
 
-function openSheet(el) {
-  sheetBack.classList.add('show');
-  requestAnimationFrame(() => el.classList.add('open'));
+/* V4.7 A-2 — Focus-Trap-Stack + Sheet-Stacking-Fix (Vision #3) */
+const focusStack = [];
+const scrollEl = document.getElementById('scroll');
+const bottomEl = document.querySelector('.bottom');
+
+function getFocusables(scope) {
+  return scope.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
 }
+
+function trapFocus(e, sheet) {
+  if (e.key !== 'Tab') return;
+  const f = [...getFocusables(sheet)].filter(el => !el.disabled && el.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+
+function openSheet(el) {
+  // Vision #3 — vorigen Sheet nur schliessen, wenn neuer Sheet KEIN layer2 (Stacking nur fuer layer2)
+  const isL2 = layer2Sheets.includes(el);
+  if (!isL2) {
+    allSheets.forEach(s => {
+      if (s !== el && s.classList.contains('open')) {
+        s.classList.remove('open');
+        s.setAttribute('aria-hidden', 'true');
+        if (s._keyHandler) { s.removeEventListener('keydown', s._keyHandler); s._keyHandler = null; }
+      }
+    });
+  }
+
+  focusStack.push(document.activeElement);
+  if (scrollEl) scrollEl.setAttribute('inert', '');
+  if (bottomEl) bottomEl.setAttribute('inert', '');
+
+  sheetBack.classList.add('show');
+  el.setAttribute('aria-hidden', 'false');
+  requestAnimationFrame(() => {
+    el.classList.add('open');
+    setTimeout(() => {
+      const focusable = el.querySelector('button, input, [tabindex]:not([tabindex="-1"])');
+      if (focusable) focusable.focus();
+    }, 60);
+  });
+
+  const handler = (e) => trapFocus(e, el);
+  el._keyHandler = handler;
+  el.addEventListener('keydown', handler);
+}
+
 function closeSheet(el) {
   el.classList.remove('open');
+  el.setAttribute('aria-hidden', 'true');
+  if (el._keyHandler) { el.removeEventListener('keydown', el._keyHandler); el._keyHandler = null; }
   setTimeout(() => {
     const stillOpen = allSheets.some(s => s.classList.contains('open'));
-    if (!stillOpen) sheetBack.classList.remove('show');
+    if (!stillOpen) {
+      sheetBack.classList.remove('show');
+      if (scrollEl) scrollEl.removeAttribute('inert');
+      if (bottomEl) bottomEl.removeAttribute('inert');
+    }
+    const prev = focusStack.pop();
+    if (prev && typeof prev.focus === 'function') prev.focus();
   }, 220);
 }
+
 function closeSheets() {
-  allSheets.forEach(s => s.classList.remove('open'));
+  allSheets.forEach(s => {
+    s.classList.remove('open');
+    s.setAttribute('aria-hidden', 'true');
+    if (s._keyHandler) { s.removeEventListener('keydown', s._keyHandler); s._keyHandler = null; }
+  });
   sheetBack.classList.remove('show');
+  if (scrollEl) scrollEl.removeAttribute('inert');
+  if (bottomEl) bottomEl.removeAttribute('inert');
+  focusStack.length = 0;
 }
 
 sheetBack.addEventListener('click', () => {
@@ -2248,8 +2346,38 @@ document.addEventListener('click', (e) => {
    ============================================================ */
 document.getElementById('voiceOpen').addEventListener('click', (e) => {
   e.preventDefault(); e.stopPropagation();
-  showToast('Voice noch nicht implementiert');
+  showToast('Sprachnotiz noch nicht verfuegbar');
 });
+
+/* V4.7 Vision #5 — Capture-Bar Scroll-Anker */
+if (scrollEl) {
+  scrollEl.addEventListener('scroll', () => {
+    document.querySelectorAll('.capture-wrap').forEach(cw => {
+      const parent = cw.closest('.view');
+      if (!parent || parent.classList.contains('hidden-tab')) return;
+      cw.classList.toggle('scrolled', scrollEl.scrollTop > 4);
+    });
+  });
+}
+
+/* V4.7 A-10 — Cards keyboard-aktivierbar (Enter/Space) */
+function wireCardKeyboard(scope) {
+  (scope || document).querySelectorAll('.acard, .tcard, .vit-card, .inbox-card, .reply-card, .row').forEach(c => {
+    if (c._kbWired) return;
+    if (c.tagName === 'BUTTON') return;
+    c.setAttribute('role', 'button');
+    c.setAttribute('tabindex', '0');
+    c.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (e.target.closest('button, input, [data-cta]')) return;
+        e.preventDefault();
+        c.click();
+      }
+    });
+    c._kbWired = true;
+  });
+}
+wireCardKeyboard();
 
 /* ============================================================
    CAPTURE + TAGS (C3: Vitamin oeffnet Profil-Sheet zur Vit-Section)
@@ -2414,14 +2542,17 @@ function renderOnboardingStep() {
   document.querySelectorAll('#obStepper .step-dot').forEach(d => {
     const n = parseInt(d.dataset.stp, 10);
     d.classList.remove('done', 'active');
+    d.removeAttribute('aria-current');
     if (n < step) {
       d.classList.add('done');
-      d.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12l5 5 9-11"/></svg>';
+      // E-26 — sr-only-Text bewahrt Step-Nummer, SVG bleibt rein dekorativ
+      d.innerHTML = '<span class="sr-only">Schritt ' + n + ' erledigt</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5 9-11"/></svg>';
     } else if (n === step) {
       d.classList.add('active');
-      d.textContent = n;
+      d.setAttribute('aria-current', 'step');
+      d.innerHTML = '<span class="sr-only">Schritt </span>' + n;
     } else {
-      d.textContent = n;
+      d.innerHTML = '<span class="sr-only">Schritt </span>' + n;
     }
   });
   document.querySelectorAll('#obStepper .step-line').forEach(l => {
@@ -2771,7 +2902,12 @@ function renderPins(filter='all') {
     el.style.left = p.x + '%';
     el.style.top  = p.y + '%';
     el.style.color = st.color;
-    el.setAttribute('aria-label', p.title + ' – ' + p.sub);
+    // V4.7 A-7 + A-11 — Channel + Status + Score in aria-label
+    const score = PIN_SCORES[p.id] || 0.50;
+    el.setAttribute('aria-label',
+      p.title + ', ' + ch.label + ', Status ' + st.label + ', Score ' +
+      Math.round(score * 100) + ', ' + p.sub
+    );
 
     let ringHTML = '';
     if (p.st === 'hot') {
@@ -2786,11 +2922,10 @@ function renderPins(filter='all') {
     }
 
     const icon = p.ch === 'vitamin'
-      ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg>`
-      : `<span>${ch.short}</span>`;
-    const score = PIN_SCORES[p.id] || 0.50;
-    const scoreColor = score >= 0.80 ? '#10B981' : score >= 0.60 ? '#FF8A65' : '#7A7A7E';
-    const scoreHTML = `<div class="pin-score" style="color:${scoreColor};">${Math.round(score * 100)}</div>`;
+      ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg>`
+      : `<span aria-hidden="true">${ch.short}</span>`;
+    const scoreColor = score >= 0.80 ? '#10B981' : score >= 0.60 ? '#FF8A65' : '#6E6E72';
+    const scoreHTML = `<div class="pin-score" style="color:${scoreColor};" aria-hidden="true">${Math.round(score * 100)}</div>`;
     el.innerHTML = `
       <div class="pin-dot" style="background:${ch.color};">
         ${ringHTML}
@@ -2945,10 +3080,10 @@ function renderInbox() {
           <div class="text-[11.5px] dim mt-0.5">${it.rooms}-Zi · ${it.qm} qm · <span class="font-mono">${it.price.toLocaleString('de-DE')} EUR</span> warm</div>
           <div class="text-[11px] mt-1 leading-tight" style="color:#5E6AD2;">${it.note}</div>
           <div class="flex flex-wrap gap-1.5 mt-2">${cfgPills}${criteriaPills}</div>
-          <div class="inbox-triage">
-            <button class="tri-hot tap" data-triage="hot" data-tid="${it.id}">→ Zu Hot</button>
-            <button class="tap" data-triage="snooze" data-tid="${it.id}">Snoozen</button>
-            <button class="tap" data-triage="discard" data-tid="${it.id}">Verwerfen</button>
+          <div class="inbox-triage" role="group" aria-label="Triage fuer ${it.title}">
+            <button class="tri-hot tap" data-triage="hot" data-tid="${it.id}" aria-label="${it.title} zu Hot verschieben">→ Zu Hot</button>
+            <button class="tap" data-triage="snooze" data-tid="${it.id}" aria-label="${it.title} snoozen">Snoozen</button>
+            <button class="tap" data-triage="discard" data-tid="${it.id}" aria-label="${it.title} verwerfen">Verwerfen</button>
           </div>
         </div>
       </div>
@@ -2963,8 +3098,10 @@ function renderInbox() {
     });
   });
 
-  document.getElementById('inboxBadge').textContent = items.length;
-  updateStatsCaseCount();
+  const ibBadge = document.getElementById('inboxBadge');
+  ibBadge.textContent = items.length;
+  ibBadge.setAttribute('aria-label', items.length + ' ungelesen');
+  wireCardKeyboard(inboxList);
 }
 
 function triageInboxItem(id, action) {
@@ -3093,27 +3230,22 @@ document.querySelectorAll('.termin-head').forEach(head => {
    SCORE-MINI CLICK (kompaktes Inline-Detail-Toast)
    ============================================================ */
 document.addEventListener('click', (e) => {
-  const sm = e.target.closest('.score-mini[data-score-id]');
+  const sm = e.target.closest('.score-mini[data-score-id], .score-mute[data-score-id]');
   if (sm) {
     e.stopPropagation();
-    showToast('Score ' + sm.textContent.trim() + ' · Lage + Hell + Konfig + Preis');
+    const txt = (sm.textContent || '').replace('Match-Score', '').trim();
+    showToast('Score ' + txt + ' · Lage + Hell + Konfig + Preis');
   }
+}, true);
+/* V4.7 — Score-mute Keyboard-Activation */
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const sm = e.target.closest('.score-mute[data-score-id]');
+  if (sm) { e.preventDefault(); sm.click(); }
 }, true);
 
 /* ============================================================
-   STATS — B1: live Counter fuer aktive Faelle
-   ============================================================ */
-function updateStatsCaseCount() {
-  const today = Object.keys(TODAY).length;
-  const inbox = INBOX.length;
-  const pins = PINS.length;
-  const total = today + inbox + pins;
-  const el = document.getElementById('statsCaseCount');
-  if (el) el.textContent = total;
-}
-
-/* ============================================================
-   INIT
+   V4.7 INIT (Stats-Counter entfernt)
    ============================================================ */
 renderPins('all');
 renderInbox();
@@ -3121,11 +3253,17 @@ updateTodayFilterCounts();
 applyTodayFilter();
 updatePackUI();
 updateAvatarProgress(4);
-updateStatsCaseCount();
+updateFilterCountBadge();
 
-/* Esc schliesst Sheets */
+/* V4.7 — Esc schliesst oberen Sheet (layer2 zuerst), sonst alle */
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeSheets();
+  if (e.key !== 'Escape') return;
+  const l2open = layer2Sheets.find(s => s.classList.contains('open'));
+  if (l2open) closeSheet(l2open);
+  else {
+    const anyOpen = allSheets.find(s => s.classList.contains('open'));
+    if (anyOpen) closeSheet(anyOpen);
+  }
 });
 
 </script>
