@@ -7,9 +7,19 @@
 <meta name="robots" content="noindex, nofollow" />
 <meta name="referrer" content="no-referrer" />
 <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=()" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com https://html2canvas.hertzen.com https://storage.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://*.ts.net http://127.0.0.1:* http://localhost:* https://storage.googleapis.com; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='6'%20fill='%23FF8A65'/%3E%3Cpath%20d='M12%204l7%206v9h-4v-5h-6v5H5v-9z'%20fill='%23181818'/%3E%3C/svg%3E" />
-<title>Wohnung V4.9 · Multi-Agent + Self-Explanatory</title>
+
+<!-- V5.0 PWA — Manifest + iOS-Meta + Theme-Color -->
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#FF8A65" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#18181B" media="(prefers-color-scheme: dark)" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Wohnung" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
+<title>Wohnung V5.0 · PWA + Feedback-Loop</title>
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3933,6 +3943,226 @@ document.querySelectorAll('.hot-lead-cta').forEach(b => {
     }
   });
 }, true);
+
+/* ============================================================
+   V5.0 — PWA Service-Worker Register + Bug-Feedback-Button
+   Done-Def Punkt 3+4 (Mobile-Pivot-Engineer)
+   ============================================================ */
+
+// --- Service-Worker registrieren (idempotent, fail-safe) ---
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js', { scope: './' })
+      .then(reg => { console.log('[V5.0] SW registered', reg.scope); })
+      .catch(err => { console.warn('[V5.0] SW failed', err); });
+  });
+}
+
+// --- Backend-Endpoint (LocalStorage konfigurierbar, default leer = nur lokales Logging) ---
+function getFeedbackEndpoint() {
+  try { return localStorage.getItem('wt_feedback_url') || ''; } catch (_) { return ''; }
+}
+
+// --- Bug-Button + Dialog dynamisch injizieren (kein Reflow-Refactor noetig) ---
+(function mountBugFeedback() {
+  // Floating-Button (bottom-right, sitzt ueber der Tab-Bar)
+  const btn = document.createElement('button');
+  btn.id = 'bugFeedbackBtn';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Feedback geben');
+  btn.title = 'Feedback / Bug melden';
+  btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M12 6V3M9 3l3 3 3-3M5 10l3 1M5 18l3-1M19 10l-3 1M19 18l-3-1"/></svg>';
+  Object.assign(btn.style, {
+    position: 'fixed', right: '14px', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 96px)',
+    zIndex: 60, width: '48px', height: '48px', borderRadius: '999px',
+    background: '#FF8A65', color: '#18181B', border: 'none',
+    boxShadow: '0 8px 22px -8px rgba(20,18,12,0.45), 0 0 0 1px rgba(20,18,12,0.06)',
+    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'
+  });
+  document.body.appendChild(btn);
+
+  // Dialog
+  const dlg = document.createElement('dialog');
+  dlg.id = 'bugFeedbackDlg';
+  Object.assign(dlg.style, {
+    border: 'none', borderRadius: '18px', padding: '0', maxWidth: '92vw', width: '360px',
+    background: '#FFFFFF', color: '#18181B',
+    boxShadow: '0 30px 80px -30px rgba(20,18,12,0.40), 0 0 0 1px rgba(20,18,12,0.06)'
+  });
+  dlg.innerHTML = `
+    <form method="dialog" id="bugFeedbackForm" style="padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;font-family:'Inter Tight',system-ui,sans-serif;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <strong style="font-size:15px;">Feedback an Jonathan</strong>
+        <button type="button" id="bugClose" aria-label="Schliessen" style="background:transparent;border:0;font-size:18px;cursor:pointer;color:#7A7A7E;line-height:1;">x</button>
+      </div>
+      <div id="bugVoiceRow" style="display:flex;align-items:center;gap:8px;">
+        <button type="button" id="bugVoiceBtn" style="background:#FF8A65;color:#18181B;border:0;border-radius:12px;padding:8px 12px;font-weight:600;cursor:pointer;font-size:13px;">Voice aufnehmen</button>
+        <canvas id="bugVoiceWave" width="170" height="28" style="background:#F3F2EE;border-radius:8px;flex:1;"></canvas>
+      </div>
+      <div id="bugVoiceStatus" style="font-size:11px;color:#7A7A7E;min-height:14px;">Tap auf Voice-Button um Aufnahme zu starten.</div>
+      <textarea id="bugText" placeholder="Was ist passiert? (optional)" rows="3" style="resize:vertical;width:100%;padding:10px;border-radius:12px;border:1px solid #E6E4DD;font:inherit;font-size:13px;background:#FAFAF8;color:#18181B;"></textarea>
+      <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#3A3A3D;cursor:pointer;">
+        <input type="checkbox" id="bugScreenshot" checked /> Screenshot mitschicken
+      </label>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:4px;">
+        <button type="button" id="bugCancel" style="background:transparent;border:0;color:#7A7A7E;padding:8px 10px;cursor:pointer;font-size:13px;">Abbrechen</button>
+        <button type="button" id="bugSubmit" style="background:#18181B;color:#FAFAF8;border:0;border-radius:12px;padding:8px 14px;cursor:pointer;font-weight:600;font-size:13px;">Abschicken</button>
+      </div>
+      <div id="bugResult" role="status" aria-live="polite" style="font-size:12px;color:#10B981;min-height:14px;"></div>
+    </form>`;
+  document.body.appendChild(dlg);
+
+  // ---- Voice recording ----
+  let mediaRecorder = null, audioChunks = [], audioBlob = null, audioCtx = null, analyser = null, waveAnim = null, stream = null;
+
+  function stopVoice() {
+    try { mediaRecorder && mediaRecorder.state !== 'inactive' && mediaRecorder.stop(); } catch(_){}
+    try { stream && stream.getTracks().forEach(t => t.stop()); } catch(_){}
+    try { audioCtx && audioCtx.close(); } catch(_){}
+    if (waveAnim) cancelAnimationFrame(waveAnim);
+    waveAnim = null; audioCtx = null; analyser = null; stream = null;
+  }
+
+  function drawWave() {
+    const c = document.getElementById('bugVoiceWave');
+    if (!c || !analyser) return;
+    const ctx = c.getContext('2d');
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    function frame() {
+      analyser.getByteTimeDomainData(data);
+      ctx.fillStyle = '#F3F2EE'; ctx.fillRect(0,0,c.width,c.height);
+      ctx.lineWidth = 1.5; ctx.strokeStyle = '#FF8A65'; ctx.beginPath();
+      const slice = c.width / data.length;
+      for (let i=0;i<data.length;i++) {
+        const v = data[i]/128.0; const y = (v * c.height)/2;
+        if (i===0) ctx.moveTo(i*slice, y); else ctx.lineTo(i*slice, y);
+      }
+      ctx.stroke();
+      waveAnim = requestAnimationFrame(frame);
+    }
+    frame();
+  }
+
+  async function startVoice() {
+    const statusEl = document.getElementById('bugVoiceStatus');
+    const vBtn = document.getElementById('bugVoiceBtn');
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      stopVoice();
+      vBtn.textContent = 'Voice aufnehmen';
+      statusEl.textContent = audioBlob ? 'Aufnahme bereit (' + Math.round(audioBlob.size/1024) + ' kB)' : 'Aufnahme abgebrochen';
+      return;
+    }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      // iOS-Safari unterstuetzt audio/mp4 nicht zuverlaessig — Auto-Fallback.
+      let mime = 'audio/mp4';
+      if (!(window.MediaRecorder && MediaRecorder.isTypeSupported(mime))) mime = 'audio/webm';
+      if (!MediaRecorder.isTypeSupported(mime)) mime = '';
+      mediaRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+      audioChunks = []; audioBlob = null;
+      mediaRecorder.ondataavailable = (e) => { if (e.data && e.data.size > 0) audioChunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+      };
+      mediaRecorder.start();
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const src = audioCtx.createMediaStreamSource(stream);
+      analyser = audioCtx.createAnalyser(); analyser.fftSize = 256;
+      src.connect(analyser);
+      drawWave();
+      vBtn.textContent = 'Stoppen';
+      statusEl.textContent = 'Aufnahme laeuft...';
+    } catch (err) {
+      statusEl.textContent = 'Mikrofon-Zugriff verweigert. iOS-Einstellungen pruefen.';
+      console.warn('[V5.0] mic denied', err);
+    }
+  }
+
+  // ---- html2canvas lazy-load ----
+  let h2cPromise = null;
+  function loadHtml2Canvas() {
+    if (window.html2canvas) return Promise.resolve(window.html2canvas);
+    if (h2cPromise) return h2cPromise;
+    h2cPromise = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+      s.onload = () => resolve(window.html2canvas);
+      s.onerror = (e) => reject(e);
+      document.head.appendChild(s);
+    });
+    return h2cPromise;
+  }
+
+  async function captureScreenshot() {
+    try {
+      const h2c = await loadHtml2Canvas();
+      const canvas = await h2c(document.body, { backgroundColor: '#FAFAF8', logging: false, scale: 1 });
+      return await new Promise((res) => canvas.toBlob(b => res(b), 'image/png', 0.85));
+    } catch (e) {
+      console.warn('[V5.0] screenshot failed', e);
+      return null;
+    }
+  }
+
+  // ---- Submit ----
+  async function submitFeedback() {
+    const resultEl = document.getElementById('bugResult');
+    const text = document.getElementById('bugText').value || '';
+    const wantScreenshot = document.getElementById('bugScreenshot').checked;
+    resultEl.style.color = '#7A7A7E';
+    resultEl.textContent = 'Sende...';
+    stopVoice();
+    const fd = new FormData();
+    fd.append('text', text);
+    fd.append('ts', new Date().toISOString());
+    fd.append('route', location.pathname + location.hash);
+    fd.append('ua', navigator.userAgent);
+    if (audioBlob) fd.append('audio', audioBlob, 'voice.' + (audioBlob.type.includes('mp4') ? 'mp4' : 'webm'));
+    if (wantScreenshot) {
+      const png = await captureScreenshot();
+      if (png) fd.append('screenshot', png, 'shot.png');
+    }
+    const endpoint = getFeedbackEndpoint();
+    if (!endpoint) {
+      // Kein Endpoint konfiguriert -> lokal speichern als Download (Fallback).
+      try {
+        const blob = new Blob([JSON.stringify({
+          text, ts: new Date().toISOString(), route: location.pathname,
+          audio_kb: audioBlob ? Math.round(audioBlob.size/1024) : 0,
+          ua: navigator.userAgent
+        }, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob); a.download = 'feedback-' + Date.now() + '.json';
+        a.click();
+        resultEl.style.color = '#F59E0B';
+        resultEl.textContent = 'Kein Endpoint -> als JSON heruntergeladen.';
+      } catch (e) {
+        resultEl.style.color = '#FB923C'; resultEl.textContent = 'Fehler: ' + e.message;
+      }
+      return;
+    }
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: fd, mode: 'cors' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      resultEl.style.color = '#10B981'; resultEl.textContent = 'Danke! Feedback empfangen.';
+      setTimeout(() => { dlg.close && dlg.close(); }, 1200);
+    } catch (e) {
+      resultEl.style.color = '#FB923C';
+      resultEl.textContent = 'Konnte nicht senden (' + e.message + '). Lokal gespeichert.';
+    }
+  }
+
+  // Wire up
+  btn.addEventListener('click', () => {
+    document.getElementById('bugResult').textContent = '';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  });
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) { stopVoice(); dlg.close && dlg.close(); } });
+  dlg.querySelector('#bugClose').addEventListener('click', () => { stopVoice(); dlg.close && dlg.close(); });
+  dlg.querySelector('#bugCancel').addEventListener('click', () => { stopVoice(); dlg.close && dlg.close(); });
+  dlg.querySelector('#bugVoiceBtn').addEventListener('click', startVoice);
+  dlg.querySelector('#bugSubmit').addEventListener('click', submitFeedback);
+})();
 
 </script>
 
