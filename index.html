@@ -3958,9 +3958,10 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// --- Backend-Endpoint (LocalStorage konfigurierbar, default leer = nur lokales Logging) ---
+// --- Backend-Endpoint (Default = Tailscale-Funnel, LocalStorage-Override moeglich) ---
+const FEEDBACK_URL_DEFAULT = 'https://mac-mini-von-jonathan.tail6a6edc.ts.net/feedback';
 function getFeedbackEndpoint() {
-  try { return localStorage.getItem('wt_feedback_url') || ''; } catch (_) { return ''; }
+  try { return localStorage.getItem('wt_feedback_url') || FEEDBACK_URL_DEFAULT; } catch (_) { return FEEDBACK_URL_DEFAULT; }
 }
 
 // --- Bug-Button + Dialog dynamisch injizieren (kein Reflow-Refactor noetig) ---
